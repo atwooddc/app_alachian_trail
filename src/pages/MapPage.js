@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { React, useState } from "react";
 import OpenLayersMap from "../components/OpenLayersMap.js";
 import Sidebar from "../components/Sidebar.js";
 
@@ -23,11 +23,10 @@ const DATA = [
 
 const MapPage = () => {
     const [day, setDay] = useState(0);
-
     return (
         <div className="map-page">
-            <OpenLayersMap day={day} changeDay={setDay} />
-            <Sidebar data={DATA} day={day} changeDay={setDay} />
+            <OpenLayersMap setDay={setDay} />
+            <Sidebar data={DATA} day={day} setDay={setDay} />
         </div>
     );
 };

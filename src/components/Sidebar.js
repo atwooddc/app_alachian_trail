@@ -7,6 +7,7 @@ const useStyles = makeStyles((theme) => ({
         position: "absolute",
         bottom: "20px",
         right: "20px",
+        width: "200px",
         padding: theme.spacing(2),
         boxShadow: "0 2px 5px rgba(0, 0, 0, 0.1)",
         zIndex: 1000,
@@ -14,7 +15,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-const Sidebar = ({ data, day, changeDay }) => {
+const Sidebar = ({ data, day, setDay }) => {
     const classes = useStyles();
 
     return (

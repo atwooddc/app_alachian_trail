@@ -1,81 +1,58 @@
-import React, { useEffect } from "react";
-import "ol/ol.css";
-import Map from "ol/Map";
-import View from "ol/View";
-import TileLayer from "ol/layer/Tile";
-import OSM from "ol/source/OSM";
-import Feature from "ol/Feature";
-import Point from "ol/geom/Point";
+import { React, useState } from "react";
 import { fromLonLat } from "ol/proj";
-import { Vector as VectorLayer } from "ol/layer";
-import { Vector as VectorSource } from "ol/source";
-import { Style, Icon } from "ol/style";
+import { Feature } from "ol";
+import { Point } from "ol/geom";
+import "ol/ol.css";
 
-const OpenLayersMap = ({ day, changeDay }) => {
-    useEffect(() => {
-        const map = new Map({
-            target: "map",
-            layers: [
-                new TileLayer({
-                    source: new OSM(),
-                }),
-            ],
-            view: new View({
-                // center: fromLonLat([-76.5600885, 40.2655785]), // calculated center of AT bounding box
-                center: fromLonLat([-76, 40]),
-                zoom: 5.5,
-            }),
-        });
+import { RMap, ROSM, RLayerVector, RFeature, RStyle } from "rlayers";
+import locationIcon from "../location_icon.png";
 
-        // Create a vector source and layer to hold features
-        const vectorSource = new VectorSource();
-        const vectorLayer = new VectorLayer({
-            source: vectorSource,
-        });
-        map.addLayer(vectorLayer);
+export const days = {
+    1: [-84, 35],
+    2: [-77, 40],
+    3: [-70, 44],
+};
 
-        // Function to add a marker to the map
-        const addMarker = (coordinates, day) => {
-            const marker = new Feature({
-                geometry: new Point(fromLonLat(coordinates)),
-            });
-
-            marker.set("day", day);
-
-            // Example icon for the marker
-            marker.setStyle(
-                new Style({
-                    image: new Icon({
-                        anchor: [0.5, 46],
-                        anchorXUnits: "fraction",
-                        anchorYUnits: "pixels",
-                        src: "https://openlayers.org/en/latest/examples/data/icon.png", // Example icon URL
-                    }),
+const center = fromLonLat([-76.56, 40.266]);
+const OpenLayersMap = ({ setDay }) => {
+    const [features] = useState(() =>
+        Object.keys(days).map(
+            (d) =>
+                new Feature({
+                    geometry: new Point(fromLonLat(days[d])),
+                    day: d,
                 })
-            );
-
-            vectorSource.addFeature(marker);
-        };
-
-        // Add markers at specific coordinates
-        addMarker([-84, 35], 1); // around s terminus
-        addMarker([-77, 40], 2); // around middle in PA
-        addMarker([-70, 44], 3); // around n terminus
-
-        // Handle click events on the markers
-        map.on("click", (e) => {
-            map.forEachFeatureAtPixel(e.pixel, (feature) => {
-                // Handle the click on a feature (marker)
-                changeDay(feature.get("day"));
-            });
-        });
-
-        return () => {
-            map.setTarget(null);
-        };
-    });
-
-    return <div id="map" style={{ width: "100%", height: "680px" }}></div>;
+        )
+    );
+    return (
+        <RMap
+            width={"100%"}
+            height={"100vh"}
+            initial={{ center: center, zoom: 5.5 }}
+        >
+            <ROSM />
+            <RLayerVector zIndex={10}>
+                <RStyle.RStyle>
+                    <RStyle.RIcon src={locationIcon} anchor={[0.5, 0.8]} />
+                </RStyle.RStyle>
+                {features.map((f, i) => (
+                    <RFeature
+                        key={i}
+                        feature={f}
+                        onClick={(e) => {
+                            e.map
+                                .getView()
+                                .fit(e.target.getGeometry().getExtent(), {
+                                    duration: 1000,
+                                    maxZoom: 8,
+                                });
+                            setDay(e.target.get("day"));
+                        }}
+                    />
+                ))}
+            </RLayerVector>
+        </RMap>
+    );
 };
 
 export default OpenLayersMap;
