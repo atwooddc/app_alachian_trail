@@ -1,5 +1,6 @@
 import { React, useState } from "react";
 import { fromLonLat } from "ol/proj";
+import GeoJSON from "ol/format/GeoJSON";
 import { Feature } from "ol";
 import { Point } from "ol/geom";
 import "ol/ol.css";
@@ -50,6 +51,15 @@ const OpenLayersMap = ({ setDay }) => {
                         }}
                     />
                 ))}
+            </RLayerVector>
+            <RLayerVector
+                zIndex={15}
+                format={new GeoJSON({ featureProjection: "EPSG:3857" })}
+                url="https://raw.githubusercontent.com/atwooddc/at_geojson/main/at_centerline.geojson"
+            >
+                <RStyle.RStyle>
+                    <RStyle.RStroke color="#007bff" width={3} />
+                </RStyle.RStyle>
             </RLayerVector>
         </RMap>
     );
