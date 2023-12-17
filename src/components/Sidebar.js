@@ -15,12 +15,12 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-const Sidebar = ({ data, day, setDay }) => {
+const Sidebar = ({ data, setData }) => {
     const classes = useStyles();
 
     return (
         <Paper className={classes.sidebar}>
-            {day ? (
+            {data.day ? (
                 // Conditional sidebar based on what day is selected
                 <>
                     <Typography
@@ -30,7 +30,7 @@ const Sidebar = ({ data, day, setDay }) => {
                         align="center"
                     >
                         {" "}
-                        Day {day}
+                        Day {data.day}
                     </Typography>
                     <Typography
                         variant="paragraph"
@@ -38,12 +38,14 @@ const Sidebar = ({ data, day, setDay }) => {
                         fontStyle="italic"
                     >
                         {" "}
-                        State: {data[day]["state"]} <br />
-                        Mileage: {data[day]["mileage"]}
-                        <br />
-                        Elevation: {data[day]["elev"]}
-                        <br />
-                        Entry: {data[day]["entry"]}
+                        Date: {data.date} <br />
+                        State: {data.state} <br />
+                        Mileage: {data.mileage} <br />
+                        Total Distance: {data.totalDist} <br />
+                        Start: {data.start} <br />
+                        End: {data.end} <br />
+                        Lodging type: {data.lodging} <br />
+                        Town: {data.town} <br />
                     </Typography>
                 </>
             ) : (
