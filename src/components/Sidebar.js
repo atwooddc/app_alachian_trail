@@ -1,5 +1,10 @@
 import React from "react";
-import { Paper, Typography } from "@mui/material";
+import { IconButton, Paper, Typography } from "@mui/material";
+import Box from "@mui/material/Box";
+import Grid from "@mui/material/Grid";
+import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
+import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
+
 import { makeStyles } from "@mui/styles";
 
 const useStyles = makeStyles((theme) => ({
@@ -7,11 +12,11 @@ const useStyles = makeStyles((theme) => ({
         position: "absolute",
         bottom: "20px",
         right: "20px",
-        width: "200px",
-        padding: theme.spacing(2),
-        boxShadow: "0 2px 5px rgba(0, 0, 0, 0.1)",
+        width: "350px",
+        padding: "10px 20px",
+        boxShadow: "0 2px 5px rgba(0, 0, 0, 0.2)",
+        textAlign: "center",
         zIndex: 1000,
-        color: "red",
     },
 }));
 
@@ -23,15 +28,37 @@ const Sidebar = ({ data, setData }) => {
             {data.day ? (
                 // Conditional sidebar based on what day is selected
                 <>
-                    <Typography
-                        variant="subtitle1"
-                        color="common.black"
-                        fontWeight="bold"
-                        align="center"
+                    <Grid
+                        container
+                        spacing={2}
+                        alignItems="center"
+                        justifyContent="center"
                     >
-                        {" "}
-                        Day {data.day}
-                    </Typography>
+                        <Grid item xs={2}>
+                            {" "}
+                            <IconButton>
+                                <ArrowBackIosNewIcon />
+                            </IconButton>
+                        </Grid>
+                        <Grid item xs={8} textAlign={"center"}>
+                            {" "}
+                            <Typography
+                                variant="title1"
+                                color="common.black"
+                                fontFamily={"Futura"}
+                                align="center"
+                            >
+                                {" "}
+                                Day {data.day}
+                            </Typography>
+                        </Grid>
+                        <Grid item xs={2}>
+                            <IconButton>
+                                <ArrowForwardIosIcon />
+                            </IconButton>
+                        </Grid>
+                    </Grid>
+
                     <Typography
                         variant="paragraph"
                         color="common.black"

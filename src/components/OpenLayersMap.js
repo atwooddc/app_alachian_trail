@@ -3,9 +3,10 @@ import { fromLonLat } from "ol/proj";
 import GeoJSON from "ol/format/GeoJSON";
 import "ol/ol.css";
 
-import { RMap, ROSM, RLayerVector, RStyle } from "rlayers";
+import { RMap, ROSM, RLayerVector } from "rlayers";
 
-const center = fromLonLat([-76.56, 40.266]);
+const center = fromLonLat([-76.17, 41.76]);
+
 const OpenLayersMap = ({ setData }) => {
     return (
         <RMap
@@ -21,24 +22,11 @@ const OpenLayersMap = ({ setData }) => {
                 onClick={(e) => {
                     e.map.getView().fit(e.target.getGeometry().getExtent(), {
                         duration: 1000,
-                        maxZoom: 8,
+                        maxZoom: 12,
                     });
-                    setData({
-                        day: e.target.get("day"),
-                        date: e.target.get("date"),
-                        mileage: e.target.get("mileage"),
-                        totalDist: e.target.get("totalDist"),
-                        start: e.target.get("start"),
-                        end: e.target.get("end"),
-                        lodging: e.target.get("lodging"),
-                        town: e.target.get("town"),
-                    });
+                    setData(e.target.getProperties());
                 }}
-            >
-                <RStyle.RStyle>
-                    <RStyle.RStroke color="#007bff" width={3} />
-                </RStyle.RStyle>
-            </RLayerVector>
+            ></RLayerVector>
         </RMap>
     );
 };

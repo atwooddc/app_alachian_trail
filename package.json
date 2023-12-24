@@ -6,6 +6,7 @@
     "@arcgis/core": "^4.28.4",
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
+    "@mui/icons-material": "^5.15.1",
     "@mui/material": "^5.14.7",
     "@mui/styles": "^5.14.7",
     "@testing-library/jest-dom": "^5.17.0",
