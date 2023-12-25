@@ -182,31 +182,36 @@ const Sidebar = ({ data, setData }) => {
                         variant="paragraph"
                         fontSize={12}
                         textAlign={"left"}
-                        fontFamily="arial"
+                        fontFamily="Futura"
                     >
                         {" "}
-                        This is what I've been working on over the last
-                        almost-two months to 'practice coding'. Ever since you
-                        shared your journal entries with me and mom two years
-                        ago, this project has been in the back of my mind. I
-                        hope this allows you to explore your trip of a lifetime
-                        in a new way. <br />
+                        This is what I've been working on over the last two
+                        months to 'practice coding'. Ever since you shared your
+                        journal entries with me and mom two years ago, this
+                        project has been in the back of my mind. I hope this
+                        allows you to explore your trip of a lifetime in a new
+                        way.
+                        <br />
                         <br />
                         The line that appears on this website is the current
                         centerline. There are shelters and trail sections that
                         do not exist as they did in 1981. Shelters have been
                         rebuilt and renamed, or destroyed completely. Many
                         sections of highway you complain about have been
-                        rerouted to newly built trails.
+                        rerouted to newly built trails. There are so many fun
+                        facts and questions and parts of The trail I can't wait
+                        to talk to you about. It really was a joy to make this.
                         <br />
                         <br />
-                        In the future, I hope to flesh out the UI a bit and add
-                        your journal entries (if I can figure out what they
-                        say).
+                        As of now, you may only interact with the map by
+                        clicking on the trail. In the future, I hope to flesh
+                        out the UI a bit and add your journal entries (I don't
+                        think there is an AI out there that can decipher your
+                        handwriting).
                         <br />
                         <br />
-                        Click anywhere on the trail to start exploring. I love
-                        you!
+                        Click anywhere along the trail to start exploring. I
+                        love you!
                     </Typography>
                 </>
             )}
