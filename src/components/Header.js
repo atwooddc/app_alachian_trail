@@ -14,7 +14,7 @@ const Header = () => {
                 alt="first day"
                 className="header-image"
             />
-            <div>
+            <div color="#11151C">
                 <h1>Putting the A.T. in Atwood</h1>
                 <p>Glenn's 1981 trek from GA to ME</p>
             </div>

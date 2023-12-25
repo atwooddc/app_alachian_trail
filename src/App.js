@@ -3,7 +3,16 @@ import { CssBaseline, ThemeProvider, createTheme } from "@mui/material";
 import Header from "./components/Header.js";
 import MapPage from "./pages/MapPage";
 
-const theme = createTheme();
+const theme = createTheme({
+    palette: {
+        primary: {
+            main: "#8A4942",
+        },
+        secondary: {
+            main: "#275DAD",
+        },
+    },
+});
 
 function App() {
     return (
