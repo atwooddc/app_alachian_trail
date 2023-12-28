@@ -1,15 +1,15 @@
 import React from "react";
-import { IconButton, Paper, Typography } from "@mui/material";
-// import Box from "@mui/material/Box";
+import { Paper, Typography } from "@mui/material";
+import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import Button from "@mui/material/Button";
-import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
-import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
+// import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
+// import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import { styled } from "@mui/material/styles";
 
 // icons for progress bar
 import LinearProgress from "@mui/material/LinearProgress";
-import TerrainIcon from "@mui/icons-material/Terrain";
+// import TerrainIcon from "@mui/icons-material/Terrain";
 import CelebrationIcon from "@mui/icons-material/Celebration";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 
@@ -54,7 +54,7 @@ const MileageToFrom = styled(Button)({
 
 const StateButton = styled(Button)(({ bgColor }) => ({
     padding: "0px 1px",
-    margin: 1,
+    margin: 2,
     width: 20,
     height: 20,
     verticalAlign: "middle",
@@ -64,6 +64,10 @@ const StateButton = styled(Button)(({ bgColor }) => ({
     backgroundColor: bgColor,
     color: "white",
     pointerEvents: "none",
+    maxWidth: "30px",
+    maxHeight: "30px",
+    minWidth: "30px",
+    minHeight: "30px",
 }));
 
 const Sidebar = ({ data, setData }) => {
@@ -127,36 +131,42 @@ const Sidebar = ({ data, setData }) => {
                                 <ArrowBackIosNewIcon />
                             </IconButton>
                         </Grid> */}
-                        <Grid item xs={7} textAlign={"right"}>
-                            <Typography
-                                variant="h5"
-                                align="right"
-                                marginBottom={0}
-                                paddingBottom={0}
+                        <Grid item xs={12} alignContent={"center"}>
+                            <Box
+                                display="flex"
+                                alignItems="center"
+                                justifyContent="center"
+                                minHeight={40}
                             >
-                                Day {data.day}
-                            </Typography>
-                        </Grid>
-                        <Grid item xs={5} alignContent={"right"}>
-                            {data.state.length > 2 ? (
-                                <>
+                                <Typography
+                                    variant="h5"
+                                    align="right"
+                                    marginBottom={0}
+                                    paddingBottom={0}
+                                    marginRight={1}
+                                >
+                                    Day {data.day}
+                                </Typography>
+                                {data.state.length > 2 ? (
+                                    <>
+                                        <StateButtonColor
+                                            stateAbbreviation={data.state.substring(
+                                                0,
+                                                2
+                                            )}
+                                        />
+                                        <StateButtonColor
+                                            stateAbbreviation={data.state.substring(
+                                                3
+                                            )}
+                                        />
+                                    </>
+                                ) : (
                                     <StateButtonColor
-                                        stateAbbreviation={data.state.substring(
-                                            0,
-                                            2
-                                        )}
+                                        stateAbbreviation={data.state}
                                     />
-                                    <StateButtonColor
-                                        stateAbbreviation={data.state.substring(
-                                            3
-                                        )}
-                                    />
-                                </>
-                            ) : (
-                                <StateButtonColor
-                                    stateAbbreviation={data.state}
-                                />
-                            )}
+                                )}
+                            </Box>
                         </Grid>
                         <Grid item xs={12} textAlign={"center"}>
                             <Typography
