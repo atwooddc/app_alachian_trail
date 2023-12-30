@@ -1,10 +1,11 @@
-import React from "react";
+import { React, useContext } from "react";
 import { Paper, Typography } from "@mui/material";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import Button from "@mui/material/Button";
-// import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
-// import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
+import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
+import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
+import IconButton from "@mui/material/IconButton";
 import { styled } from "@mui/material/styles";
 
 // icons for progress bar
@@ -14,6 +15,9 @@ import CelebrationIcon from "@mui/icons-material/Celebration";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 
 import { makeStyles } from "@mui/styles";
+import { fromLonLat } from "ol/proj";
+
+import { MapContext } from "../context/MapContext";
 
 const useStyles = makeStyles((theme) => ({
     sidebar: {
@@ -33,7 +37,6 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const MileageToFrom = styled(Button)({
-    // Remove 'variant: "disabled"' as it's not a valid style
     marginLeft: 10,
     marginRight: 10,
     marginBottom: 4,
@@ -72,6 +75,26 @@ const StateButton = styled(Button)(({ bgColor }) => ({
 
 const Sidebar = ({ data, setData }) => {
     const classes = useStyles();
+
+    const mapRef = useContext(MapContext);
+
+    // const changeMapView = () => {
+    //     console.log(data.xcoord);
+    //     console.log(data.ycoord);
+    //     if (mapRef.current) {
+    //         mapRef.current.ol
+    //             .getView()
+    //             .setCenter(fromLonLat([data.xcoord, data.ycoord]));
+    //         mapRef.current.ol.getView().setZoom(11);
+    //     }
+    // };
+
+    const recenterMap = () => {
+        if (mapRef.current) {
+            mapRef.current.ol.getView().setCenter(fromLonLat([-76.17, 41.76]));
+            mapRef.current.ol.getView().setZoom(5.5);
+        }
+    };
 
     function formatDate(inputDate) {
         // Parse the input string into a Date object
@@ -125,18 +148,20 @@ const Sidebar = ({ data, setData }) => {
                         alignItems="center"
                         justifyContent="center"
                     >
-                        {/* <Grid item xs={2}>
+                        <Grid item xs={2}>
                             {" "}
-                            <IconButton>
+                            <IconButton onClick={recenterMap}>
                                 <ArrowBackIosNewIcon />
                             </IconButton>
-                        </Grid> */}
-                        <Grid item xs={12} alignContent={"center"}>
+                        </Grid>
+
+                        <Grid item xs={8} alignContent={"center"}>
                             <Box
                                 display="flex"
                                 alignItems="center"
                                 justifyContent="center"
-                                minHeight={40}
+                                minHeight={30}
+                                marginTop={1.5}
                             >
                                 <Typography
                                     variant="h5"
@@ -168,6 +193,13 @@ const Sidebar = ({ data, setData }) => {
                                 )}
                             </Box>
                         </Grid>
+
+                        <Grid item xs={2}>
+                            <IconButton onClick={recenterMap}>
+                                <ArrowForwardIosIcon />
+                            </IconButton>
+                        </Grid>
+
                         <Grid item xs={12} textAlign={"center"}>
                             <Typography
                                 variant="overline"
@@ -177,11 +209,6 @@ const Sidebar = ({ data, setData }) => {
                                 {formatDate(data.date)}
                             </Typography>
                         </Grid>
-                        {/* <Grid item xs={2}>
-                            <IconButton>
-                                <ArrowForwardIosIcon />
-                            </IconButton>
-                        </Grid> */}
 
                         {/* start to end */}
                         <Grid item xs={12}>
@@ -240,6 +267,29 @@ const Sidebar = ({ data, setData }) => {
                         <Grid item xs={1.5}>
                             <CelebrationIcon />
                         </Grid>
+
+                        <Grid item xs={12}>
+                            <Button onClick={recenterMap}>Recenter</Button>
+                        </Grid>
+
+                        {/* journal entries -- PASSWORD PROTECT..need some kind of password functionality which allows users with the code to see journal entries */}
+                        {/* <Grid item xs={12}>
+                            <Typography
+                                variant="overline"
+                                align="center"
+                                paddingTop={0}
+                            >
+                                Journal
+                            </Typography>
+                        </Grid>
+                        <Grid item xs={12}>
+                            <img
+                                src={
+                                    "https://glennatjournal.s3.us-west-2.amazonaws.com/test_journal_entry.jpg"
+                                }
+                                width={150}
+                            />
+                        </Grid> */}
                     </Grid>
                 </>
             ) : (
@@ -255,7 +305,7 @@ const Sidebar = ({ data, setData }) => {
                         textAlign={"left"}
                         fontFamily="Futura"
                     >
-                        {" "}
+                        {/* {" "}
                         This is what I've been working on over the last two
                         months to 'practice coding'. Ever since you shared your
                         journal entries with me and mom two years ago, this
@@ -282,7 +332,7 @@ const Sidebar = ({ data, setData }) => {
                         <br />
                         <br />
                         Click anywhere along the trail to start exploring. I
-                        love you!
+                        love you! */}
                     </Typography>
                 </>
             )}

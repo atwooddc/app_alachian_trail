@@ -1,6 +1,7 @@
-import { React, useState } from "react";
+import { React, useState, useRef } from "react";
 import OpenLayersMap from "../components/OpenLayersMap.js";
 import Sidebar from "../components/Sidebar.js";
+import { MapContext } from "../context/MapContext.js";
 
 const MapPage = () => {
     const [data, setData] = useState({
@@ -12,12 +13,17 @@ const MapPage = () => {
         end: "",
         lodging: "",
         town: "",
+        // xcoord: 0.0,
+        // ycoord: 0.0,
     });
+
+    const mapRef = useRef();
+
     return (
-        <div className="map-page">
-            <OpenLayersMap setData={setData} />
+        <MapContext.Provider value={mapRef}>
+            <OpenLayersMap setData={setData} ref={mapRef} />
             <Sidebar data={data} setData={setData} />
-        </div>
+        </MapContext.Provider>
     );
 };
 

@@ -16,7 +16,7 @@ const Header = () => {
             />
             <div color="#11151C">
                 <h1>Putting the A.T. in Atwood</h1>
-                <p>Glenn's 1981 trek from GA to ME</p>
+                <p>Glenn's 1981 Appalachian Trail trek from GA to ME</p>
             </div>
             <img
                 src={require("../img/blue_sticker.jpg")}
