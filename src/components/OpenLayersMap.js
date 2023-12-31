@@ -52,8 +52,8 @@ const OpenLayersMap = ({ setData }) => {
                     <RStyle.RStroke color="#8A4942" width={2.5} />
                 </RStyle.RStyle>
             </RLayerVector>
-
-            {/* <RLayerVector zIndex={10}>
+            {/* 
+            <RLayerVector zIndex={10}>
                 {currentSection ? (
                     <div>
                         <RFeature geometry={currentSection.getGeometry()}>
@@ -90,7 +90,7 @@ const OpenLayersMap = ({ setData }) => {
 
             {/* shelter pop ups
             note: need to revise names of shelters in geojson */}
-            {/* <RLayerVector zIndex={10}>
+            <RLayerVector zIndex={10}>
                 {currentStop ? (
                     <div>
                         <RFeature geometry={currentStop.getGeometry()}>
@@ -100,7 +100,7 @@ const OpenLayersMap = ({ setData }) => {
                         </RFeature>
                     </div>
                 ) : null}
-            </RLayerVector> */}
+            </RLayerVector>
         </RMap>
     );
 };
