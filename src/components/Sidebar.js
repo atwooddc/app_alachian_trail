@@ -3,8 +3,6 @@ import { Paper, Typography } from "@mui/material";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import Button from "@mui/material/Button";
-import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
-import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import IconButton from "@mui/material/IconButton";
 import { styled } from "@mui/material/styles";
 
@@ -78,17 +76,6 @@ const Sidebar = ({ data, setData }) => {
 
     const mapRef = useContext(MapContext);
 
-    // const changeMapView = () => {
-    //     console.log(data.xcoord);
-    //     console.log(data.ycoord);
-    //     if (mapRef.current) {
-    //         mapRef.current.ol
-    //             .getView()
-    //             .setCenter(fromLonLat([data.xcoord, data.ycoord]));
-    //         mapRef.current.ol.getView().setZoom(11);
-    //     }
-    // };
-
     const recenterMap = () => {
         if (mapRef.current) {
             mapRef.current.ol.getView().setCenter(fromLonLat([-76.17, 41.76]));
@@ -148,13 +135,6 @@ const Sidebar = ({ data, setData }) => {
                         alignItems="center"
                         justifyContent="center"
                     >
-                        <Grid item xs={2}>
-                            {" "}
-                            <IconButton onClick={recenterMap}>
-                                <ArrowBackIosNewIcon />
-                            </IconButton>
-                        </Grid>
-
                         <Grid item xs={8} alignContent={"center"}>
                             <Box
                                 display="flex"
@@ -192,12 +172,6 @@ const Sidebar = ({ data, setData }) => {
                                     />
                                 )}
                             </Box>
-                        </Grid>
-
-                        <Grid item xs={2}>
-                            <IconButton onClick={recenterMap}>
-                                <ArrowForwardIosIcon />
-                            </IconButton>
                         </Grid>
 
                         <Grid item xs={12} textAlign={"center"}>
@@ -268,7 +242,7 @@ const Sidebar = ({ data, setData }) => {
                             <CelebrationIcon />
                         </Grid>
 
-                        <Grid item xs={12}>
+                        <Grid item xs={12} alignContent={"center"}>
                             <Button onClick={recenterMap}>Recenter</Button>
                         </Grid>
 
