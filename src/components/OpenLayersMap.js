@@ -3,7 +3,7 @@ import { fromLonLat } from "ol/proj";
 import GeoJSON from "ol/format/GeoJSON";
 import "ol/ol.css";
 
-import { RMap, RLayerVector, RStyle, ROverlay, RFeature } from "rlayers";
+import { RMap, RLayerVector, RStyle } from "rlayers";
 import RLayerStadia from "rlayers/layer/RLayerStadia";
 import { MapContext } from "../context/MapContext";
 
@@ -53,19 +53,6 @@ const OpenLayersMap = ({ setData }) => {
                 </RStyle.RStyle>
             </RLayerVector>
 
-            {/* <RLayerVector zIndex={10}>
-                {currentSection ? (
-                    <div>
-                        <RFeature geometry={currentSection.getGeometry()}>
-                            <ROverlay className="overlay" autoPosition={true}>
-                                <strong>{currentSection.get("day")}</strong>
-                                <p>{currentSection.get("mileage")}</p>
-                            </ROverlay>
-                        </RFeature>
-                    </div>
-                ) : null}
-            </RLayerVector> */}
-
             <RLayerVector
                 zIndex={10}
                 maxResolution={350}
@@ -87,20 +74,6 @@ const OpenLayersMap = ({ setData }) => {
                     </RStyle.RCircle>
                 </RStyle.RStyle>
             </RLayerVector>
-
-            {/* shelter pop ups
-            note: need to revise names of shelters in geojson */}
-            {/* <RLayerVector zIndex={10}>
-                {currentStop ? (
-                    <div>
-                        <RFeature geometry={currentStop.getGeometry()}>
-                            <ROverlay className="overlay" autoPosition={true}>
-                                <strong>{currentStop.get("Name")}</strong>
-                            </ROverlay>
-                        </RFeature>
-                    </div>
-                ) : null}
-            </RLayerVector> */}
         </RMap>
     );
 };

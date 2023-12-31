@@ -25,7 +25,6 @@ const useStyles = makeStyles((theme) => ({
         width: "flex",
         padding: "10px 20px",
         boxShadow: "0 2px 5px rgba(0, 0, 0, 0.2)",
-        // textAlign: "center",
         zIndex: 1000,
         fontFamily: "Futura",
         color: "#11151C",
@@ -46,10 +45,10 @@ const MileageToFrom = styled(Button)({
     border: "1px solid",
     color: "#0063cc",
     "&:hover": {
-        backgroundColor: "white", // Keep the background color on hover
-        borderColor: "#0063cc", // Keep the border color on hover
+        backgroundColor: "white",
+        borderColor: "#0063cc",
     },
-    pointerEvents: "none", // Disable pointer events to make the button non-interactive
+    pointerEvents: "none",
 });
 
 const StateButton = styled(Button)(({ bgColor }) => ({
@@ -60,7 +59,6 @@ const StateButton = styled(Button)(({ bgColor }) => ({
     verticalAlign: "middle",
     fontFamily: "Futura",
     fontSize: 14,
-    // border: "2px solid",
     backgroundColor: bgColor,
     color: "white",
     pointerEvents: "none",

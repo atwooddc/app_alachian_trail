@@ -13,8 +13,6 @@ const MapPage = () => {
         end: "",
         lodging: "",
         town: "",
-        // xcoord: 0.0,
-        // ycoord: 0.0,
     });
 
     const mapRef = useRef();
