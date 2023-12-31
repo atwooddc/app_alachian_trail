@@ -3,7 +3,6 @@ import { Paper, Typography } from "@mui/material";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import Button from "@mui/material/Button";
-import IconButton from "@mui/material/IconButton";
 import { styled } from "@mui/material/styles";
 
 // icons for progress bar
@@ -245,25 +244,6 @@ const Sidebar = ({ data, setData }) => {
                         <Grid item xs={12} alignContent={"center"}>
                             <Button onClick={recenterMap}>Recenter</Button>
                         </Grid>
-
-                        {/* journal entries -- PASSWORD PROTECT..need some kind of password functionality which allows users with the code to see journal entries */}
-                        {/* <Grid item xs={12}>
-                            <Typography
-                                variant="overline"
-                                align="center"
-                                paddingTop={0}
-                            >
-                                Journal
-                            </Typography>
-                        </Grid>
-                        <Grid item xs={12}>
-                            <img
-                                src={
-                                    "https://glennatjournal.s3.us-west-2.amazonaws.com/test_journal_entry.jpg"
-                                }
-                                width={150}
-                            />
-                        </Grid> */}
                     </Grid>
                 </>
             ) : (
