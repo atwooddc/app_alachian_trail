@@ -1,6 +1,7 @@
 import { React, useState, useRef } from "react";
 import OpenLayersMap from "../components/OpenLayersMap.js";
 import Sidebar from "../components/Sidebar.js";
+import GitHubButton from "../components/GitHubButton.js";
 import { MapContext } from "../context/MapContext.js";
 
 const MapPage = () => {
@@ -20,6 +21,7 @@ const MapPage = () => {
     return (
         <MapContext.Provider value={mapRef}>
             <OpenLayersMap setData={setData} ref={mapRef} />
+            <GitHubButton />
             <Sidebar data={data} setData={setData} />
         </MapContext.Provider>
     );
