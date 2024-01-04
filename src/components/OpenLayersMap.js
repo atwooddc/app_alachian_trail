@@ -47,9 +47,7 @@ const OpenLayersMap = ({ setData }) => {
                         maxZoom: 11,
                     });
 
-                    const day = e.target.get("day");
-
-                    fetchDataForDay(day, setData);
+                    setData(e.target.getProperties());
                 }}
             >
                 <RStyle.RStyle>

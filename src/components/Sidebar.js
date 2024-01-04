@@ -29,7 +29,7 @@ const useStyles = makeStyles((theme) => ({
         zIndex: 1000,
         fontFamily: "Futura",
         color: "#11151C",
-        borderRadius: "30px", // doesn't work!
+        borderRadius: 30, // doesn't work!
     },
 }));
 
