@@ -1,6 +1,6 @@
 .map-header {
     position: absolute;
-    top: 10px;
+    top: 25px;
     left: 50%;
     transform: translateX(-50%);
     background-color: rgba(255, 255, 255, 0.9);
@@ -34,31 +34,26 @@
 
 /* Example positions for images, adjust as needed */
 .header-image:nth-child(1) {
-    left: -26px; /* Position outside the header */
+    left: -60px; /* Position outside the header */
     top: 0;
-    transform: rotate(-10deg);
+    width: 100px;
+    transform: rotate(-8deg);
 }
 
-.header-image:nth-child(2) {
-    left: -30px;
-    top: 45px;
-    width: 60px;
-    transform: rotate(8deg);
+.header-image:nth-child(3) {
+    right: -80px;
+    top: -15px;
+    width: 120px;
+    box-shadow: 0 0000;
+    /* transform: rotate(0deg); */
 }
 
 .header-image:nth-child(4) {
-    right: -20px;
-    top: 50px;
-    width: 45px;
-    transform: rotate(-10deg);
-}
-
-.header-image:nth-child(5) {
-    right: -23px;
-    top:0px;
-    width: 55px;
-    transform: rotate(5deg);
-    z-index: 100;
+    top: -20px;
+    right: 41%;
+    width: 100px;
+    height: auto;
+    box-shadow: 0 0000;
 }
 
 
