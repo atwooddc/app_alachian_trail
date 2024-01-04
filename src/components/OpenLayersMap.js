@@ -6,6 +6,7 @@ import "ol/ol.css";
 import { RMap, RLayerVector, RStyle } from "rlayers";
 import RLayerStadia from "rlayers/layer/RLayerStadia";
 import { MapContext } from "../context/MapContext";
+import { fetchDataForDay } from "../utils/dataUtils";
 
 const center = fromLonLat([-76.17, 41.76]);
 
@@ -45,7 +46,10 @@ const OpenLayersMap = ({ setData }) => {
                         duration: 1000,
                         maxZoom: 11,
                     });
-                    setData(e.target.getProperties());
+
+                    const day = e.target.get("day");
+
+                    fetchDataForDay(day, setData);
                 }}
             >
                 <RStyle.RStyle>

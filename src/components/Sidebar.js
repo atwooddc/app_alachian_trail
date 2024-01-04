@@ -10,6 +10,7 @@ import LinearProgress from "@mui/material/LinearProgress";
 // import TerrainIcon from "@mui/icons-material/Terrain";
 import CelebrationIcon from "@mui/icons-material/Celebration";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
+import { fetchDataForDay } from "../utils/dataUtils";
 
 import { makeStyles } from "@mui/styles";
 import { fromLonLat } from "ol/proj";
