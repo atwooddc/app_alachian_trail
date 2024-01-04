@@ -22,8 +22,8 @@ const Header = () => {
                 className="header-image"
             />
             <img
-                src={require("../img/at_logo_from_blue_notebook.png")}
-                alt="blue journal"
+                src={require("../img/at_logo_b&w.png")}
+                alt="at-logo"
                 className="header-image"
             />
             {/* <img
