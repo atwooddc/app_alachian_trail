@@ -64,7 +64,6 @@ const Sidebar = ({ day, setDay, data }) => {
             mapRef.current.ol.getView().setCenter(fromLonLat([-76.17, 41.76]));
             mapRef.current.ol.getView().setZoom(5.5);
         }
-        console.log(data);
     };
 
     // move to utils
@@ -198,7 +197,6 @@ const Sidebar = ({ day, setDay, data }) => {
                         {" "}
                         Merry Christmas Dad!
                     </Typography>
-                    <Button onClick={recenterMap}>Recenter</Button>
                     <Typography
                         variant="paragraph"
                         fontSize={12}
