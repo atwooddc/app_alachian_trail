@@ -54,7 +54,7 @@ const MileageToFrom = styled(Button)({
     pointerEvents: "none",
 });
 
-const Sidebar = ({ data, setData }) => {
+const Sidebar = ({ day, setDay, data }) => {
     const classes = useStyles();
 
     const mapRef = useContext(MapContext);
@@ -64,11 +64,13 @@ const Sidebar = ({ data, setData }) => {
             mapRef.current.ol.getView().setCenter(fromLonLat([-76.17, 41.76]));
             mapRef.current.ol.getView().setZoom(5.5);
         }
+        console.log(data);
     };
 
+    // move to utils
     function formatDate(inputDate) {
         // Parse the input string into a Date object
-        const [month, day, year] = inputDate.split("/");
+        const [month, day, year] = inputDate.split("-");
         const date = new Date(year, month - 1, day);
 
         // Use Intl.DateTimeFormat to format the date
@@ -83,7 +85,7 @@ const Sidebar = ({ data, setData }) => {
 
     return (
         <Paper className={classes.sidebar}>
-            {data.day && data.date ? ( // error handling for sections w missing data
+            {day && data.get(day) ? ( // error handling for sections w missing data
                 // Conditional sidebar based on what day is selected
                 <>
                     <Grid
@@ -108,9 +110,11 @@ const Sidebar = ({ data, setData }) => {
                                     paddingBottom={0}
                                     marginRight={1}
                                 >
-                                    Day {data.day}
+                                    Day {day}
                                 </Typography>
-                                <StateIndicator stateString={data.state} />
+                                <StateIndicator
+                                    stateString={data.get(day).state}
+                                />
                             </Box>
                         </Grid>
 
@@ -120,7 +124,7 @@ const Sidebar = ({ data, setData }) => {
                                 align="center"
                                 paddingTop={0}
                             >
-                                {formatDate(data.date)}
+                                {formatDate(data.get(day).date)}
                             </Typography>
                         </Grid>
 
@@ -138,7 +142,7 @@ const Sidebar = ({ data, setData }) => {
                                         color: "#275DAD",
                                     }}
                                 >
-                                    {data.mileage} mi.
+                                    {data.get(day).mileage} mi.
                                 </MileageToFrom>
                                 from <br />
                                 <MileageToFrom
@@ -147,7 +151,7 @@ const Sidebar = ({ data, setData }) => {
                                         color: "#0B3948",
                                     }}
                                 >
-                                    {data.start}
+                                    {data.get(day).start}
                                 </MileageToFrom>
                                 to <br />
                                 <MileageToFrom
@@ -156,7 +160,7 @@ const Sidebar = ({ data, setData }) => {
                                         color: "#0B3948",
                                     }}
                                 >
-                                    {data.end}
+                                    {data.get(day).end}
                                 </MileageToFrom>
                                 {/* {data.town ? ` in ${data.town}` : ""} */}
                             </Typography>
@@ -175,7 +179,7 @@ const Sidebar = ({ data, setData }) => {
                             <LinearProgress
                                 variant="determinate"
                                 color="secondary"
-                                value={(100 * data.totalDist) / 2092.2}
+                                value={(100 * data.get(day).totalDist) / 2092.2}
                             />
                         </Grid>
                         <Grid item xs={1.5}>
@@ -194,6 +198,7 @@ const Sidebar = ({ data, setData }) => {
                         {" "}
                         Merry Christmas Dad!
                     </Typography>
+                    <Button onClick={recenterMap}>Recenter</Button>
                     <Typography
                         variant="paragraph"
                         fontSize={12}

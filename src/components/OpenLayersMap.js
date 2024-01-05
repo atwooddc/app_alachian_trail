@@ -11,7 +11,7 @@ import SectionPopUp from "./SectionPopUp";
 
 const center = fromLonLat([-76.17, 41.76]);
 
-const OpenLayersMap = ({ setData }) => {
+const OpenLayersMap = ({ setDay }) => {
     const [currentSection, setCurrentSection] = useState(null);
     const [currentStop, setCurrentStop] = useState(null);
 
@@ -47,7 +47,7 @@ const OpenLayersMap = ({ setData }) => {
                         duration: 1000,
                         maxZoom: 11,
                     });
-                    setData(e.target.getProperties());
+                    setDay(e.target.get("day"));
                 }}
             >
                 <RStyle.RStyle>
@@ -61,7 +61,6 @@ const OpenLayersMap = ({ setData }) => {
                         <RFeature geometry={currentSection.getGeometry()}>
                             <ROverlay className="overlay" autoPosition={true}>
                                 <SectionPopUp currentSection={currentSection} />
-                                {/* <SectionPopUp day={currentSection.get("day")} stateString={currentSection.get("state")} /> */}
                             </ROverlay>
                         </RFeature>
                     </div>

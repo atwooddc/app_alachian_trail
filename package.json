@@ -15,6 +15,7 @@
     "aws-sdk": "^2.1526.0",
     "esri-loader": "^3.7.0",
     "ol": "^8.1.0",
+    "papaparse": "^5.4.1",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-scripts": "5.0.1",
