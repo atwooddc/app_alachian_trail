@@ -269,31 +269,27 @@ const Sidebar = ({ day, setDay, data }) => {
                     >
                         my dad set out from Nimblewill Gap near Georgia's
                         northern border, an external frame pack on his back and
-                        a beard on his face that wouldn't quit growing. He hoped
-                        to hike 2000+ miles to Mount Katahdin in Maine at the
-                        age of 19.
+                        a beard on his face that wouldn't quit growing. He was
+                        19, and hoped to hike 2000+ miles to Mount Katahdin in
+                        Maine by October.
                         <br />
-                        This website is a tool to explore that journey. Using
-                        his itinerary and journals that are (somehow) still
-                        intact, I've digitized his journey. So click around,
-                        explore, and marvel at this 19-year-old's
-                        singlemindedness!
+                        This website is a tool to explore that journey with data
+                        from his itinerary and journals that are (somehow) still
+                        intact. So click around, explore, and marvel at this
+                        19-year-old's singlemindedness!
                         <br />
                         And one note about the line: the line that appears on
                         this website is the current centerline. There are
-                        shelters and trail sections that have been torn down,
-                        rebuilt, or added on, but a majority of the trail
+                        shelters that have been torn down, and trail sections
+                        that have been rerouted, but a majority of the trail
                         remains the same. Where the trail and Glenn's stops
                         (marked by green circles) diverge, tracing the stops
-                        will give a more accurate sense of the general contour
-                        of the trail as it existed in 1981.
+                        will give a more accurate sense of the trail as it
+                        existed in 1981.
                         <br />
-                        And as for the skipped days - Glenn took some days off
-                        (lazy). Sometimes met up with friends and family (Aunt
-                        Margie and Uncle Bob in Bedford, MA for instance), and
-                        sometimes he just hung out. I hope to add this
-                        information in the future as well. And once his journals
-                        are scanned they will be available here, too.
+                        And as for the seemingly skipped days - Glenn took some
+                        days off (lazy). In the future I hope to add this
+                        information as well as his scanned journal entries.
                     </Typography>
                 </>
             )}
