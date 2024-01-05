@@ -16,7 +16,7 @@
 .map-header h1 {
     font-size:5.5vh;
     margin-top: 13px;
-    margin-bottom: 20px; /* Reduce space below the header */
+    margin-bottom: 10px; /* Reduce space below the header */
     /* Add other styling for the header as needed */
 }
 
@@ -37,7 +37,7 @@
 
 
 .header-image:nth-child(1) {
-    top: -10px;
+    top: -15px;
     right: 39%;
     width: 100px;
     height: auto;

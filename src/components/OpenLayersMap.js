@@ -10,6 +10,12 @@ import { MapContext } from "../context/MapContext";
 import SectionPopUp from "./SectionPopUp";
 
 const center = fromLonLat([-76.18, 40.49]);
+const maxExtentCoords = [
+    -11318965.82,
+    3310893.22, // bottom-left corner
+    -5397882.11,
+    6423792.5, // top-right corner
+];
 
 const OpenLayersMap = ({ setDay, data }) => {
     const [currentSection, setCurrentSection] = useState(null);
@@ -23,6 +29,7 @@ const OpenLayersMap = ({ setDay, data }) => {
             width={"100%"}
             height={"100vh"}
             noDefaultControls={true}
+            extent={maxExtentCoords}
             initial={{
                 center: center,
                 zoom: 5.8,
@@ -80,7 +87,7 @@ const OpenLayersMap = ({ setDay, data }) => {
 
             <RLayerVector
                 zIndex={10}
-                maxResolution={350}
+                maxResolution={650}
                 format={new GeoJSON({ featureProjection: "EPSG:3857" })}
                 url="https://raw.githubusercontent.com/atwooddc/at_geojson/main/glenn_at_shelters_12_24.geojson"
                 onPointerEnter={useCallback(

@@ -19,7 +19,7 @@ const Header = () => {
                     Putting the &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; in
                     Atwood
                 </h1>
-                <p>Glenn's 1981 Appalachian Trail trek from GA to ME</p>
+                <p>Exploring Glenn's 1981 trek from Georgia to Maine</p>
             </div>
         </div>
     );

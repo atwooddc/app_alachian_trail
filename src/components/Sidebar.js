@@ -34,7 +34,8 @@ const useStyles = makeStyles((theme) => ({
         zIndex: 1000,
         fontFamily: "Futura",
         color: "#11151C",
-        borderRadius: 30, // doesn't work!
+        maxHeight: "400px", // Adjust this value as needed
+        overflowY: "auto", // Enables vertical scrolling
     },
 }));
 
@@ -129,7 +130,7 @@ const Sidebar = ({ day, setDay, data }) => {
     }
 
     return (
-        <Paper className={classes.sidebar}>
+        <Paper className={classes.sidebar} sx={{ borderRadius: 4 }}>
             {day && data.get(day) ? ( // error handling for sections w missing data
                 // Conditional sidebar based on what day is selected
                 <>
@@ -250,44 +251,49 @@ const Sidebar = ({ day, setDay, data }) => {
             ) : (
                 // Welcome sidebar
                 <>
-                    <Typography variant="h5" textAlign={"center"}>
+                    <Typography
+                        variant="h5"
+                        textAlign={"left"}
+                        fontWeight={"bold"}
+                        fontFamily="Futura"
+                        marginBottom={1}
+                    >
                         {" "}
-                        Merry Christmas Dad!
+                        On April 8th, 1981,
                     </Typography>
                     <Typography
                         variant="paragraph"
                         fontSize={12}
                         textAlign={"left"}
-                        fontFamily="Futura"
+                        fontFamily="Helvetica"
                     >
-                        {/* {" "}
-                        This is what I've been working on over the last two
-                        months to 'practice coding'. Ever since you shared your
-                        journal entries with me and mom two years ago, this
-                        project has been in the back of my mind. I hope this
-                        allows you to explore your trip of a lifetime in a new
-                        way.
+                        my dad set out from Nimblewill Gap near Georgia's
+                        northern border, an external frame pack on his back and
+                        a beard on his face that wouldn't quit growing. He hoped
+                        to hike 2000+ miles to Mount Katahdin in Maine at the
+                        age of 19.
                         <br />
+                        This website is a tool to explore that journey. Using
+                        his itinerary and journals that are (somehow) still
+                        intact, I've digitized his journey. So click around,
+                        explore, and marvel at this 19-year-old's
+                        singlemindedness!
                         <br />
-                        The line that appears on this website is the current
-                        centerline. There are shelters and trail sections that
-                        do not exist as they did in 1981. Shelters have been
-                        rebuilt and renamed, or destroyed completely. Many
-                        sections of highway you complain about have been
-                        rerouted to newly built trails. There are so many fun
-                        facts and questions and parts of The trail I can't wait
-                        to talk to you about. It really was a joy to make this.
+                        And one note about the line: the line that appears on
+                        this website is the current centerline. There are
+                        shelters and trail sections that have been torn down,
+                        rebuilt, or added on, but a majority of the trail
+                        remains the same. Where the trail and Glenn's stops
+                        (marked by green circles) diverge, tracing the stops
+                        will give a more accurate sense of the general contour
+                        of the trail as it existed in 1981.
                         <br />
-                        <br />
-                        As of now, you may only interact with the map by
-                        clicking on the trail. In the future, I hope to flesh
-                        out the UI a bit and add your journal entries (I don't
-                        think there is an AI out there that can decipher your
-                        handwriting).
-                        <br />
-                        <br />
-                        Click anywhere along the trail to start exploring. I
-                        love you! */}
+                        And as for the skipped days - Glenn took some days off
+                        (lazy). Sometimes met up with friends and family (Aunt
+                        Margie and Uncle Bob in Bedford, MA for instance), and
+                        sometimes he just hung out. I hope to add this
+                        information in the future as well. And once his journals
+                        are scanned they will be available here, too.
                     </Typography>
                 </>
             )}
