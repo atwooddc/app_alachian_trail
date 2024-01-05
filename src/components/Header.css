@@ -1,20 +1,22 @@
 .map-header {
     position: absolute;
     top: 25px;
-    left: 50%;
-    transform: translateX(-50%);
+    left: 0%;
+    transform: translateX(-5%);
     background-color: rgba(255, 255, 255);
-    padding: 0px 50px;
-    border-radius: 25px;
+    padding: 0px 90px;
+    padding-right: 40px;
+    border-radius: 15px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-    text-align: center;
+    text-align: left;
     z-index: 100;
     font-family: 'Futura', sans-serif;
 }
 
 .map-header h1 {
-    margin-top: 20px;
-    margin-bottom: 5px; /* Reduce space below the header */
+    font-size:5.5vh;
+    margin-top: 13px;
+    margin-bottom: 20px; /* Reduce space below the header */
     /* Add other styling for the header as needed */
 }
 
@@ -26,34 +28,27 @@
 
 .header-image {
     position: absolute;
-    width: 50px; /* Adjust the size as needed */
+    width: 60px; /* Adjust the size as needed */
     height: auto;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
     border-radius: 4px;
 }
 
-/* Example positions for images, adjust as needed */
+
+
 .header-image:nth-child(1) {
-    left: -60px; /* Position outside the header */
-    top: 0;
-    width: 100px;
-    transform: rotate(-8deg);
-}
-
-.header-image:nth-child(3) {
-    right: -80px;
-    top: -15px;
-    width: 120px;
-    box-shadow: 0 0000;
-    /* transform: rotate(0deg); */
-}
-
-.header-image:nth-child(4) {
-    top: -20px;
-    right: 41%;
+    top: -10px;
+    right: 39%;
     width: 100px;
     height: auto;
     box-shadow: 0 0000;
+}
+
+.header-image:nth-child(2) {
+    right: -35px;
+    top: -1px;
+    width: 110px;
+    transform: rotate(4deg);
 }
 
 

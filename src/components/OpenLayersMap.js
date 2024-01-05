@@ -9,7 +9,7 @@ import { MapContext } from "../context/MapContext";
 
 import SectionPopUp from "./SectionPopUp";
 
-const center = fromLonLat([-76.17, 41.76]);
+const center = fromLonLat([-76.18, 40.49]);
 
 const OpenLayersMap = ({ setDay, data }) => {
     const [currentSection, setCurrentSection] = useState(null);
@@ -22,9 +22,10 @@ const OpenLayersMap = ({ setDay, data }) => {
             ref={mapRef}
             width={"100%"}
             height={"100vh"}
+            noDefaultControls={true}
             initial={{
                 center: center,
-                zoom: 5.5,
+                zoom: 5.8,
             }}
         >
             <RLayerStadia layer="outdoors" />

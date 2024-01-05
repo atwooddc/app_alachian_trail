@@ -8,17 +8,6 @@ import Papa from "papaparse";
 import csvFile from "../test_data/glenn_at_data_1_5.csv";
 
 const MapPage = () => {
-    // const [data, setData] = useState({
-    //     day: 0,
-    //     date: "",
-    //     mileage: 0.0,
-    //     totalDist: 0.0,
-    //     start: "",
-    //     end: "",
-    //     lodging: "",
-    //     town: "",
-    // });
-
     const [day, setDay] = useState(0);
     const [data, setData] = useState(null);
 
