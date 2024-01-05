@@ -87,9 +87,9 @@ day,date,mileage,state,totalDist,start,end,lodging,x,y
 105,1981-7-2,11.6,NJ/NY,1326,Wawayanda Mountain,Roger's Appalachian Cottage,hostel,-8278939.27,5042532.4
 106,1981-7-3,20.3,NY,1346.3,Roger's Appalachian Cottage,Fingerboard Shelter,shelter,-8261079.82,5051183.8
 107,1981-7-4,18.9,NY,1365.2,Fingerboard Shelter,Graymoor Monastery,hostel,-8239262.14,5057590.7
-108,1981-7-5,11.9,NY,1377.1,Graymoor Monastery,Fahnestock State Park Campground,campground,-8223252.1,5073296.2
-109,1981-7-6,22.2,NY,1399.3,Fahnestock State Park Campground,Edward R Murrow Memorial Park,friend/family,-8209838.1,5091330.5
-112,1981-7-7,21.3,NY/CT,1420.6,Edward R Murrow Memorial Park,Chase Mountain Shelter,shelter,-8186943.23,5109819.9
+108,1981-7-5,11.9,NY,1377.1,Graymoor Monastery,Fahnestock State Park,campground,-8223252.1,5073296.2
+109,1981-7-6,22.2,NY,1399.3,Fahnestock State Park,Edward Murrow Memorial Park,friend/family,-8209838.1,5091330.5
+112,1981-7-7,21.3,NY/CT,1420.6,Edward Murrow Memorial Park,Chase Mountain Shelter,shelter,-8186943.23,5109819.9
 113,1981-7-8,22.2,CT,1442.8,Chase Mountain Shelter,Boulder Lean-to,shelter,-8173255.3,5128337
 114,1981-7-9,19.9,CT,1462.7,Boulder Lean-to,Ragamont Inn,motel,-8169321.24,5148366.9
 116,1981-7-10,8.7,CT/MA,1471.4,Mrs. Singleton's,Mount Race Ledges,camp,-8175605.94,5165773.6
