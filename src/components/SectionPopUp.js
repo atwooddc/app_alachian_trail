@@ -22,34 +22,30 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-const SectionPopUp = ({ currentSection }) => {
+const SectionPopUp = ({ day, stateString }) => {
     const classes = useStyles();
 
     return (
         <Paper className={classes.popUp}>
-            {currentSection.get("date") ? ( // error handling for sections w missing data
-                <Box
-                    display="flex"
-                    alignItems="center"
-                    justifyContent="center"
-                    minHeight={20}
+            <Box
+                display="flex"
+                alignItems="center"
+                justifyContent="center"
+                minHeight={20}
 
-                    // marginTop={1.5}
+                // marginTop={1.5}
+            >
+                <Typography
+                    variant="p"
+                    align="center"
+                    marginLeft={0.5}
+                    marginRight={1}
+                    whiteSpace="nowrap"
                 >
-                    <Typography
-                        variant="p"
-                        align="center"
-                        marginLeft={0.5}
-                        marginRight={1}
-                        whiteSpace="nowrap"
-                    >
-                        Day {currentSection.get("day")}
-                    </Typography>
-                    <StateIndicator stateString={currentSection.get("state")} />
-                </Box>
-            ) : (
-                <></>
-            )}
+                    Day {day}
+                </Typography>
+                <StateIndicator stateString={stateString} />
+            </Box>
         </Paper>
     );
 };

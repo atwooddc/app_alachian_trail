@@ -44,10 +44,8 @@ const MapPage = () => {
 
     return (
         <MapContext.Provider value={mapRef}>
-            {/* <OpenLayersMap setData={setData} ref={mapRef} /> */}
-            <OpenLayersMap setDay={setDay} ref={mapRef} />
+            <OpenLayersMap setDay={setDay} data={data} ref={mapRef} />
             <GitHubButton />
-            {/* <Sidebar data={data} setData={setData} /> */}
             <Sidebar day={day} setDay={setDay} data={data} />
         </MapContext.Provider>
     );

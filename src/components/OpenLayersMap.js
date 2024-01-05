@@ -11,7 +11,7 @@ import SectionPopUp from "./SectionPopUp";
 
 const center = fromLonLat([-76.17, 41.76]);
 
-const OpenLayersMap = ({ setDay }) => {
+const OpenLayersMap = ({ setDay, data }) => {
     const [currentSection, setCurrentSection] = useState(null);
     const [currentStop, setCurrentStop] = useState(null);
 
@@ -32,7 +32,7 @@ const OpenLayersMap = ({ setDay }) => {
             <RLayerVector
                 zIndex={5}
                 format={new GeoJSON({ featureProjection: "EPSG:3857" })}
-                url="https://raw.githubusercontent.com/atwooddc/at_geojson/main/glenn_at_trek_12_17.geojson"
+                url="https://raw.githubusercontent.com/atwooddc/at_geojson/main/glenn_at_only_day.geojson"
                 onPointerEnter={useCallback(
                     (e) => setCurrentSection(e.target),
                     []
@@ -60,7 +60,13 @@ const OpenLayersMap = ({ setDay }) => {
                     <div>
                         <RFeature geometry={currentSection.getGeometry()}>
                             <ROverlay className="overlay" autoPosition={true}>
-                                <SectionPopUp currentSection={currentSection} />
+                                <SectionPopUp
+                                    day={currentSection.get("day")}
+                                    stateString={
+                                        data.get(currentSection.get("day"))
+                                            .state
+                                    }
+                                />
                             </ROverlay>
                         </RFeature>
                     </div>
