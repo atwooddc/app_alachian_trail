@@ -10,7 +10,9 @@ import LinearProgress from "@mui/material/LinearProgress";
 // import TerrainIcon from "@mui/icons-material/Terrain";
 import CelebrationIcon from "@mui/icons-material/Celebration";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
-import { fetchDataForDay } from "../utils/dataUtils";
+import IconButton from "@mui/material/IconButton";
+import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
+import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 
 import { makeStyles } from "@mui/styles";
 import { fromLonLat } from "ol/proj";
@@ -66,6 +68,26 @@ const Sidebar = ({ day, setDay, data }) => {
         }
     };
 
+    const changeMapView = () => {
+        const x = data.get(day).x;
+        const y = data.get(day).y;
+        const coords = [x, y];
+        if (mapRef.current) {
+            mapRef.current.ol.getView().setCenter(fromLonLat(coords));
+            mapRef.current.ol.getView().setZoom(5.5);
+        }
+    };
+
+    const backDay = () => {
+        setDay(day - 1);
+        changeMapView();
+    };
+
+    const nextDay = () => {
+        setDay(day + 1);
+        changeMapView(day);
+    };
+
     // move to utils
     function formatDate(inputDate) {
         // Parse the input string into a Date object
@@ -94,6 +116,12 @@ const Sidebar = ({ day, setDay, data }) => {
                         alignItems="center"
                         justifyContent="center"
                     >
+                        <Grid item xs={2}>
+                            {" "}
+                            <IconButton onClick={backDay}>
+                                <ArrowBackIosNewIcon />
+                            </IconButton>
+                        </Grid>
                         <Grid item xs={8} alignContent={"center"}>
                             <Box
                                 display="flex"
@@ -115,6 +143,11 @@ const Sidebar = ({ day, setDay, data }) => {
                                     stateString={data.get(day).state}
                                 />
                             </Box>
+                        </Grid>
+                        <Grid item xs={2}>
+                            <IconButton onClick={nextDay}>
+                                <ArrowForwardIosIcon />
+                            </IconButton>
                         </Grid>
 
                         <Grid item xs={12} textAlign={"center"}>
