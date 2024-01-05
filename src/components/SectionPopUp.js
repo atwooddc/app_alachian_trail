@@ -8,8 +8,10 @@ import StateIndicator from "./StateIndicator";
 const useStyles = makeStyles((theme) => ({
     popUp: {
         // minWidth: "105px",
+        position: "absolute",
+        right: 20,
         width: "flex",
-        padding: "5px 8px",
+        padding: "5px 5px",
         boxShadow: "0 2px 5px rgba(0, 0, 0, 0.2)",
         alignContent: "center",
         alignItems: "center",
@@ -35,8 +37,8 @@ const SectionPopUp = ({ currentSection }) => {
             >
                 <Typography
                     variant="p"
-                    fontWeight="semi-bold"
                     align="center"
+                    marginLeft={0.5}
                     marginRight={1}
                     whiteSpace="nowrap"
                 >
