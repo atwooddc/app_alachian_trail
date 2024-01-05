@@ -69,7 +69,7 @@ const Sidebar = ({ day, setDay, data }) => {
     // move to utils
     function formatDate(inputDate) {
         // Parse the input string into a Date object
-        const [month, day, year] = inputDate.split("-");
+        const [year, month, day] = inputDate.split("-");
         const date = new Date(year, month - 1, day);
 
         // Use Intl.DateTimeFormat to format the date
