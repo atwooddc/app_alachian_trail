@@ -83,7 +83,7 @@ const Sidebar = ({ data, setData }) => {
 
     return (
         <Paper className={classes.sidebar}>
-            {data.day ? (
+            {data.day && data.date ? ( // error handling for sections w missing data
                 // Conditional sidebar based on what day is selected
                 <>
                     <Grid
