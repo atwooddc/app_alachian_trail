@@ -15,6 +15,8 @@ import { fetchDataForDay } from "../utils/dataUtils";
 import { makeStyles } from "@mui/styles";
 import { fromLonLat } from "ol/proj";
 
+import StateIndicator from "./StateIndicator";
+
 import { MapContext } from "../context/MapContext";
 
 const useStyles = makeStyles((theme) => ({
@@ -52,23 +54,6 @@ const MileageToFrom = styled(Button)({
     pointerEvents: "none",
 });
 
-const StateButton = styled(Button)(({ bgColor }) => ({
-    padding: "0px 1px",
-    margin: 2,
-    width: 20,
-    height: 20,
-    verticalAlign: "middle",
-    fontFamily: "Futura",
-    fontSize: 14,
-    backgroundColor: bgColor,
-    color: "white",
-    pointerEvents: "none",
-    maxWidth: "30px",
-    maxHeight: "30px",
-    minWidth: "30px",
-    minHeight: "30px",
-}));
-
 const Sidebar = ({ data, setData }) => {
     const classes = useStyles();
 
@@ -94,31 +79,6 @@ const Sidebar = ({ data, setData }) => {
         });
 
         return formatter.format(date);
-    }
-
-    const stateColors = {
-        GA: "darkred", // 7 days
-        NC: "crimson", // common
-        TN: "tomato", // common
-        VA: "orange", // common
-        WV: "gold", // 3 days
-        MD: "yellowgreen", // 2 days
-        PA: "green", // ~10 days
-        NJ: "seagreen", // 5 days
-        NY: "turquoise", // 6 days
-        CT: "teal", // 3 days
-        MA: "steelblue", // 6 days
-        VT: "darkblue", // 8 days
-        NH: "midnightblue", // common
-        ME: "indigo", // common
-    };
-
-    function StateButtonColor({ stateAbbreviation }) {
-        const buttonColor = stateColors[stateAbbreviation];
-
-        return (
-            <StateButton bgColor={buttonColor}>{stateAbbreviation}</StateButton>
-        );
     }
 
     return (
@@ -150,25 +110,7 @@ const Sidebar = ({ data, setData }) => {
                                 >
                                     Day {data.day}
                                 </Typography>
-                                {data.state.length > 2 ? (
-                                    <>
-                                        <StateButtonColor
-                                            stateAbbreviation={data.state.substring(
-                                                0,
-                                                2
-                                            )}
-                                        />
-                                        <StateButtonColor
-                                            stateAbbreviation={data.state.substring(
-                                                3
-                                            )}
-                                        />
-                                    </>
-                                ) : (
-                                    <StateButtonColor
-                                        stateAbbreviation={data.state}
-                                    />
-                                )}
+                                <StateIndicator stateString={data.state} />
                             </Box>
                         </Grid>
 

@@ -7,28 +7,11 @@ import { RMap, RLayerVector, RStyle, ROverlay, RFeature } from "rlayers";
 import RLayerStadia from "rlayers/layer/RLayerStadia";
 import { MapContext } from "../context/MapContext";
 
-import { Paper, Typography } from "@mui/material";
-import { makeStyles } from "@mui/styles";
+import SectionPopUp from "./SectionPopUp";
 
 const center = fromLonLat([-76.17, 41.76]);
 
-const useStyles = makeStyles((theme) => ({
-    popUp: {
-        minWidth: "105px",
-        width: "flex",
-        padding: "10px 10px",
-        boxShadow: "0 2px 5px rgba(0, 0, 0, 0.2)",
-        alignContent: "center",
-        alignItems: "center",
-        justifyContent: "center",
-        zIndex: 1000,
-        fontFamily: "Futura",
-        color: "#11151C",
-    },
-}));
-
 const OpenLayersMap = ({ setData }) => {
-    const classes = useStyles();
     const [currentSection, setCurrentSection] = useState(null);
     const [currentStop, setCurrentStop] = useState(null);
 
@@ -77,15 +60,8 @@ const OpenLayersMap = ({ setData }) => {
                     <div>
                         <RFeature geometry={currentSection.getGeometry()}>
                             <ROverlay className="overlay" autoPosition={true}>
-                                <Paper className={classes.popUp}>
-                                    <Typography
-                                        variant="p"
-                                        fontWeight="bold"
-                                        align="center"
-                                    >
-                                        Day {currentSection.get("day")}
-                                    </Typography>
-                                </Paper>
+                                <SectionPopUp currentSection={currentSection} />
+                                {/* <SectionPopUp day={currentSection.get("day")} stateString={currentSection.get("state")} /> */}
                             </ROverlay>
                         </RFeature>
                     </div>
