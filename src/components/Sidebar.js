@@ -13,6 +13,7 @@ import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import IconButton from "@mui/material/IconButton";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
+import { boundingExtent } from "ol/extent";
 
 import { makeStyles } from "@mui/styles";
 import { fromLonLat } from "ol/proj";
@@ -63,29 +64,52 @@ const Sidebar = ({ day, setDay, data }) => {
 
     const recenterMap = () => {
         if (mapRef.current) {
-            mapRef.current.ol.getView().setCenter(fromLonLat([-76.17, 41.76]));
-            mapRef.current.ol.getView().setZoom(5.5);
-        }
-    };
-
-    const changeMapView = () => {
-        const x = data.get(day).x;
-        const y = data.get(day).y;
-        const coords = [x, y];
-        if (mapRef.current) {
-            mapRef.current.ol.getView().setCenter(fromLonLat(coords));
-            mapRef.current.ol.getView().setZoom(5.5);
+            const extent = boundingExtent([fromLonLat([-76.17, 41.76])]);
+            mapRef.current.ol.getView().fit(extent, {
+                duration: 3000,
+                maxZoom: 5.5,
+            });
         }
     };
 
     const backDay = () => {
-        setDay(day - 1);
-        changeMapView();
+        if (day > 1) {
+            let newDay = day - 1;
+            while (newDay > 1 && !data.get(newDay)) {
+                --newDay;
+            }
+            if (data.get(newDay)) {
+                setDay(newDay);
+                changeMapView(newDay);
+            }
+        }
     };
 
     const nextDay = () => {
-        setDay(day + 1);
-        changeMapView(day);
+        if (day < 182) {
+            let newDay = day + 1;
+            while (newDay < 182 && !data.get(newDay)) {
+                ++newDay;
+            }
+            if (data.get(newDay)) {
+                setDay(newDay);
+                changeMapView(newDay);
+            }
+        }
+    };
+
+    const changeMapView = (newDay) => {
+        const dayData = data.get(newDay);
+        if (dayData && mapRef.current) {
+            const x = dayData.x;
+            const y = dayData.y;
+            const coords = [[x, y]];
+            const extent = boundingExtent(coords);
+            mapRef.current.ol.getView().fit(extent, {
+                duration: 1000,
+                maxZoom: 11,
+            });
+        }
     };
 
     // move to utils

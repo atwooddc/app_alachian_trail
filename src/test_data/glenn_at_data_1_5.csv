@@ -1,0 +1,148 @@
+day,date,mileage,state,totalDist,start,end,lodging,x,y
+1,1981-4-8,11.9,GA,11.9,Nimblewill Gap,Hawk Mountain Shelter,shelter,-9371323.8,4115834.5
+2,1981-4-9,9.2,GA,21.1,Hawk Mountain Shelter,Gooch Gap Shelter,shelter,-9360940.6,4117459.7
+3,1981-4-10,14.8,GA,35.9,Gooch Gap Shelter,Walasi-yi Hostel,hostel,-9348932.36,4123375
+4,1981-4-11,11,GA,46.9,Walasi-yi Hostel,Low Gap Shelter,shelter,-9335060.84,4128206
+5,1981-4-12,13.2,GA,60.1,Low Gap Shelter,Tray Gap Camp,campground,-9324990.86,4137203.9
+6,1981-4-13,13,GA,73.1,Tray Gap Camp,Huil's Motel,motel,-9312329.49,4143952.1
+7,1981-4-14,11.6,GA/NC,84.7,Huil's Motel,Muskrat Creek Shelter,shelter,-9305823.75,4158567.4
+8,1981-4-15,12.9,NC,97.6,Muskrat Creek Shelter,Carter Gap Shelter,shelter,-9299528.25,4167383
+9,1981-4-16,19.5,NC,117.1,Carter Gap Shelter,Siler Bald Shelter,shelter,-9296613.89,4174320.5
+10,1981-4-17,12.6,NC,129.7,Siler Bald Shelter,Cold Springs Shelter,shelter,-9303165.62,4189116.3
+11,1981-4-18,11.6,NC,141.3,Cold Springs Shelter,NOC Hostel,hostel,-9304108.57,4202331.8
+12,1981-4-19,13.4,NC,154.7,NOC Hostel,Sweetwater Gap,camp,-9313808.32,4210210.9
+13,1981-4-20,14.7,NC,169.4,Sweetwater Gap,Fontana Dam Shelter,shelter,-9325396.79,4219637
+15,1981-4-21,5.2,NC,174.6,Fontana Dam Shelter,Birch Springs Shelter,shelter,-9329736.66,4228308.8
+16,1981-4-22,9.2,NC/TN,183.8,Birch Springs Shelter,Spence Field Shelter,shelter,-9326946.41,4238042.2
+17,1981-4-23,11.8,NC/TN,195.6,Spence Field Shelter,Silers Bald Shelter,shelter,-9311564.78,4241492.9
+18,1981-4-24,7.6,NC/TN,203.2,Silers Bald Shelter,Mount Collins Shelter,shelter,-9296658.87,4241450.4
+19,1981-4-25,14.7,NC/TN,217.9,Mount Collins Shelter,Pecks Corner Shelter,shelter,-9282986.15,4249977.6
+20,1981-4-26,12.6,NC/TN,230.5,Pecks Corner Shelter,Cosby Knob Shelter,shelter,-9267567.02,4259540.4
+21,1981-4-27,17.6,NC/TN,248.1,Cosby Knob Shelter,Groundhog Creek Shelter,shelter,-9251880.87,4269268.2
+22,1981-4-28,23.2,NC/TN,271.3,Groundhog Creek Shelter,Hot Springs Hostel,hostel,-9230960.21,4277276.6
+24,1981-4-29,10.7,NC/TN,282,Hot Springs Hostel,Spring Mountain Shelter,shelter,-9217425.94,4288241.1
+25,1981-4-30,15.3,NC/TN,297.3,Spring Mountain Shelter,Jerry Cabin Shelter,shelter,-9210474.21,4301823.9
+26,1981-5-1,16,NC/TN,313.3,Jerry Cabin Shelter,Sam's Gap,camp,-9195820.69,4302154.5
+27,1981-5-2,16.7,NC/TN,330,Sam's Gap,No Business Knob Shelter,shelter,-9180908.36,4301609
+28,1981-5-3,16.4,NC/TN,346.4,No Business Knob Shelter,Beauty Spot,camp,-9174046.56,4314307.1
+29,1981-5-4,14.5,NC/TN,360.9,Beauty Spot,Clyde Smith Shelter,shelter,-9155851.01,4319675.9
+30,1981-5-5,9.6,NC/TN,370.5,Clyde Smith Shelter,Roan High Knob Shelter,shelter,-9143844.2,4318714.1
+31,1981-5-6,7.8,NC/TN,378.3,Roan High Knob Shelter,Times Square Inn,motel,-9133532.33,4318408.6
+32,1981-5-7,15.9,NC/TN,394.2,Times Square Inn,Moreland Gap Shelter,shelter,-9129923.67,4329780.3
+33,1981-5-8,17.8,TN,412,Moreland Gap Shelter,Watauga Lake Shelter,shelter,-9141998.5,4337844.4
+34,1981-5-9,21.2,TN,433.2,Watauga Lake Shelter,Double Springs Shelter,shelter,-9131464.07,4356641
+35,1981-5-10,18.4,TN/VA,451.6,Double Springs Shelter,Damascus Hostel,hostel,-9115429.83,4380893.9
+38,1981-5-11,11.8,VA,463.4,Damascus Hostel,Pond near US 58,camp,-9097375.09,4389216
+39,1981-5-12,14.6,VA,478,Pond near US 58,Deep Gap Shelter,shelter,-9085535.84,4389273.8
+40,1981-5-13,13,VA,491,Deep Gap Shelter,Old Orchard Shelter,shelter,-9073691.12,4391528.6
+41,1981-5-14,14.2,VA,505.2,Old Orchard Shelter,Trimpi Shelter,shelter,-9071680.01,4399638.8
+42,1981-5-15,17.3,VA,522.5,Trimpi Shelter,Glade Mountain Shelter,shelter,-9065154.6,4411345.5
+43,1981-5-16,4,VA,526.5,Glade Mountain Shelter,Village Motel,motel,-9057203.1,4421422.6
+44,1981-5-17,14.9,VA,541.4,Village Motel,Lynn Camp Creek,camp,-9059481.99,4432172.3
+45,1981-5-18,19.2,VA,560.6,Lynn Camp Creek,Hunting Camp Creek,camp,-9057408.83,4446560.9
+46,1981-5-19,25,VA,585.6,Hunting Camp Creek,Lick Skillet Hollow,camp,-9027330.25,4457477.7
+47,1981-5-20,19.4,VA,605,Lick Skillet Hollow,Doc's Knob Shelter,shelter,-9001262.59,4469588.5
+48,1981-5-21,9,VA,614,Doc's Knob Shelter,Holy Family Hopsice,hostel,-8992792.26,4480837.3
+50,1981-5-22,18.2,VA/WV,632.2,Holy Family Hopsice,Pine Swamp Branch Shelter,shelter,-8983926.53,4493398.5
+51,1981-5-23,16.3,VA,648.5,Pine Swamp Branch Shelter,Big Pond Shelter,shelter,-8962998.8,4495056.4
+52,1981-5-24,7.5,VA,656,Big Pond Shelter,"Newport, VA",friend/family,-8951700.27,4489136.9
+54,1981-5-25,16.4,VA,672.4,"Newport, VA",Niday Shelter,shelter,-8942279.25,4490269
+55,1981-5-26,14.2,VA,686.6,Niday Shelter,Bob's Pig Sty,pig sty,-8926040.57,4491383.2
+56,1981-5-27,13.4,VA,700,Bob's Pig Sty,Lamberts Meadow Shelter,shelter,-8908531.84,4495582
+57,1981-5-28,13.8,VA,713.8,Lamberts Meadow Shelter,Fullhardt Knob Shelter,shelter,-8896741.16,4495630.4
+58,1981-5-29,15.8,VA,729.6,Fullhardt Knob Shelter,Bearwallow Gap,friend/family,-8878684.41,4500121.3
+64,1981-5-30,14.4,VA,744,Bearwallow Gap,Cornelius Creek Shelter,shelter,-8862042.11,4511401.4
+65,1981-5-31,21.9,VA,765.9,Cornelius Creek Shelter,Johns Hollow Shelter,shelter,-8845642.48,4517394.3
+66,1981-6-1,17.5,VA,783.4,Johns Hollow Shelter,Brown Mountain Creek Shelter,shelter,-8831004.92,4531806.5
+67,1981-6-2,21.2,VA,804.6,Brown Mountain Creek Shelter,Priest Mountain Shelter,shelter,-8813707.57,4548737.2
+68,1981-6-3,19.1,VA,823.7,Priest Mountain Shelter,Laurel Spring,camp,-8794132.53,4561147
+69,1981-6-4,10.9,VA,834.6,Laurel Spring,Exxon Motor Court,motel,-8781844.64,4576351
+71,1981-6-5,12,VA,846.6,Exxon Motor Court,Turk Gap,camp,-8772264.64,4590664.7
+72,1981-6-6,20.6,VA,867.2,Turk Gap,Pinefield Hut,shelter,-8762566.05,4610770.1
+73,1981-6-7,20.8,VA,888,Pinefield Hut,Bearfence Mountain Hut,shelter,-8744299.73,4629613
+74,1981-6-8,11.7,VA,899.7,Bearfence Mountain Hut,Hawksbill Loop Trailhead,camp,-8731751.87,4651283.6
+75,1981-6-9,14.7,VA,914.4,Hawksbill Loop Trailhead,Pass Mountain Hut,shelter,-8721726.13,4667214
+76,1981-6-10,19.1,VA,933.5,Pass Mountain Hut,Jenkins Gap,camp,-8713076.84,4685456.9
+77,1981-6-11,7.2,VA,940.7,Jenkins Gap,Chester Gap,friend/family,-8701431.16,4699033
+80,1981-6-12,10,VA,950.7,Chester Gap,Manassas Gap Shelter,shelter,-8692322.75,4706710.3
+81,1981-6-13,19,VA,969.7,Manassas Gap Shelter,Oscanyon's,friend/family,-8676298.64,4727391.3
+82,1981-6-14,20.6,VA/WV,990.3,Oscanyon's,Harper's Ferry KOA,campground,-8658493.44,4754671.6
+85,1981-6-15,14.7,WV/MD,1005,Harper's Ferry AYH Hostel,Rocky Run Shelter,shelter,-8645447.24,4776106.4
+86,1981-6-16,20.2,MD,1025.2,Rocky Run Shelter,Devil's Racecourse Shelter,shelter,-8636781.71,4803691
+87,1981-6-17,19.9,MD/PA,1045.1,Devil's Racecourse Shelter,Raccoon Run Shelter,shelter,-8627030.51,4833547.5
+88,1981-6-18,17.4,PA,1062.5,Raccoon Run Shelter,Toms Run Shelter,shelter,-8620944.78,4861242.6
+89,1981-6-19,30.2,PA,1092.7,Toms Run Shelter,Powerline by US 11,camp,-8592089.59,4880898.2
+90,1981-6-20,17.5,PA,1110.2,Powerline by US 11,Doyle Hotel,hotel,-8580741.99,4912366.2
+91,1981-6-21,26.4,PA,1136.6,Doyle Hotel,Rausch Gap Shelter,shelter,-8552400.06,4929732.2
+92,1981-6-22,21.3,PA,1157.9,Rausch Gap Shelter,Hertlein Campsite,camp,-8509563.25,4938764.2
+93,1981-6-23,22.3,PA,1180.2,Hertlein Campsite,Windsor Furnace Shelter,shelter,-8472207.8,4946628.9
+94,1981-6-24,27.3,PA,1207.5,Windsor Furnace Shelter,Bake Oven Knob Shelter,shelter,-8447238.79,4962852.8
+95,1981-6-25,24.9,PA,1232.4,Bake Oven Knob Shelter,Leroy Smith Shelter,shelter,-8410076.6,4982818.5
+96,1981-6-26,20.6,PA,1253,Leroy Smith Shelter,Delaware Water Gap Hostel,hostel,-8374976.35,4998737.1
+100,1981-6-27,5.4,PA/NJ,1258.4,Delaware Water Gap Hostel,Sunfish Pond,camp,-8361493.35,5010139.4
+101,1981-6-28,12,NJ,1270.4,Sunfish Pond,Flatbrookville Road,camp,-8347848.94,5018525.9
+102,1981-6-29,13.5,NJ,1283.9,Flatbrookville Road,Gren Anderson Shelter,shelter,-8330822.48,5034147.2
+103,1981-6-30,12.4,NJ,1296.3,Gren Anderson Shelter,High Point Shelter,shelter,-8314911.12,5050472.3
+104,1981-7-1,18.1,NJ/NY,1314.4,High Point Shelter,Wawayanda Mountain,camp,-8298059.85,5053402
+105,1981-7-2,11.6,NJ/NY,1326,Wawayanda Mountain,Roger's Appalachian Cottage,hostel,-8278939.27,5042532.4
+106,1981-7-3,20.3,NY,1346.3,Roger's Appalachian Cottage,Fingerboard Shelter,shelter,-8261079.82,5051183.8
+107,1981-7-4,18.9,NY,1365.2,Fingerboard Shelter,Graymoor Monastery,hostel,-8239262.14,5057590.7
+108,1981-7-5,11.9,NY,1377.1,Graymoor Monastery,Fahnestock State Park Campground,campground,-8223252.1,5073296.2
+109,1981-7-6,22.2,NY,1399.3,Fahnestock State Park Campground,Edward R Murrow Memorial Park,friend/family,-8209838.1,5091330.5
+112,1981-7-7,21.3,NY/CT,1420.6,Edward R Murrow Memorial Park,Chase Mountain Shelter,shelter,-8186943.23,5109819.9
+113,1981-7-8,22.2,CT,1442.8,Chase Mountain Shelter,Boulder Lean-to,shelter,-8173255.3,5128337
+114,1981-7-9,19.9,CT,1462.7,Boulder Lean-to,Ragamont Inn,motel,-8169321.24,5148366.9
+116,1981-7-10,8.7,CT/MA,1471.4,Mrs. Singleton's,Mount Race Ledges,camp,-8175605.94,5165773.6
+117,1981-7-11,24.1,MA,1495.5,Mount Race Ledges,Mount Wilcox Lean-to,shelter,-8166959.36,5183416.4
+118,1981-7-12,30.1,MA,1525.6,Mount Wilcox Lean-to,Dalton Community Center,hostel,-8146488.9,5208920.4
+119,1981-7-13,9.3,MA,1534.9,Dalton Community Center,"Cheshire, MA",friend/family,-8144321.32,5238681.4
+126,1981-7-14,3.8,MA,1538.7,"Cheshire, MA",Kitchen Brook Lean-to,shelter,-8145072.71,5248053
+127,1981-7-15,10.2,MA,1548.9,Kitchen Brook Lean-to,Williams College,under bleachers,-8145249.41,5258891.6
+128,1981-7-16,6.8,MA/VT,1555.7,Williams College,Seth Warner Shelter,shelter,-8143200.22,5270948.1
+129,1981-7-17,14.4,VT,1570.1,Seth Warner Shelter,Hell Hollow Brook,camp,-8139547.24,5287415.2
+130,1981-7-18,20.6,VT,1590.7,Hell Hollow Brook,Bigelow Shelter,shelter,-8128163.32,5314948.1
+131,1981-7-19,12.4,VT,1603.1,Bigelow Shelter,Zion Episcopal Church,hostel,-8124684.43,5334146.2
+132,1981-7-20,3.3,VT,1606.4,Zion Episcopal Church,Mad Tom Shelter,shelter,-8121459.3,5345732.8
+133,1981-7-21,20.9,VT,1627.3,Mad Tom Shelter,Greenwall Shelter,shelter,-8120673.07,5365670.1
+134,1981-7-22,17.6,VT,1644.9,Greenwall Shelter,Cooper Lodge,hostel,-8113998.32,5392190.8
+135,1981-7-23,8,VT,1652.9,Cooper Lodge,Mountain Meadows Lodge,hostel,-8107807.95,5411551.7
+136,1981-7-24,14,VT,1666.9,Mountain Meadows Lodge,Gulf Shelter,shelter,-8095262.19,5416950
+137,1981-7-25,23.5,VT/NH,1690.4,Gulf Shelter,Foley House,hostel,-8067490.76,5417952.5
+140,1981-7-26,12.9,NH,1703.3,Foley House,Trapper John Shelter,shelter,-8035712.85,5422879.6
+141,1981-7-27,14.4,NH,1717.7,Trapper John Shelter,Mount Cube,camp,-8020816.99,5439443.7
+142,1981-7-28,13.7,NH,1731.4,Mount Cube,Wachipauka Pond,camp,-8011413.44,5453928.3
+143,1981-7-29,11,NH,1742.4,Wachipauka Pond,Beaver Brook Shelter,shelter,-8000122.45,5466194.4
+144,1981-7-30,11.1,NH,1753.5,Beaver Brook Shelter,Kinsman Pond Shelter,shelter,-7988311.86,5478058
+145,1981-7-31,7.1,NH,1760.6,Kinsman Pond Shelter,Liberty Springs Campsite,campsite,-7980554.33,5484678.5
+146,1981-8-1,7.6,NH,1768.2,Liberty Springs Campsite,Garfield Ridge Shelter,shelter,-7974730.5,5489903.1
+147,1981-8-2,13.7,NH,1781.9,Garfield Ridge Shelter,Ethan Pond Shelter,shelter,-7961110.15,5493632.1
+148,1981-9-2,14,NH,1795.9,Ethan Pond Shelter,Lake of the Clouds Refuge Room,hostel,-7945246.75,5497117.9
+149,1981-9-3,14.4,NH,1810.3,Lake of the Clouds Refuge Room,Pinkham Notch,camp,-7935250.41,5511423.8
+153,1981-9-7,20,NH,1830.3,Irwin's Barn,Irwin's Barn,hostel,-7922144.27,5513172.7
+154,1981-9-8,11.9,NH,1842.2,Irwin's Barn,Gentian Pond Shelter,shelter,-7917622.28,5532197.1
+155,1981-9-9,5.3,NH/ME,1847.5,Gentian Pond Shelter,Carlo Col Shelter,shelter,-7908536.03,5538633.1
+156,1981-9-10,9.1,ME,1856.6,Carlo Col Shelter,Speck Pond Shelter,shelter,-7902240.18,5547198.2
+157,1981-9-11,12,ME,1868.6,Speck Pond Shelter,Frye Notch Lean-to,shelter,-7896220.17,5557977.4
+158,1981-9-12,6.9,ME,1875.5,Frye Notch Lean-to,Hall Mountain Lean-to,shelter,-7889355.98,5568987.6
+159,1981-9-13,3.4,ME,1878.9,Hall Mountain Lean-to,Black Brook,camp,-7882233.13,5576351.9
+160,1981-9-14,17.6,ME,1896.5,Black Brook,Sabbath Day Pond Lean-to,shelter,-7874858.06,5590217.2
+161,1981-9-15,10.6,ME,1907.1,Sabbath Day Pond Lean-to,Piazza Rock Lean-to,shelter,-7856809.9,5600926.2
+162,1981-9-16,15.6,ME,1922.7,Piazza Rock Lean-to,Spaulding Mountain Lean-to,shelter,-7840296.94,5615855.1
+163,1981-9-17,12.9,ME,1935.6,Spaulding Mountain Lean-to,Widow's Walk,hostel,-7831999.01,5629245.3
+164,1981-9-18,5.3,ME,1940.9,Widow's Walk,Horns Pond Lean-to,shelter,-7831167.92,5641705.3
+165,1981-9-19,3,ME,1943.9,Horns Pond Lean-to,Avery Memorial Lean-to,shelter,-7826583.31,5644361.8
+166,1981-9-20,10.6,ME,1954.5,Avery Memorial Lean-to,Jerome Brook Lean-to,shelter,-7815813.39,5643875.6
+167,1981-9-21,16.1,ME,1970.6,Jerome Brook Lean-to,Pierce Pond Lean-to,shelter,-7801944.68,5651217.8
+168,1981-9-22,9.2,ME,1979.8,Pierce Pond Lean-to,Pleasant Pond Lean-to,shelter,-7790833.51,5661473
+170,1981-9-24,6.9,ME,1986.7,Pleasant Pond Lean-to,Bald Mountain Brook Lean-to,motel,-7776147.47,5662307.1
+174,1981-9-28,11.2,ME,1997.9,The Old Church,Little Wilson Campground,campground,-7737793.6,5675004.4
+175,1981-9-29,10.5,ME,2008.4,Little Wilson Campground,Cloud Pond Lean-to,shelter,-7728756.56,5685639.1
+176,1981-9-30,6.7,ME,2015.1,Cloud Pond Lean-to,Chairback Gap Lean-to,shelter,-7715217.9,5690879
+177,1981-10-1,8.2,ME,2023.3,Chairback Gap Lean-to,Gulf Hagas Stream,camp,-7713760.18,5698184.8
+178,1981-10-2,13.8,ME,2037.1,Gulf Hagas Stream,East Branch Lean-to,shelter,-7709842.55,5710074.9
+179,1981-10-3,15.5,ME,2052.6,East Branch Lean-to,Antlers Campsite,campground,-7690667.72,5722217.5
+180,1981-10-4,8.3,ME,2060.9,Antlers Campsite,Nahmakanta Stream Lean-to,shelter,-7686447.31,5735374.5
+181,1981-10-5,15.3,ME,2076.2,Nahmakanta Stream Lean-to,Rainbow Ledges,camp,-7696990.07,5746914.3
+182,1981-10-6,16,ME,2092.2,Rainbow Ledges,Katahdin Stream Campground,campground,-7682097.8,5755522.8
+,,,,,,,,-7755822.82,5665319.7
+,,,,,,,,-7676738.52,5763842

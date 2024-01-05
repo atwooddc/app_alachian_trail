@@ -5,7 +5,7 @@ import GitHubButton from "../components/GitHubButton.js";
 import { MapContext } from "../context/MapContext.js";
 
 import Papa from "papaparse";
-import csvFile from "../test_data/glenn_at_data_for_rds.csv";
+import csvFile from "../test_data/glenn_at_data_1_5.csv";
 
 const MapPage = () => {
     // const [data, setData] = useState({
