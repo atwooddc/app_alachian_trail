@@ -32,7 +32,7 @@ const OpenLayersMap = ({ setDay, data }) => {
             extent={maxExtentCoords}
             initial={{
                 center: center,
-                zoom: 5.8,
+                zoom: 5.7,
             }}
         >
             <RLayerStadia layer="outdoors" />
