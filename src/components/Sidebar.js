@@ -75,10 +75,10 @@ const Sidebar = ({ day, setDay, data }) => {
     const backDay = () => {
         if (day > 1) {
             let newDay = day - 1;
-            while (newDay > 1 && !data.get(newDay)) {
+            while (newDay > 1 && !data[newDay]) {
                 --newDay;
             }
-            if (data.get(newDay)) {
+            if (data[newDay]) {
                 setDay(newDay);
                 changeMapView(newDay);
             }
@@ -88,10 +88,10 @@ const Sidebar = ({ day, setDay, data }) => {
     const nextDay = () => {
         if (day < 182) {
             let newDay = day + 1;
-            while (newDay < 182 && !data.get(newDay)) {
+            while (newDay < 182 && !data[newDay]) {
                 ++newDay;
             }
-            if (data.get(newDay)) {
+            if (data[newDay]) {
                 setDay(newDay);
                 changeMapView(newDay);
             }
@@ -99,7 +99,7 @@ const Sidebar = ({ day, setDay, data }) => {
     };
 
     const changeMapView = (newDay) => {
-        const dayData = data.get(newDay);
+        const dayData = data[newDay];
         if (dayData && mapRef.current) {
             const x = dayData.x;
             const y = dayData.y;
@@ -130,7 +130,7 @@ const Sidebar = ({ day, setDay, data }) => {
 
     return (
         <Paper className={classes.sidebar}>
-            {day && data.get(day) ? ( // error handling for sections w missing data
+            {day && data[day].date ? ( // error handling for sections w missing data
                 // Conditional sidebar based on what day is selected
                 <>
                     <Grid
@@ -163,9 +163,7 @@ const Sidebar = ({ day, setDay, data }) => {
                                 >
                                     Day {day}
                                 </Typography>
-                                <StateIndicator
-                                    stateString={data.get(day).state}
-                                />
+                                <StateIndicator stateString={data[day].state} />
                             </Box>
                         </Grid>
                         <Grid item xs={2}>
@@ -180,7 +178,7 @@ const Sidebar = ({ day, setDay, data }) => {
                                 align="center"
                                 paddingTop={0}
                             >
-                                {formatDate(data.get(day).date)}
+                                {formatDate(data[day].date)}
                             </Typography>
                         </Grid>
 
@@ -198,7 +196,7 @@ const Sidebar = ({ day, setDay, data }) => {
                                         color: "#275DAD",
                                     }}
                                 >
-                                    {data.get(day).mileage} mi.
+                                    {data[day].mileage} mi.
                                 </MileageToFrom>
                                 from <br />
                                 <MileageToFrom
@@ -207,7 +205,7 @@ const Sidebar = ({ day, setDay, data }) => {
                                         color: "#0B3948",
                                     }}
                                 >
-                                    {data.get(day).start}
+                                    {data[day].start}
                                 </MileageToFrom>
                                 to <br />
                                 <MileageToFrom
@@ -216,7 +214,7 @@ const Sidebar = ({ day, setDay, data }) => {
                                         color: "#0B3948",
                                     }}
                                 >
-                                    {data.get(day).end}
+                                    {data[day].end}
                                 </MileageToFrom>
                                 {/* {data.town ? ` in ${data.town}` : ""} */}
                             </Typography>
@@ -235,7 +233,7 @@ const Sidebar = ({ day, setDay, data }) => {
                             <LinearProgress
                                 variant="determinate"
                                 color="secondary"
-                                value={(100 * data.get(day).totalDist) / 2092.2}
+                                value={(100 * data[day].totalDist) / 2092.2}
                             />
                         </Grid>
                         <Grid item xs={1.5}>
