@@ -68,11 +68,11 @@ const OpenLayersMap = ({ setDay, data }) => {
                     <div>
                         <RFeature geometry={currentSection.getGeometry()}>
                             <ROverlay className="overlay" autoPosition={true}>
-                                {data.get(currentSection.get("day")) ? (
+                                {data[currentSection.get("day")].state ? (
                                     <SectionPopUp
                                         day={currentSection.get("day")}
                                         stateString={
-                                            data.get(currentSection.get("day"))
+                                            data[currentSection.get("day")]
                                                 .state
                                         }
                                     />

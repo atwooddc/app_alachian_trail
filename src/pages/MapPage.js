@@ -4,31 +4,30 @@ import Sidebar from "../components/Sidebar.js";
 import GitHubButton from "../components/GitHubButton.js";
 import { MapContext } from "../context/MapContext.js";
 
-import Papa from "papaparse";
-import csvFile from "../test_data/glenn_at_data_1_5.csv";
-
 const MapPage = () => {
     const [day, setDay] = useState(0);
     const [data, setData] = useState(null);
 
     const mapRef = useRef();
 
-    const parseCsvData = (setData) => {
-        Papa.parse(csvFile, {
-            download: true,
-            header: true,
-            complete: (results) => {
-                const dataMap = new Map();
-                results.data.forEach((row) => {
-                    dataMap.set(parseInt(row.day, 10), row);
-                });
-                setData(dataMap);
-            },
-        });
-    };
-
     useEffect(() => {
-        parseCsvData(setData);
+        const fetchData = async () => {
+            try {
+                const response = await fetch(
+                    "https://gic2p2iycjqo7z7rqebkho2wpe0verbz.lambda-url.us-east-2.on.aws/"
+                );
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                const json = await response.json();
+                setData(json);
+                console.log(json);
+            } catch (error) {
+                console.error("Error fetching data: ", error);
+            }
+        };
+
+        fetchData();
     }, []);
 
     return (
