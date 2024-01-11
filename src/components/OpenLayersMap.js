@@ -1,5 +1,6 @@
 import { React, useState, useCallback, useContext } from "react";
 import { fromLonLat } from "ol/proj";
+import { Point } from "ol/geom";
 import GeoJSON from "ol/format/GeoJSON";
 import "ol/ol.css";
 
@@ -9,7 +10,12 @@ import { MapContext } from "../context/MapContext";
 
 import SectionPopUp from "./SectionPopUp";
 
+import hikingIcon from "../img/hiking.png";
+import mountainIcon from "../img/mountain.png";
+
 const center = fromLonLat([-76.18, 40.49]);
+const start = fromLonLat([-84.21433, 34.60862]);
+const end = fromLonLat([-68.9215, 45.9044]);
 const maxExtentCoords = [
     -11318965.82,
     3310893.22, // bottom-left corner
@@ -105,6 +111,20 @@ const OpenLayersMap = ({ setDay, data }) => {
                         <RStyle.RFill color={"#4a6741"} />
                     </RStyle.RCircle>
                 </RStyle.RStyle>
+            </RLayerVector>
+
+            <RLayerVector zIndex={1000}>
+                <RStyle.RStyle>
+                    <RStyle.RIcon src={hikingIcon} anchor={[0.8, 1.0]} />
+                </RStyle.RStyle>
+                <RFeature geometry={new Point(start)}></RFeature>
+            </RLayerVector>
+
+            <RLayerVector zIndex={1000}>
+                <RStyle.RStyle>
+                    <RStyle.RIcon src={mountainIcon} anchor={[0.5, 0.8]} />
+                </RStyle.RStyle>
+                <RFeature geometry={new Point(end)}></RFeature>
             </RLayerVector>
 
             {/* shelter pop ups
