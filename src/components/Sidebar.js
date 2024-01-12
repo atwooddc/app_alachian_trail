@@ -35,6 +35,7 @@ const useStyles = makeStyles((theme) => ({
         color: "#11151C",
         maxHeight: "400px", // Adjust this value as needed
         overflowY: "auto", // Enables vertical scrolling
+        borderRadius: 15,
     },
 }));
 
@@ -121,7 +122,7 @@ const Sidebar = ({ day, setDay, data, autoZoom }) => {
     }
 
     return (
-        <Paper className={classes.sidebar}>
+        <Paper className={classes.sidebar} borderRadius={20}>
             {day && data[day].date ? ( // error handling for sections w missing data
                 // Conditional sidebar based on what day is selected
                 <>
@@ -241,7 +242,8 @@ const Sidebar = ({ day, setDay, data, autoZoom }) => {
                         textAlign={"left"}
                         fontWeight={"bold"}
                         fontFamily="Futura"
-                        marginBottom={1}
+                        // marginBottom={1}
+                        padding={2}
                     >
                         {" "}
                         On April 8th, 1981,
@@ -251,6 +253,7 @@ const Sidebar = ({ day, setDay, data, autoZoom }) => {
                         fontSize={12}
                         textAlign={"left"}
                         fontFamily="Helvetica"
+                        padding={1}
                     >
                         my dad set out from Nimblewill Gap near Georgia's
                         northern border, an external frame pack on his back and
@@ -258,23 +261,24 @@ const Sidebar = ({ day, setDay, data, autoZoom }) => {
                         19, and hoped to hike 2000+ miles to Mount Katahdin in
                         Maine by October.
                         <br />
-                        This website is a tool to explore that journey with data
-                        from his itinerary and journals that are (somehow) still
-                        intact. So click around, explore, and marvel at this
-                        19-year-old's singlemindedness!
+                        &emsp; This website is a tool to explore that journey
+                        with data from his itinerary and journals that are
+                        (somehow) still intact. So click around, explore, and
+                        marvel at this 19-year-old's singlemindedness!
                         <br />
-                        And one note about the line: the line that appears on
-                        this website is the current centerline. There are
-                        shelters that have been torn down, and trail sections
-                        that have been rerouted, but a majority of the trail
-                        remains the same. Where the trail and Glenn's stops
-                        (marked by green circles) diverge, tracing the stops
-                        will give a more accurate sense of the trail as it
+                        &emsp; And one note about the line: the line that
+                        appears on this website is the current centerline. There
+                        are shelters that have been torn down, and trail
+                        sections that have been rerouted, but a majority of the
+                        trail remains the same. Where the trail and Glenn's
+                        stops (marked by green circles) diverge, tracing the
+                        stops will give a more accurate sense of the trail as it
                         existed in 1981.
                         <br />
-                        And as for the seemingly skipped days - Glenn took some
-                        days off (lazy). In the future I hope to add this
-                        information as well as his scanned journal entries.
+                        &emsp; And as for the missing days - even the greatest
+                        athletes have to rest. In the future I hope to add info
+                        on Glenn's rest days as well as his scanned journal
+                        entries.
                     </Typography>
                 </>
             )}
