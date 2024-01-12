@@ -4,10 +4,12 @@ import Sidebar from "../components/Sidebar.js";
 import GitHubButton from "../components/GitHubButton.js";
 import { MapContext } from "../context/MapContext.js";
 import RecenterButton from "../components/RecenterButton.js";
+import ZoomSwitch from "../components/ZoomSwitch.js";
 
 const MapPage = () => {
     const [day, setDay] = useState(0);
     const [data, setData] = useState(null);
+    const [autoZoom, setAutoZoom] = useState(true);
 
     const mapRef = useRef();
 
@@ -33,10 +35,21 @@ const MapPage = () => {
 
     return (
         <MapContext.Provider value={mapRef}>
-            <OpenLayersMap day={day} setDay={setDay} data={data} ref={mapRef} />
+            <OpenLayersMap
+                day={day}
+                setDay={setDay}
+                data={data}
+                autoZoom={autoZoom}
+            />
             <GitHubButton />
             <RecenterButton />
-            <Sidebar day={day} setDay={setDay} data={data} />
+            <ZoomSwitch autoZoom={autoZoom} setAutoZoom={setAutoZoom} />
+            <Sidebar
+                day={day}
+                setDay={setDay}
+                data={data}
+                autoZoom={autoZoom}
+            />
         </MapContext.Provider>
     );
 };

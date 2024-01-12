@@ -16,7 +16,6 @@ import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import { boundingExtent } from "ol/extent";
 
 import { makeStyles } from "@mui/styles";
-import { fromLonLat } from "ol/proj";
 
 import StateIndicator from "./StateIndicator";
 
@@ -58,7 +57,7 @@ const MileageToFrom = styled(Button)({
     pointerEvents: "none",
 });
 
-const Sidebar = ({ day, setDay, data }) => {
+const Sidebar = ({ day, setDay, data, autoZoom }) => {
     const classes = useStyles();
 
     const mapRef = useContext(MapContext);
@@ -90,16 +89,18 @@ const Sidebar = ({ day, setDay, data }) => {
     };
 
     const changeMapView = (newDay) => {
-        const dayData = data[newDay];
-        if (dayData && mapRef.current) {
-            const x = dayData.x;
-            const y = dayData.y;
-            const coords = [[x, y]];
-            const extent = boundingExtent(coords);
-            mapRef.current.ol.getView().fit(extent, {
-                duration: 1000,
-                maxZoom: 11,
-            });
+        if (autoZoom) {
+            const dayData = data[newDay];
+            if (dayData && mapRef.current) {
+                const x = dayData.x;
+                const y = dayData.y;
+                const coords = [[x, y]];
+                const extent = boundingExtent(coords);
+                mapRef.current.ol.getView().fit(extent, {
+                    duration: 1000,
+                    maxZoom: 11,
+                });
+            }
         }
     };
 

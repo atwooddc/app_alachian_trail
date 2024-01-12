@@ -23,7 +23,7 @@ const maxExtentCoords = [
     6423792.5, // top-right corner
 ];
 
-const OpenLayersMap = ({ day, setDay, data }) => {
+const OpenLayersMap = ({ day, setDay, data, autoZoom }) => {
     const [hoverSection, setHoverSection] = useState(null);
     const [hoverStop, setHoverStop] = useState(null);
 
@@ -72,10 +72,14 @@ const OpenLayersMap = ({ day, setDay, data }) => {
                 )}
                 onClick={(e) => {
                     setDay(e.target.get("day"));
-                    e.map.getView().fit(e.target.getGeometry().getExtent(), {
-                        duration: 1000,
-                        maxZoom: 11,
-                    });
+                    if (autoZoom) {
+                        e.map
+                            .getView()
+                            .fit(e.target.getGeometry().getExtent(), {
+                                duration: 1000,
+                                maxZoom: 11,
+                            });
+                    }
                 }}
             >
                 <RStyle.RStyle>
@@ -104,7 +108,7 @@ const OpenLayersMap = ({ day, setDay, data }) => {
                     </div>
                 )}
                 <RStyle.RStyle>
-                    <RStyle.RStroke color="black" width={2.5} />
+                    <RStyle.RStroke color="black" width={4} />
                 </RStyle.RStyle>
             </RLayerVector>
 

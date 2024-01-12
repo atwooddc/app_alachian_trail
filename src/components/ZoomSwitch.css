@@ -1,0 +1,8 @@
+.zoom-switch {
+    position: absolute;
+    bottom: 20px;
+    left: 80px;
+    padding: 0 0;
+    z-index: 1000;
+    cursor: pointer;
+};
