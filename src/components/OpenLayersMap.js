@@ -23,11 +23,25 @@ const maxExtentCoords = [
     6423792.5, // top-right corner
 ];
 
-const OpenLayersMap = ({ setDay, data }) => {
-    const [currentSection, setCurrentSection] = useState(null);
-    const [currentStop, setCurrentStop] = useState(null);
+const OpenLayersMap = ({ day, setDay, data }) => {
+    const [hoverSection, setHoverSection] = useState(null);
+    const [hoverStop, setHoverStop] = useState(null);
 
     const mapRef = useContext(MapContext);
+
+    const dayFeatureGeometry = () => {
+        const map = mapRef.current.ol;
+        const layers = map.getLayers().getArray();
+        const layer = layers[1]; // Assuming this is the correct layer
+        const source = layer.getSource();
+        const allFeatures = source.getFeatures();
+
+        const featureOnDay = allFeatures.find((feature) => {
+            return feature.get("day") === day;
+        });
+
+        return featureOnDay ? featureOnDay.getGeometry() : null;
+    };
 
     return (
         <RMap
@@ -43,43 +57,43 @@ const OpenLayersMap = ({ setDay, data }) => {
         >
             <RLayerStadia layer="outdoors" />
 
+            {/* Map */}
             <RLayerVector
                 zIndex={5}
                 format={new GeoJSON({ featureProjection: "EPSG:3857" })}
                 url="https://raw.githubusercontent.com/atwooddc/at_geojson/main/glenn_at_only_day.geojson"
                 onPointerEnter={useCallback(
-                    (e) => setCurrentSection(e.target),
+                    (e) => setHoverSection(e.target),
                     []
                 )}
                 onPointerLeave={useCallback(
-                    (e) =>
-                        currentSection === e.target && setCurrentSection(null),
-                    [currentSection]
+                    (e) => hoverSection === e.target && setHoverSection(null),
+                    [hoverSection]
                 )}
                 onClick={(e) => {
+                    setDay(e.target.get("day"));
                     e.map.getView().fit(e.target.getGeometry().getExtent(), {
                         duration: 1000,
                         maxZoom: 11,
                     });
-                    setDay(e.target.get("day"));
                 }}
             >
                 <RStyle.RStyle>
-                    <RStyle.RStroke color="#8A4942" width={2.5} />
+                    <RStyle.RStroke color="black" width={2.5} />
                 </RStyle.RStyle>
             </RLayerVector>
 
+            {/* Hovered section */}
             <RLayerVector zIndex={10}>
-                {currentSection ? (
+                {hoverSection && (
                     <div>
-                        <RFeature geometry={currentSection.getGeometry()}>
+                        <RFeature geometry={hoverSection.getGeometry()}>
                             <ROverlay className="overlay" autoPosition={true}>
-                                {data[currentSection.get("day")].state ? (
+                                {data[hoverSection.get("day")].state ? (
                                     <SectionPopUp
-                                        day={currentSection.get("day")}
+                                        day={hoverSection.get("day")}
                                         stateString={
-                                            data[currentSection.get("day")]
-                                                .state
+                                            data[hoverSection.get("day")].state
                                         }
                                     />
                                 ) : (
@@ -88,7 +102,25 @@ const OpenLayersMap = ({ setDay, data }) => {
                             </ROverlay>
                         </RFeature>
                     </div>
+                )}
+                <RStyle.RStyle>
+                    <RStyle.RStroke color="black" width={2.5} />
+                </RStyle.RStyle>
+            </RLayerVector>
+
+            {/* Selected section */}
+            <RLayerVector zIndex={10}>
+                {day ? (
+                    <RFeature geometry={dayFeatureGeometry()}>
+                        <ROverlay
+                            className="overlay"
+                            autoPosition={true}
+                        ></ROverlay>
+                    </RFeature>
                 ) : null}
+                <RStyle.RStyle>
+                    <RStyle.RStroke color="crimson" width={4} />
+                </RStyle.RStyle>
             </RLayerVector>
 
             <RLayerVector
@@ -96,13 +128,10 @@ const OpenLayersMap = ({ setDay, data }) => {
                 maxResolution={650}
                 format={new GeoJSON({ featureProjection: "EPSG:3857" })}
                 url="https://raw.githubusercontent.com/atwooddc/at_geojson/main/glenn_at_shelters_12_24.geojson"
-                onPointerEnter={useCallback(
-                    (e) => setCurrentStop(e.target),
-                    []
-                )}
+                onPointerEnter={useCallback((e) => setHoverStop(e.target), [])}
                 onPointerLeave={useCallback(
-                    (e) => currentStop === e.target && setCurrentStop(null),
-                    [currentStop]
+                    (e) => hoverStop === e.target && setHoverStop(null),
+                    [hoverStop]
                 )}
             >
                 <RStyle.RStyle>
@@ -112,6 +141,20 @@ const OpenLayersMap = ({ setDay, data }) => {
                     </RStyle.RCircle>
                 </RStyle.RStyle>
             </RLayerVector>
+
+            {/* shelter pop ups
+            note: need to revise names of shelters in geojson */}
+            {/* <RLayerVector zIndex={10}>
+                {currentStop && (
+                    <div>
+                        <RFeature geometry={currentStop.getGeometry()}>
+                            <ROverlay className="overlay" autoPosition={true}>
+                                <strong>{currentStop.get("Name")}</strong>
+                            </ROverlay>
+                        </RFeature>
+                    </div>
+                )}
+            </RLayerVector> */}
 
             <RLayerVector zIndex={1000}>
                 <RStyle.RStyle>
@@ -126,20 +169,6 @@ const OpenLayersMap = ({ setDay, data }) => {
                 </RStyle.RStyle>
                 <RFeature geometry={new Point(end)}></RFeature>
             </RLayerVector>
-
-            {/* shelter pop ups
-            note: need to revise names of shelters in geojson */}
-            {/* <RLayerVector zIndex={10}>
-                {currentStop ? (
-                    <div>
-                        <RFeature geometry={currentStop.getGeometry()}>
-                            <ROverlay className="overlay" autoPosition={true}>
-                                <strong>{currentStop.get("Name")}</strong>
-                            </ROverlay>
-                        </RFeature>
-                    </div>
-                ) : null}
-            </RLayerVector> */}
         </RMap>
     );
 };

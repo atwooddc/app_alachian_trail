@@ -1,7 +1,7 @@
 .github-button {
     position: absolute;
-    bottom: 10px;
-    left: 10px;
+    top: 8px;
+    right: 10px;
     width: 15vmin;
     padding: 10px 10px;
     z-index: 1000;

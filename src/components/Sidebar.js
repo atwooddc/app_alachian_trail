@@ -63,16 +63,6 @@ const Sidebar = ({ day, setDay, data }) => {
 
     const mapRef = useContext(MapContext);
 
-    const recenterMap = () => {
-        if (mapRef.current) {
-            const extent = boundingExtent([fromLonLat([-76.17, 41.76])]);
-            mapRef.current.ol.getView().fit(extent, {
-                duration: 3000,
-                maxZoom: 5.5,
-            });
-        }
-    };
-
     const backDay = () => {
         if (day > 1) {
             let newDay = day - 1;
@@ -239,10 +229,6 @@ const Sidebar = ({ day, setDay, data }) => {
                         </Grid>
                         <Grid item xs={1.5}>
                             <CelebrationIcon />
-                        </Grid>
-
-                        <Grid item xs={12} alignContent={"center"}>
-                            <Button onClick={recenterMap}>Recenter</Button>
                         </Grid>
                     </Grid>
                 </>

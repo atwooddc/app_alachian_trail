@@ -3,6 +3,7 @@ import OpenLayersMap from "../components/OpenLayersMap.js";
 import Sidebar from "../components/Sidebar.js";
 import GitHubButton from "../components/GitHubButton.js";
 import { MapContext } from "../context/MapContext.js";
+import RecenterButton from "../components/RecenterButton.js";
 
 const MapPage = () => {
     const [day, setDay] = useState(0);
@@ -32,8 +33,9 @@ const MapPage = () => {
 
     return (
         <MapContext.Provider value={mapRef}>
-            <OpenLayersMap setDay={setDay} data={data} ref={mapRef} />
+            <OpenLayersMap day={day} setDay={setDay} data={data} ref={mapRef} />
             <GitHubButton />
+            <RecenterButton />
             <Sidebar day={day} setDay={setDay} data={data} />
         </MapContext.Provider>
     );
