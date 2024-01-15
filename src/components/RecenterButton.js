@@ -13,10 +13,10 @@ const RecenterButton = () => {
 
     const recenterMap = () => {
         if (mapRef.current) {
-            const extent = boundingExtent([fromLonLat([-76.17, 41.76])]);
+            const extent = boundingExtent([fromLonLat([-76.18, 40.49])]);
             mapRef.current.ol.getView().fit(extent, {
                 duration: 3000,
-                maxZoom: 5.5,
+                maxZoom: 5.7,
             });
         }
     };

@@ -7,9 +7,10 @@ import { styled } from "@mui/material/styles";
 
 // icons for progress bar
 import LinearProgress from "@mui/material/LinearProgress";
-// import TerrainIcon from "@mui/icons-material/Terrain";
-import CelebrationIcon from "@mui/icons-material/Celebration";
-import PlayArrowIcon from "@mui/icons-material/PlayArrow";
+import Icon from "@mui/material/Icon";
+
+import hikingIcon from "../img/hiking.svg";
+import mountainIcon from "../img/mountain.svg";
 import IconButton from "@mui/material/IconButton";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
@@ -36,6 +37,14 @@ const useStyles = makeStyles((theme) => ({
         maxHeight: "400px", // Adjust this value as needed
         overflowY: "auto", // Enables vertical scrolling
         borderRadius: 15,
+    },
+    imageIcon: {
+        display: "flex",
+        height: "inherit",
+        width: "inherit",
+    },
+    iconRoot: {
+        textAlign: "center",
     },
 }));
 
@@ -215,7 +224,13 @@ const Sidebar = ({ day, setDay, data, autoZoom }) => {
 
                         {/* progress bar */}
                         <Grid item xs={1.5}>
-                            <PlayArrowIcon />
+                            <Icon classes={{ root: classes.iconRoot }}>
+                                <img
+                                    alt="hiking-icon"
+                                    className={classes.imageIcon}
+                                    src={hikingIcon}
+                                />
+                            </Icon>
                         </Grid>
                         <Grid
                             item
@@ -230,7 +245,13 @@ const Sidebar = ({ day, setDay, data, autoZoom }) => {
                             />
                         </Grid>
                         <Grid item xs={1.5}>
-                            <CelebrationIcon />
+                            <Icon classes={{ root: classes.iconRoot }}>
+                                <img
+                                    alt="mountain-icon"
+                                    className={classes.imageIcon}
+                                    src={mountainIcon}
+                                />
+                            </Icon>
                         </Grid>
                     </Grid>
                 </>

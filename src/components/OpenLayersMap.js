@@ -32,7 +32,7 @@ const OpenLayersMap = ({ day, setDay, data, autoZoom }) => {
     const dayFeatureGeometry = () => {
         const map = mapRef.current.ol;
         const layers = map.getLayers().getArray();
-        const layer = layers[1]; // Assuming this is the correct layer
+        const layer = layers[1];
         const source = layer.getSource();
         const allFeatures = source.getFeatures();
 
@@ -61,7 +61,7 @@ const OpenLayersMap = ({ day, setDay, data, autoZoom }) => {
             <RLayerVector
                 zIndex={5}
                 format={new GeoJSON({ featureProjection: "EPSG:3857" })}
-                url="https://raw.githubusercontent.com/atwooddc/at_geojson/main/glenn_at_only_day.geojson"
+                url="https://raw.githubusercontent.com/atwooddc/at_geojson/main/only_day_simplified.geojson"
                 onPointerEnter={useCallback(
                     (e) => setHoverSection(e.target),
                     []
