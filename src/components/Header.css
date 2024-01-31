@@ -16,49 +16,21 @@
 .map-header h1 {
     font-size:5.5vh;
     margin-top: 13px;
-    margin-bottom: 10px; /* Reduce space below the header */
-    /* Add other styling for the header as needed */
+    margin-bottom: 10px;
 }
 
 .map-header p {
-    margin-top: 0; /* Reduce space above the subheader */
+    margin-top: 0;
     margin-bottom: 20px;
-    /* Add other styling for the subheader as needed */
 }
 
 .header-image {
     position: absolute;
-    width: 60px; /* Adjust the size as needed */
     height: auto;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
     border-radius: 4px;
-}
-
-
-
-.header-image:nth-child(1) {
     top: -15px;
     right: 39%;
     width: 100px;
     height: auto;
     box-shadow: 0 0000;
-}
-
-.header-image:nth-child(2) {
-    right: -35px;
-    top: -1px;
-    width: 110px;
-    transform: rotate(4deg);
-}
-
-
-/* Responsive adjustments */
-@media (max-width: 600px) {
-    .map-header {
-        flex-direction: column;
-        align-items: center;
-    }
-    .header-image {
-        margin-bottom: 5px;
-    }
 }

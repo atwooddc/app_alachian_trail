@@ -9,11 +9,6 @@ const Header = () => {
                 alt="at-logo"
                 className="header-image"
             />
-            {/* <img
-                src={require("../img/first_day_pic_zoomed_in.png")}
-                alt="first day"
-                className="header-image"
-            /> */}
             <div color="#11151C">
                 <h1>
                     Putting the &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; in

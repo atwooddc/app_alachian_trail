@@ -1,8 +1,11 @@
 .recenter-button {
+    height: 40px;
+    width: 40px;
     position: absolute;
     bottom: 65px;
     left: 20px;
     padding: 0 0;
     z-index: 1000;
     cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 };
