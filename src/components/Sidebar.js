@@ -19,6 +19,7 @@ import { boundingExtent } from "ol/extent";
 import { makeStyles } from "@mui/styles";
 
 import StateIndicator from "./StateIndicator";
+import ElevationChart from "./ElevationChart";
 
 import { MapContext } from "../context/MapContext";
 
@@ -220,6 +221,11 @@ const Sidebar = ({ day, setDay, data, autoZoom }) => {
                                 </MileageToFrom>
                                 {/* {data.town ? ` in ${data.town}` : ""} */}
                             </Typography>
+                        </Grid>
+
+                        {/* elevation profile */}
+                        <Grid item xs={12}>
+                            <ElevationChart />
                         </Grid>
 
                         {/* progress bar */}
