@@ -21,7 +21,6 @@ const ElevationChart = () => {
             const width = 300 - margin.left - margin.right;
             const height = 100 - margin.top - margin.bottom;
 
-            // Set up the SVG canvas
             const svg = d3
                 .select(d3Container.current)
                 .attr("width", width + margin.left + margin.right)
@@ -29,7 +28,6 @@ const ElevationChart = () => {
                 .append("g")
                 .attr("transform", `translate(${margin.left},${margin.top})`);
 
-            // Define the scales
             const xScale = d3
                 .scaleLinear()
                 .domain(d3.extent(data, (d) => d[0]))
@@ -40,29 +38,25 @@ const ElevationChart = () => {
                 .domain([0, d3.max(data, (d) => d[1])])
                 .range([height, 0]);
 
-            // Create the area
             const area = d3
                 .area()
                 .x((d) => xScale(d[0]))
                 .y0(height)
                 .y1((d) => yScale(d[1]))
-                .curve(d3.curveMonotoneX); // This will smooth the line
+                .curve(d3.curveMonotoneX); // smooth line
 
-            // Add the area to the SVG
             svg.append("path")
                 .datum(data)
                 .attr("class", "area")
                 .attr("fill", "lightgrey")
                 .attr("d", area);
 
-            // Create the line generator with curve
             const line = d3
                 .line()
                 .x((d) => xScale(d[0]))
                 .y((d) => yScale(d[1]))
-                .curve(d3.curveMonotoneX); // This will smooth the line
+                .curve(d3.curveMonotoneX); // smooth line
 
-            // Add the line to the SVG
             svg.append("path")
                 .datum(data)
                 .attr("fill", "none")
@@ -75,11 +69,9 @@ const ElevationChart = () => {
                 .attr("transform", `translate(0,${height})`)
                 .call(d3.axisBottom(xScale).ticks(8));
 
-            // Remove the x-axis line
-            xAxis.select(".domain").remove();
+            xAxis.select(".domain").remove(); // remove x axis
 
-            xAxis.selectAll(".tick line").style("stroke", "lightgrey"); // Change '#yourColor' to the desired color for the tick lines
-
+            xAxis.selectAll(".tick line").style("stroke", "lightgrey");
             xAxis.selectAll(".tick text").style("fill", "lightgrey");
 
             const yAxis = svg
