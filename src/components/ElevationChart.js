@@ -5,14 +5,27 @@ const ElevationChart = () => {
     const d3Container = useRef(null);
 
     const data = [
-        [1, 3],
+        [0, 3.3],
+        [1, 3.5],
         [2, 4],
-        [3, 1],
-        [4, 6],
-        [5, 3],
-        [6, 4],
-        [7, 1],
+        [3, 4.6],
+        [4, 5.1],
+        [5, 3.7],
+        [6, 4.3],
+        [7, 5.4],
         [8, 6],
+        [9, 3],
+        [10, 4.2],
+        [11, 4.6],
+        [12, 6.1],
+        [13, 5.2],
+        [14, 4.9],
+        [15, 4.8],
+        [16, 4.9],
+        [17, 4.7],
+        [18, 4.3],
+        [19, 5],
+        [20, 4.8],
     ];
 
     useEffect(() => {
@@ -28,6 +41,11 @@ const ElevationChart = () => {
                 .append("g")
                 .attr("transform", `translate(${margin.left},${margin.top})`);
 
+            svg.append("rect")
+                .attr("width", width)
+                .attr("height", height)
+                .attr("fill", "lightgrey");
+
             const xScale = d3
                 .scaleLinear()
                 .domain(d3.extent(data, (d) => d[0]))
@@ -38,31 +56,49 @@ const ElevationChart = () => {
                 .domain([0, d3.max(data, (d) => d[1])])
                 .range([height, 0]);
 
-            const area = d3
-                .area()
-                .x((d) => xScale(d[0]))
-                .y0(height)
-                .y1((d) => yScale(d[1]))
-                .curve(d3.curveMonotoneX); // smooth line
-
-            svg.append("path")
-                .datum(data)
-                .attr("class", "area")
-                .attr("fill", "lightgrey")
-                .attr("d", area);
-
             const line = d3
                 .line()
                 .x((d) => xScale(d[0]))
                 .y((d) => yScale(d[1]))
                 .curve(d3.curveMonotoneX); // smooth line
 
-            svg.append("path")
+            // Add path
+            const path = svg
+                .append("path")
                 .datum(data)
                 .attr("fill", "none")
                 .attr("stroke", "steelblue")
+                .attr("stroke-linejoin", "round")
+                .attr("stroke-linecap", "round")
                 .attr("stroke-width", 1.5)
                 .attr("d", line);
+
+            const pathLength = path.node().getTotalLength();
+            // D3 provides lots of transition options, have a play around here:
+            // https://github.com/d3/d3-transition
+            const transitionPath = d3
+                .transition()
+                .ease(d3.easeSin)
+                .duration(2500);
+
+            path.attr("stroke-dashoffset", pathLength)
+                .attr("stroke-dasharray", pathLength)
+                .transition(transitionPath)
+                .attr("stroke-dashoffset", 0);
+
+            // Add area
+            // const area = d3
+            //     .area()
+            //     .x((d) => xScale(d[0]))
+            //     .y0(height)
+            //     .y1((d) => yScale(d[1]))
+            //     .curve(d3.curveMonotoneX); // smooth line
+
+            // svg.append("path")
+            //     .datum(data)
+            //     .attr("class", "area")
+            //     .attr("fill", "lightgrey")
+            //     .attr("d", area);
 
             const xAxis = svg
                 .append("g")
@@ -71,8 +107,8 @@ const ElevationChart = () => {
 
             xAxis.select(".domain").remove(); // remove x axis
 
-            xAxis.selectAll(".tick line").style("stroke", "lightgrey");
-            xAxis.selectAll(".tick text").style("fill", "lightgrey");
+            xAxis.selectAll(".tick line").style("stroke", "grey");
+            xAxis.selectAll(".tick text").style("fill", "grey");
 
             const yAxis = svg
                 .append("g")
