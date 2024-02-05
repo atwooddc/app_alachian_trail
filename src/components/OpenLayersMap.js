@@ -55,7 +55,8 @@ const OpenLayersMap = ({ day, setDay, data, autoZoom }) => {
                 zoom: 5.7,
             }}
         >
-            <RLayerStadia layer="outdoors" />
+            {/* <RLayerStadia layer="outdoors" /> */}
+            <RLayerStadia layer="stamen_terrain" />
 
             {/* Map */}
             <RLayerVector

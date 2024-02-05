@@ -48,6 +48,8 @@ const ElevationChart = ({ day, data }) => {
                 const width = 300 - margin.left - margin.right;
                 const height = 100 - margin.top - margin.bottom;
 
+                // ADD FEET
+
                 // Scales
                 const xScale = d3
                     .scaleLinear()
@@ -56,6 +58,7 @@ const ElevationChart = ({ day, data }) => {
 
                 const yDomainPadding =
                     (d3.max(elevationValues) - d3.min(elevationValues)) * 0.5; // 5% padding
+
                 const yScale = d3
                     .scaleLinear()
                     .domain([
@@ -104,6 +107,22 @@ const ElevationChart = ({ day, data }) => {
                     .attr("width", width)
                     .attr("height", height)
                     .attr("fill", "#E8E8E8");
+
+                svg.append("text")
+                    .attr("x", margin.left + 2)
+                    .attr("y", margin.top - 1) // Adjust this value if needed to position correctly
+                    .attr("text-anchor", "start") // Align text to the start of the text element
+                    .style("font-size", "10px") // Adjust font size as needed
+                    // .style("fill", "white")
+                    .text("ft."); // Text to display
+
+                svg.append("text")
+                    .attr("x", width + margin.left + margin.right - 5)
+                    .attr("y", height + margin.top - 2) // Adjust this value to position above the bottom margin
+                    .attr("text-anchor", "end") // Align text to the end of the text element
+                    .style("font-size", "10px") // Adjust font size as needed
+                    .style("fill", "grey")
+                    .text("mi."); // Text to display
 
                 // Create a group for the graph elements and transform it
                 const graphGroup = svg
@@ -241,7 +260,7 @@ const ElevationChart = ({ day, data }) => {
                 // );
             }
         }
-    }, [day, allElevData]); // Rerun when `day` or `allElevData` changes
+    }, [day, data, allElevData]); // Rerun when `day` or `allElevData` changes
 
     return (
         <svg
