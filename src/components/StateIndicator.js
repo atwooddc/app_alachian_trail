@@ -2,7 +2,7 @@ import React from "react";
 import Button from "@mui/material/Button";
 import { styled } from "@mui/material/styles";
 
-const StateButton = styled(Button)(({ bgColor }) => ({
+const StateButton = styled(Button)(({ bgcolor }) => ({
     padding: "0px 1px",
     margin: 2,
     width: 20,
@@ -10,7 +10,7 @@ const StateButton = styled(Button)(({ bgColor }) => ({
     verticalAlign: "middle",
     fontFamily: "Futura",
     fontSize: 14,
-    backgroundColor: bgColor,
+    backgroundColor: bgcolor,
     color: "white",
     pointerEvents: "none",
     maxWidth: "30px",
@@ -39,7 +39,7 @@ const stateColors = {
 const StateIndicator = ({ stateString }) => {
     function StateButtonColor({ stateAbbr }) {
         return (
-            <StateButton bgColor={stateColors[stateAbbr]}>
+            <StateButton bgcolor={stateColors[stateAbbr]}>
                 {stateAbbr}
             </StateButton>
         );

@@ -1,7 +1,7 @@
 import { React, useState } from "react";
 import "./ZoomSwitch.css";
 
-import { Paper, Typography, Grid } from "@mui/material";
+import { Paper, Typography } from "@mui/material";
 import Stack from "@mui/material/Stack";
 import Switch from "@mui/material/Switch";
 
@@ -20,7 +20,7 @@ const ZoomSwitch = ({ autoZoom, setAutoZoom }) => {
                     checked={checked}
                     onChange={handleChange}
                     color={"secondary"}
-                    paddingLeft={1}
+                    paddingleft={1}
                 >
                     auto-zoom
                 </Switch>
@@ -28,7 +28,7 @@ const ZoomSwitch = ({ autoZoom, setAutoZoom }) => {
                 <Typography
                     variant="overline"
                     fontSize={10}
-                    paddingLeft={0}
+                    paddingleft={0}
                     paddingRight={1.25}
                 >
                     auto-zoom
