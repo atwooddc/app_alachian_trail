@@ -55,8 +55,8 @@ const OpenLayersMap = ({ day, setDay, data, autoZoom }) => {
                 zoom: 5.7,
             }}
         >
-            {/* <RLayerStadia layer="outdoors" /> */}
-            <RLayerStadia layer="stamen_terrain" />
+            <RLayerStadia layer="outdoors" />
+            {/* <RLayerStadia layer="stamen_terrain" /> */}
 
             {/* Map */}
             <RLayerVector
@@ -128,7 +128,7 @@ const OpenLayersMap = ({ day, setDay, data, autoZoom }) => {
                 </RStyle.RStyle>
             </RLayerVector>
 
-            <RLayerVector
+            {/* <RLayerVector
                 zIndex={10}
                 maxResolution={650}
                 format={new GeoJSON({ featureProjection: "EPSG:3857" })}
@@ -145,7 +145,7 @@ const OpenLayersMap = ({ day, setDay, data, autoZoom }) => {
                         <RStyle.RFill color={"#4a6741"} />
                     </RStyle.RCircle>
                 </RStyle.RStyle>
-            </RLayerVector>
+            </RLayerVector> */}
 
             {/* shelter pop ups
             note: need to revise names of shelters in geojson */}
