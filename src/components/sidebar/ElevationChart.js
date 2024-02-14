@@ -1,5 +1,6 @@
 import React, { useRef, useState, useEffect } from "react";
 import * as d3 from "d3";
+import { Grid } from "@mui/material";
 
 const ElevationChart = ({ day, data }) => {
     const d3Container = useRef(null);
@@ -263,12 +264,14 @@ const ElevationChart = ({ day, data }) => {
     }, [day, data, allElevData]); // Rerun when `day` or `allElevData` changes
 
     return (
-        <svg
-            className="d3-component"
-            width={300}
-            height={100}
-            ref={d3Container}
-        />
+        <Grid item xs={12}>
+            <svg
+                className="d3-component"
+                width={300}
+                height={100}
+                ref={d3Container}
+            />
+        </Grid>
     );
 };
 

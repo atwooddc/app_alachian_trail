@@ -1,27 +1,13 @@
-import { React, useContext } from "react";
+import React from "react";
+
 import { Paper, Typography } from "@mui/material";
-import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
-import Button from "@mui/material/Button";
-import { styled } from "@mui/material/styles";
-
-// icons for progress bar
-import LinearProgress from "@mui/material/LinearProgress";
-import Icon from "@mui/material/Icon";
-
-import hikingIcon from "../img/hiking.svg";
-import mountainIcon from "../img/mountain.svg";
-import IconButton from "@mui/material/IconButton";
-import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
-import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
-import { boundingExtent } from "ol/extent";
-
 import { makeStyles } from "@mui/styles";
 
-import StateIndicator from "./StateIndicator";
-import ElevationChart from "./ElevationChart";
-
-import { MapContext } from "../context/MapContext";
+import DayDate from "./sidebar/NavBar";
+import ElevationChart from "./sidebar/ElevationChart";
+import ProgressBar from "./sidebar/ProgressBar";
+import BeginToEnd from "./sidebar/BeginToEnd";
 
 const useStyles = makeStyles((theme) => ({
     sidebar: {
@@ -49,87 +35,8 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-const MileageToFrom = styled(Button)({
-    marginLeft: 10,
-    marginRight: 10,
-    marginBottom: 4,
-    verticalAlign: "middle",
-    fontFamily: "Futura",
-    fontSize: 16,
-    padding: "2px 8px",
-    textTransform: "none",
-    backgroundColor: "white",
-    border: "1px solid",
-    color: "#0063cc",
-    "&:hover": {
-        backgroundColor: "white",
-        borderColor: "#0063cc",
-    },
-    pointerEvents: "none",
-});
-
 const Sidebar = ({ day, setDay, data, autoZoom }) => {
     const classes = useStyles();
-
-    const mapRef = useContext(MapContext);
-
-    const backDay = () => {
-        if (day > 1) {
-            let newDay = day - 1;
-            while (newDay > 1 && !data[newDay]) {
-                --newDay;
-            }
-            if (data[newDay]) {
-                setDay(newDay);
-                changeMapView(newDay);
-            }
-        }
-    };
-
-    const nextDay = () => {
-        if (day < 182) {
-            let newDay = day + 1;
-            while (newDay < 182 && !data[newDay]) {
-                ++newDay;
-            }
-            if (data[newDay]) {
-                setDay(newDay);
-                changeMapView(newDay);
-            }
-        }
-    };
-
-    const changeMapView = (newDay) => {
-        if (autoZoom) {
-            const dayData = data[newDay];
-            if (dayData && mapRef.current) {
-                const x = dayData.x;
-                const y = dayData.y;
-                const coords = [[x, y]];
-                const extent = boundingExtent(coords);
-                mapRef.current.ol.getView().fit(extent, {
-                    duration: 1000,
-                    maxZoom: 11,
-                });
-            }
-        }
-    };
-
-    // move to utils
-    function formatDate(inputDate) {
-        // Parse the input string into a Date object
-        const [year, month, day] = inputDate.split("-");
-        const date = new Date(year, month - 1, day);
-
-        // Use Intl.DateTimeFormat to format the date
-        const formatter = new Intl.DateTimeFormat("en-US", {
-            year: "numeric",
-            month: "long",
-            day: "numeric",
-        });
-
-        return formatter.format(date);
-    }
 
     return (
         <Paper className={classes.sidebar} borderradius={20}>
@@ -142,122 +49,22 @@ const Sidebar = ({ day, setDay, data, autoZoom }) => {
                         alignItems="center"
                         justifyContent="center"
                     >
-                        <Grid item xs={2}>
-                            {" "}
-                            <IconButton onClick={backDay}>
-                                <ArrowBackIosNewIcon />
-                            </IconButton>
-                        </Grid>
-                        <Grid item xs={8} alignContent={"center"}>
-                            <Box
-                                display="flex"
-                                alignItems="center"
-                                justifyContent="center"
-                                minHeight={30}
-                                marginTop={1.5}
-                            >
-                                <Typography
-                                    variant="h5"
-                                    align="right"
-                                    marginBottom={0}
-                                    paddingBottom={0}
-                                    marginRight={1}
-                                >
-                                    Day {day}
-                                </Typography>
-                                <StateIndicator stateString={data[day].state} />
-                            </Box>
-                        </Grid>
-                        <Grid item xs={2}>
-                            <IconButton onClick={nextDay}>
-                                <ArrowForwardIosIcon />
-                            </IconButton>
-                        </Grid>
-
-                        <Grid item xs={12} textAlign={"center"}>
-                            <Typography
-                                variant="overline"
-                                align="center"
-                                paddingTop={0}
-                            >
-                                {formatDate(data[day].date)}
-                            </Typography>
-                        </Grid>
+                        {/* nav bar */}
+                        <DayDate
+                            day={day}
+                            data={data}
+                            setDay={setDay}
+                            autoZoom={autoZoom}
+                        />
 
                         {/* start to end */}
-                        <Grid item xs={12}>
-                            <Typography
-                                variant="p"
-                                align="center"
-                                marginBottom={0}
-                                paddingBottom={0}
-                            >
-                                <MileageToFrom
-                                    style={{
-                                        borderColor: "#275DAD",
-                                        color: "#275DAD",
-                                    }}
-                                >
-                                    {data[day].mileage} mi.
-                                </MileageToFrom>
-                                from <br />
-                                <MileageToFrom
-                                    style={{
-                                        borderColor: "#0B3948",
-                                        color: "#0B3948",
-                                    }}
-                                >
-                                    {data[day].start}
-                                </MileageToFrom>
-                                to <br />
-                                <MileageToFrom
-                                    style={{
-                                        borderColor: "#0B3948",
-                                        color: "#0B3948",
-                                    }}
-                                >
-                                    {data[day].end}
-                                </MileageToFrom>
-                                {/* {data.town ? ` in ${data.town}` : ""} */}
-                            </Typography>
-                        </Grid>
+                        <BeginToEnd day={day} data={data} />
 
                         {/* elevation profile */}
-                        <Grid item xs={12}>
-                            <ElevationChart day={day} data={data} />
-                        </Grid>
+                        <ElevationChart day={day} data={data} />
 
                         {/* progress bar */}
-                        <Grid item xs={1.5}>
-                            <Icon classes={{ root: classes.iconRoot }}>
-                                <img
-                                    alt="hiking-icon"
-                                    className={classes.imageIcon}
-                                    src={hikingIcon}
-                                />
-                            </Icon>
-                        </Grid>
-                        <Grid
-                            item
-                            alignItems="center"
-                            justifyContent="center"
-                            xs={9}
-                        >
-                            <LinearProgress
-                                variant="determinate"
-                                color="secondary"
-                                value={(100 * data[day].totalDist) / 2092.2}
-                            />
-                        </Grid>
-                        <Grid item xs={1.5}>
-                            <Icon classes={{ root: classes.iconRoot }}>
-                                <img
-                                    alt="mountain-icon"
-                                    className={classes.imageIcon}
-                                    src={mountainIcon}
-                                />
-                            </Icon>
-                        </Grid>
+                        <ProgressBar day={day} data={data} />
                     </Grid>
                 </>
             ) : (
