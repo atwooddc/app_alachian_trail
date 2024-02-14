@@ -1,0 +1,16 @@
+/* For screens with aspect ratio greater than or equal to 16:9 (landscape) */
+@media only screen and (min-aspect-ratio: 1/1) {
+    /* Your CSS rules for desktop */
+    .mobile {
+      display: none; /* Hide the component on desktop */
+    }
+  }
+  
+  /* For screens with aspect ratio less than 16:9 (portrait or square) */
+  @media only screen and (max-aspect-ratio: 1/1) {
+    /* Your CSS rules for mobile */
+    .desktop {
+      display: none; /* Hide the component on mobile */
+    }
+  }
+  

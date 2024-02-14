@@ -1,4 +1,5 @@
 import React from "react";
+import "./App.css";
 import { CssBaseline, ThemeProvider, createTheme } from "@mui/material";
 import Header from "./components/Header.js";
 import MapPage from "./pages/MapPage";
@@ -16,7 +17,7 @@ const theme = createTheme({
 
 function App() {
     return (
-        <ThemeProvider theme={theme}>
+        <ThemeProvider theme={theme} className="app">
             <CssBaseline />
             <Header />
             <MapPage />

@@ -14,7 +14,7 @@ const ZoomSwitch = ({ autoZoom, setAutoZoom }) => {
     };
 
     return (
-        <Paper className="zoom-switch">
+        <Paper className="zoom-switch desktop">
             <Stack direction="row" alignItems="center">
                 <Switch
                     checked={checked}

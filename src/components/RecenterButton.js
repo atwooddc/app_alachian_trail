@@ -21,7 +21,7 @@ const RecenterButton = () => {
         }
     };
     return (
-        <Paper className="recenter-button">
+        <Paper className="recenter-button desktop">
             <IconButton onClick={recenterMap}>
                 <MyLocation />
             </IconButton>
