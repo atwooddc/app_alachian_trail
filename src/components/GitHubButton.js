@@ -8,7 +8,7 @@ const GitHubButton = () => {
     return (
         <img
             alt="github-button"
-            className="github-button"
+            className="github-button desktop"
             src={require("../img/dcalogo_transparent.png")}
             onClick={openGitHub}
         />
