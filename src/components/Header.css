@@ -1,36 +1,66 @@
 .map-header {
     position: absolute;
-    top: 25px;
+    top: 20px;
     left: 0%;
     transform: translateX(-5%);
     background-color: rgba(255, 255, 255);
     padding: 0px 90px;
     padding-right: 40px;
     border-radius: 15px;
+    margin-bottom: 0px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
     text-align: left;
-    z-index: 100;
+    z-index: 10000;
     font-family: 'Futura', sans-serif;
 }
 
+.Stack {
+    height: 70px;
+}
+
 .map-header h1 {
-    font-size:5.5vh;
-    margin-top: 13px;
-    margin-bottom: 10px;
+    font-size: 42px;
+    white-space: nowrap;
 }
 
 .map-header p {
     margin-top: 0;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
 }
 
 .header-image {
-    position: absolute;
-    height: auto;
-    border-radius: 4px;
+    position: relative;
     top: -15px;
-    right: 39%;
-    width: 100px;
-    height: auto;
-    box-shadow: 0 0000;
+    height: 80px;
+}
+
+/* Responsive adjustments for aspect ratio below 1 */
+@media (max-aspect-ratio: 1/1) or (max-width: 800px){
+    .map-header {
+        position: absolute; /* Keep it absolute to float over the map */
+        top: 2vh;
+        left: 50%;
+        transform: translateX(-50%);
+        padding: 1vh 3vh;
+    }
+
+    .Stack {
+        height: max(10vmin, 40px);
+    }
+
+    .map-header h1 {
+        font-size: 5vw; /* Scale down the font size */
+    } 
+    
+    .map-header p {
+        text-align: center;
+        font-size: 2vw; /* Scale down the font size */
+        margin-bottom: max(1vh, 2px);
+    }
+
+    .header-image {
+        height: max(12vmin, 50px); /* Scale down the image size */
+        position: relative;
+        top: -20px;
+    }
 }
