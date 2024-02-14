@@ -133,8 +133,7 @@ const Sidebar = ({ day, setDay, data, autoZoom }) => {
 
     return (
         <Paper className={classes.sidebar} borderradius={20}>
-            {day && data[day].date ? ( // error handling for sections w missing data
-                // Conditional sidebar based on what day is selected
+            {day && data[day].date ? (
                 <>
                     <Grid
                         container
