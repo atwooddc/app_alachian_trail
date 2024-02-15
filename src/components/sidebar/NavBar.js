@@ -72,7 +72,7 @@ const NavBar = ({ day, data, setDay, autoZoom }) => {
                     alignItems="center"
                     justifyContent="center"
                     minHeight={30}
-                    marginTop={1.5}
+                    marginTop={0.5}
                 >
                     <Typography
                         variant="h5"
