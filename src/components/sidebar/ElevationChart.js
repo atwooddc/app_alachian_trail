@@ -1,5 +1,6 @@
 import React, { useRef, useState, useEffect } from "react";
 import * as d3 from "d3";
+import { Grid } from "@mui/material";
 
 const ElevationChart = ({ day, data }) => {
     const d3Container = useRef(null);
@@ -166,109 +167,19 @@ const ElevationChart = ({ day, data }) => {
                     .attr("stroke-dasharray", pathLength)
                     .transition(transitionPath)
                     .attr("stroke-dashoffset", 0);
-
-                // const margin = { top: 20, right: 10, bottom: 20, left: 20 };
-                // const width = 300 - margin.left - margin.right;
-                // const height = 100 - margin.top - margin.bottom;
-
-                // const svg = d3
-                //     .select(d3Container.current)
-                //     .attr("width", width + margin.left + margin.right)
-                //     .attr("height", height + margin.top + margin.bottom)
-                //     .append("g")
-                //     .attr(
-                //         "transform",
-                //         `translate(${margin.left},${margin.top})`
-                //     );
-
-                // svg.append("rect")
-                //     .attr("width", width)
-                //     .attr("height", height)
-                //     .attr("fill", "#E8E8E8");
-
-                // // Assuming data[day].totalDist and data[day].mileage are defined and are numbers
-                // const startDist = data[day].totalDist - data[day].mileage;
-                // const endDist = data[day].totalDist;
-
-                // // Assuming dayData.elevations is an array of 50 elevation values
-                // const elevationValues = dayData.elevations; // Already an array of numbers like the one you provided
-
-                // // Create the x-scale
-                // const xScale = d3
-                //     .scaleLinear()
-                //     .domain([0, elevationValues.length - 1]) // Input domain is the index range from 0 to 49
-                //     .range([startDist, endDist]); // Output range is the distance domain
-
-                // const yScale = d3
-                //     .scaleLinear()
-                //     .domain([0, d3.max(dayData.elevations, (d) => d[1])])
-                //     .range([100, 0]); // Adjust as needed
-
-                // // // When you create the line, you would use the index to get the x-coordinate
-                // const line = d3
-                //     .line()
-                //     .x((d, i) => xScale(i)) // Use the index 'i' here
-                //     .y((d) => yScale(d)) // Assuming yScale is already defined for the elevation values
-                //     .curve(d3.curveMonotoneX);
-
-                // const path = svg
-                //     .append("path")
-                //     .datum(elevationValues)
-                //     .attr("fill", "none")
-                //     .attr("stroke", "steelblue")
-                //     .attr("stroke-linejoin", "round")
-                //     .attr("stroke-linecap", "round")
-                //     .attr("stroke-width", 1.5)
-                //     .attr("d", line);
-
-                // // const pathLength = path.node().getTotalLength();
-                // // const transitionPath = d3
-                // //     .transition()
-                // //     .ease(d3.easeSin)
-                // //     .duration(2500);
-                // // path.attr("stroke-dashoffset", pathLength)
-                // //     .attr("stroke-dasharray", pathLength)
-                // //     .transition(transitionPath)
-                // //     .attr("stroke-dashoffset", 0);
-
-                // // // Add area
-                // // // const area = d3
-                // // //     .area()
-                // // //     .x((d) => xScale(d[0]))
-                // // //     .y0(height)
-                // // //     .y1((d) => yScale(d[1]))
-                // // //     .curve(d3.curveMonotoneX); // smooth line
-
-                // // // svg.append("path")
-                // // //     .datum(testData)
-                // // //     .attr("class", "area")
-                // // //     .attr("fill", "lightgrey")
-                // // //     .attr("d", area);
-
-                // const xAxis = svg
-                //     .append("g")
-                //     .attr("transform", `translate(0,${height})`)
-                //     .call(d3.axisBottom(xScale).ticks(8));
-
-                // xAxis.select(".domain").remove(); // remove x axis
-
-                // xAxis.selectAll(".tick line").style("stroke", "grey");
-                // xAxis.selectAll(".tick text").style("fill", "grey");
-
-                // svg.append("g").call(
-                //     d3.axisLeft(yScale).ticks(4).tickFormat(d3.format("d"))
-                // );
             }
         }
     }, [day, data, allElevData]); // Rerun when `day` or `allElevData` changes
 
     return (
-        <svg
-            className="d3-component"
-            width={300}
-            height={100}
-            ref={d3Container}
-        />
+        <Grid item xs={12}>
+            <svg
+                className="d3-component"
+                width={300}
+                height={100}
+                ref={d3Container}
+            />
+        </Grid>
     );
 };
 

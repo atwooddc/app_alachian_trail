@@ -1,30 +1,17 @@
-import { React, useContext } from "react";
-import { Paper, Typography } from "@mui/material";
-import Box from "@mui/material/Box";
+import React from "react";
+
+import { Paper } from "@mui/material";
 import Grid from "@mui/material/Grid";
-import Button from "@mui/material/Button";
-import { styled } from "@mui/material/styles";
-
-// icons for progress bar
-import LinearProgress from "@mui/material/LinearProgress";
-import Icon from "@mui/material/Icon";
-
-import hikingIcon from "../img/hiking.svg";
-import mountainIcon from "../img/mountain.svg";
-import IconButton from "@mui/material/IconButton";
-import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
-import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
-import { boundingExtent } from "ol/extent";
-
 import { makeStyles } from "@mui/styles";
 
-import StateIndicator from "./StateIndicator";
-import ElevationChart from "./ElevationChart";
-
-import { MapContext } from "../context/MapContext";
+import DayDate from "./sidebar/NavBar";
+import ElevationChart from "./sidebar/ElevationChart";
+import ProgressBar from "./sidebar/ProgressBar";
+import BeginToEnd from "./sidebar/BeginToEnd";
+import WelcomeMessage from "./sidebar/WelcomeMessage";
 
 const useStyles = makeStyles((theme) => ({
-    sidebar: {
+    desktop: {
         position: "absolute",
         bottom: "20px",
         right: "20px",
@@ -32,283 +19,97 @@ const useStyles = makeStyles((theme) => ({
         width: "flex",
         padding: "10px 20px",
         boxShadow: "0 2px 5px rgba(0, 0, 0, 0.2)",
-        zIndex: 1000,
+        zIndex: 100000,
         fontFamily: "Futura",
         color: "#11151C",
         maxHeight: "400px", // Adjust this value as needed
         overflowY: "auto", // Enables vertical scrolling
         borderRadius: 15,
     },
-    imageIcon: {
-        display: "flex",
-        height: "inherit",
-        width: "inherit",
-    },
-    iconRoot: {
-        textAlign: "center",
+    mobile: {
+        position: "absolute",
+        bottom: "2vh",
+        left: "50%",
+        transform: "translateX(-50%)",
+        padding: "1vh 3vh",
+        width: "96vw",
+        boxShadow: "0 2px 5px rgba(0, 0, 0, 0.2)",
+        zIndex: 1000,
+        fontFamily: "Futura",
+        color: "#11151C",
+        maxHeight: "400px",
+        overflowY: "auto",
+        borderRadius: 15,
     },
 }));
-
-const MileageToFrom = styled(Button)({
-    marginLeft: 10,
-    marginRight: 10,
-    marginBottom: 4,
-    verticalAlign: "middle",
-    fontFamily: "Futura",
-    fontSize: 16,
-    padding: "2px 8px",
-    textTransform: "none",
-    backgroundColor: "white",
-    border: "1px solid",
-    color: "#0063cc",
-    "&:hover": {
-        backgroundColor: "white",
-        borderColor: "#0063cc",
-    },
-    pointerEvents: "none",
-});
 
 const Sidebar = ({ day, setDay, data, autoZoom }) => {
     const classes = useStyles();
 
-    const mapRef = useContext(MapContext);
-
-    const backDay = () => {
-        if (day > 1) {
-            let newDay = day - 1;
-            while (newDay > 1 && !data[newDay]) {
-                --newDay;
-            }
-            if (data[newDay]) {
-                setDay(newDay);
-                changeMapView(newDay);
-            }
-        }
-    };
-
-    const nextDay = () => {
-        if (day < 182) {
-            let newDay = day + 1;
-            while (newDay < 182 && !data[newDay]) {
-                ++newDay;
-            }
-            if (data[newDay]) {
-                setDay(newDay);
-                changeMapView(newDay);
-            }
-        }
-    };
-
-    const changeMapView = (newDay) => {
-        if (autoZoom) {
-            const dayData = data[newDay];
-            if (dayData && mapRef.current) {
-                const x = dayData.x;
-                const y = dayData.y;
-                const coords = [[x, y]];
-                const extent = boundingExtent(coords);
-                mapRef.current.ol.getView().fit(extent, {
-                    duration: 1000,
-                    maxZoom: 11,
-                });
-            }
-        }
-    };
-
-    // move to utils
-    function formatDate(inputDate) {
-        // Parse the input string into a Date object
-        const [year, month, day] = inputDate.split("-");
-        const date = new Date(year, month - 1, day);
-
-        // Use Intl.DateTimeFormat to format the date
-        const formatter = new Intl.DateTimeFormat("en-US", {
-            year: "numeric",
-            month: "long",
-            day: "numeric",
-        });
-
-        return formatter.format(date);
-    }
-
     return (
-        <Paper className={classes.sidebar} borderradius={20}>
-            {day && data[day].date ? (
-                <>
-                    <Grid
-                        container
-                        rowSpacing={1}
-                        columnSpacing={2}
-                        alignItems="center"
-                        justifyContent="center"
-                    >
-                        <Grid item xs={2}>
-                            {" "}
-                            <IconButton onClick={backDay}>
-                                <ArrowBackIosNewIcon />
-                            </IconButton>
-                        </Grid>
-                        <Grid item xs={8} alignContent={"center"}>
-                            <Box
-                                display="flex"
-                                alignItems="center"
-                                justifyContent="center"
-                                minHeight={30}
-                                marginTop={1.5}
-                            >
-                                <Typography
-                                    variant="h5"
-                                    align="right"
-                                    marginBottom={0}
-                                    paddingBottom={0}
-                                    marginRight={1}
-                                >
-                                    Day {day}
-                                </Typography>
-                                <StateIndicator stateString={data[day].state} />
-                            </Box>
-                        </Grid>
-                        <Grid item xs={2}>
-                            <IconButton onClick={nextDay}>
-                                <ArrowForwardIosIcon />
-                            </IconButton>
-                        </Grid>
-
-                        <Grid item xs={12} textAlign={"center"}>
-                            <Typography
-                                variant="overline"
-                                align="center"
-                                paddingTop={0}
-                            >
-                                {formatDate(data[day].date)}
-                            </Typography>
-                        </Grid>
-
-                        {/* start to end */}
-                        <Grid item xs={12}>
-                            <Typography
-                                variant="p"
-                                align="center"
-                                marginBottom={0}
-                                paddingBottom={0}
-                            >
-                                <MileageToFrom
-                                    style={{
-                                        borderColor: "#275DAD",
-                                        color: "#275DAD",
-                                    }}
-                                >
-                                    {data[day].mileage} mi.
-                                </MileageToFrom>
-                                from <br />
-                                <MileageToFrom
-                                    style={{
-                                        borderColor: "#0B3948",
-                                        color: "#0B3948",
-                                    }}
-                                >
-                                    {data[day].start}
-                                </MileageToFrom>
-                                to <br />
-                                <MileageToFrom
-                                    style={{
-                                        borderColor: "#0B3948",
-                                        color: "#0B3948",
-                                    }}
-                                >
-                                    {data[day].end}
-                                </MileageToFrom>
-                                {/* {data.town ? ` in ${data.town}` : ""} */}
-                            </Typography>
-                        </Grid>
-
-                        {/* elevation profile */}
-                        <Grid item xs={12}>
-                            <ElevationChart day={day} data={data} />
-                        </Grid>
-
-                        {/* progress bar */}
-                        <Grid item xs={1.5}>
-                            <Icon classes={{ root: classes.iconRoot }}>
-                                <img
-                                    alt="hiking-icon"
-                                    className={classes.imageIcon}
-                                    src={hikingIcon}
-                                />
-                            </Icon>
-                        </Grid>
+        <>
+            <Paper className={`${classes.desktop} desktop`}>
+                {day && data[day].date ? (
+                    <>
                         <Grid
-                            item
+                            container
+                            rowSpacing={1}
+                            columnSpacing={2}
                             alignItems="center"
                             justifyContent="center"
-                            xs={9}
                         >
-                            <LinearProgress
-                                variant="determinate"
-                                color="secondary"
-                                value={(100 * data[day].totalDist) / 2092.2}
+                            {/* nav bar */}
+                            <DayDate
+                                day={day}
+                                data={data}
+                                setDay={setDay}
+                                autoZoom={autoZoom}
                             />
+
+                            {/* start to end */}
+                            <BeginToEnd day={day} data={data} />
+
+                            {/* elevation profile */}
+                            <ElevationChart day={day} data={data} />
+
+                            {/* progress bar */}
+                            <ProgressBar day={day} data={data} />
                         </Grid>
-                        <Grid item xs={1.5}>
-                            <Icon classes={{ root: classes.iconRoot }}>
-                                <img
-                                    alt="mountain-icon"
-                                    className={classes.imageIcon}
-                                    src={mountainIcon}
-                                />
-                            </Icon>
+                    </>
+                ) : (
+                    <WelcomeMessage />
+                )}
+            </Paper>
+            <Paper className={`${classes.mobile} mobile`}>
+                {day && data[day].date ? (
+                    <>
+                        <Grid
+                            container
+                            rowSpacing={0}
+                            columnSpacing={2}
+                            alignItems="center"
+                            justifyContent="center"
+                        >
+                            {/* nav bar */}
+                            <DayDate
+                                day={day}
+                                data={data}
+                                setDay={setDay}
+                                autoZoom={autoZoom}
+                            />
+                            {/* start to end */}
+                            {/* <BeginToEnd day={day} data={data} /> */}
+                            {/* elevation profile */}
+                            <ElevationChart day={day} data={data} />
+                            {/* progress bar */}
+                            <ProgressBar day={day} data={data} />
                         </Grid>
-                    </Grid>
-                </>
-            ) : (
-                // Welcome sidebar
-                <>
-                    <Typography
-                        variant="h5"
-                        textAlign={"left"}
-                        fontWeight={"bold"}
-                        fontFamily="Futura"
-                        // marginBottom={1}
-                        padding={2}
-                    >
-                        {" "}
-                        On April 8th, 1981,
-                    </Typography>
-                    <Typography
-                        variant="paragraph"
-                        fontSize={12}
-                        textAlign={"left"}
-                        fontFamily="Helvetica"
-                        padding={1}
-                    >
-                        my dad set out from Nimblewill Gap near Georgia's
-                        northern border, an external frame pack on his back and
-                        a beard on his face that wouldn't quit growing. He was
-                        19, and hoped to hike 2000+ miles to Mount Katahdin in
-                        Maine by October.
-                        <br />
-                        &emsp; This website is a tool to explore that journey
-                        with data from his itinerary and journals that are
-                        (somehow) still intact. So click around, explore, and
-                        marvel at this 19-year-old's singlemindedness!
-                        <br />
-                        &emsp; And one note about the line: the line that
-                        appears on this website is the current centerline. There
-                        are shelters that have been torn down, and trail
-                        sections that have been rerouted, but a majority of the
-                        trail remains the same. Where the trail and Glenn's
-                        stops (marked by green circles) diverge, tracing the
-                        stops will give a more accurate sense of the trail as it
-                        existed in 1981.
-                        <br />
-                        &emsp; And as for the missing days - even the greatest
-                        athletes have to rest. In the future I hope to add info
-                        on Glenn's rest days as well as his scanned journal
-                        entries.
-                    </Typography>
-                </>
-            )}
-        </Paper>
+                    </>
+                ) : (
+                    <WelcomeMessage />
+                )}
+            </Paper>
+        </>
     );
 };
 

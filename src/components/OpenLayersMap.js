@@ -25,7 +25,7 @@ const maxExtentCoords = [
 
 const OpenLayersMap = ({ day, setDay, data, autoZoom }) => {
     const [hoverSection, setHoverSection] = useState(null);
-    const [hoverStop, setHoverStop] = useState(null);
+    // const [hoverStop, setHoverStop] = useState(null);
 
     const mapRef = useContext(MapContext);
 
