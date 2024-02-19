@@ -6,7 +6,7 @@ function formatDate(inputDate) {
     // Use Intl.DateTimeFormat to format the date
     const formatter = new Intl.DateTimeFormat("en-US", {
         year: "numeric",
-        month: "long",
+        month: "short",
         day: "numeric",
     });
 

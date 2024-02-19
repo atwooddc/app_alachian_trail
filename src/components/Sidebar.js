@@ -4,7 +4,8 @@ import { Paper } from "@mui/material";
 import Grid from "@mui/material/Grid";
 import { makeStyles } from "@mui/styles";
 
-import DayDate from "./sidebar/NavBar";
+import StateIndicator from "./StateIndicator";
+import NavBar from "./sidebar/NavBar";
 import ElevationChart from "./sidebar/ElevationChart";
 import ProgressBar from "./sidebar/ProgressBar";
 import BeginToEnd from "./sidebar/BeginToEnd";
@@ -54,12 +55,12 @@ const Sidebar = ({ day, setDay, data, autoZoom }) => {
                         <Grid
                             container
                             rowSpacing={1}
-                            columnSpacing={2}
+                            columnSpacing={1}
                             alignItems="center"
-                            justifyContent="center"
+                            justifyContent="left"
                         >
                             {/* nav bar */}
-                            <DayDate
+                            <NavBar
                                 day={day}
                                 data={data}
                                 setDay={setDay}
@@ -85,22 +86,35 @@ const Sidebar = ({ day, setDay, data, autoZoom }) => {
                     <>
                         <Grid
                             container
-                            rowSpacing={0}
-                            columnSpacing={2}
+                            rowSpacing={0.2}
+                            columnSpacing={0}
                             alignItems="center"
                             justifyContent="center"
+                            justifyItems="center"
                         >
                             {/* nav bar */}
-                            <DayDate
+                            <NavBar
                                 day={day}
                                 data={data}
                                 setDay={setDay}
                                 autoZoom={autoZoom}
                             />
-                            {/* start to end */}
-                            {/* <BeginToEnd day={day} data={data} /> */}
-                            {/* elevation profile */}
-                            <ElevationChart day={day} data={data} />
+
+                            <Grid item xs={12}>
+                                <BeginToEnd day={day} data={data} />
+                            </Grid>
+                            <Grid
+                                item
+                                container
+                                xs={2}
+                                justifyContent={"center"}
+                                paddingBottom={2}
+                            >
+                                <StateIndicator stateString={data[day].state} />
+                            </Grid>
+                            <Grid item xs={10}>
+                                <ElevationChart day={day} data={data} />
+                            </Grid>
                             {/* progress bar */}
                             <ProgressBar day={day} data={data} />
                         </Grid>
