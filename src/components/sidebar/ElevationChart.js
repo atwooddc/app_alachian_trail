@@ -1,12 +1,13 @@
 import React, { useRef, useState, useEffect } from "react";
 import * as d3 from "d3";
-import { Grid } from "@mui/material";
+import ResizeObserver from "resize-observer-polyfill";
 
 const ElevationChart = ({ day, data }) => {
     const d3Container = useRef(null);
     const [allElevData, setAllElevData] = useState([]);
+    const [containerSize, setContainerSize] = useState({ width: 0, height: 0 });
 
-    // Fetch and process CSV data once and store it in state
+    // Fetch and process CSV data
     useEffect(() => {
         const fetchData = async () => {
             const url =
@@ -28,28 +29,52 @@ const ElevationChart = ({ day, data }) => {
         };
 
         fetchData();
-    }, []); // Empty dependency array to run only once
+    }, []); // Fetch data only once
+
+    // Observe changes in the container's size
+    useEffect(() => {
+        const resizeObserver = new ResizeObserver((entries) => {
+            if (!entries || entries.length === 0) {
+                return;
+            }
+            const { width, height } = entries[0].contentRect;
+            setContainerSize({ width, height });
+        });
+
+        if (d3Container.current) {
+            resizeObserver.observe(d3Container.current.parentElement);
+        }
+
+        return () => resizeObserver.disconnect();
+    }, []);
 
     useEffect(() => {
-        if (allElevData.length > 0 && d3Container.current) {
-            console.log(day);
-            // Find data for the specific day
+        // Ensure data and container are ready
+        if (
+            allElevData.length > 0 &&
+            containerSize.width &&
+            containerSize.height
+        ) {
             const dayData = allElevData.find((d) => d.day === day);
-
             if (dayData) {
+                // Clear existing content
                 d3.select(d3Container.current).selectAll("*").remove();
+
+                // Use containerSize.width and containerSize.height for dynamic sizing
+                const margin = { top: 10, right: 15, bottom: 20, left: 30 };
+                const width =
+                    Math.min(300, containerSize.width) -
+                    margin.left -
+                    margin.right;
+                const height =
+                    Math.min(90, containerSize.height) -
+                    margin.top -
+                    margin.bottom;
 
                 const endDist = data[day].totalDist;
                 const startDist = endDist - data[day].mileage;
 
                 const elevationValues = dayData.elevations;
-
-                // SVG dimensions
-                const margin = { top: 10, right: 20, bottom: 20, left: 40 }; // Adjust margins as needed
-                const width = 300 - margin.left - margin.right;
-                const height = 100 - margin.top - margin.bottom;
-
-                // ADD FEET
 
                 // Scales
                 const xScale = d3
@@ -88,8 +113,10 @@ const ElevationChart = ({ day, data }) => {
 
                 const yAxis = d3
                     .axisLeft(yScale)
-                    .ticks(4) // Specify the number of ticks you want.
-                    .tickFormat(d3.format("d")); // Format elevation values as integers
+                    .ticks(4)
+                    .tickFormat(function (d) {
+                        return d >= 1000 ? `${d / 1000}k` : d;
+                    });
 
                 // Create SVG container
                 const svg = d3
@@ -111,19 +138,26 @@ const ElevationChart = ({ day, data }) => {
 
                 svg.append("text")
                     .attr("x", margin.left + 2)
-                    .attr("y", margin.top - 1) // Adjust this value if needed to position correctly
+                    .attr("y", margin.top + 10) // Adjust this value if needed to position correctly
                     .attr("text-anchor", "start") // Align text to the start of the text element
                     .style("font-size", "10px") // Adjust font size as needed
                     // .style("fill", "white")
                     .text("ft."); // Text to display
 
                 svg.append("text")
-                    .attr("x", width + margin.left + margin.right - 5)
+                    .attr("x", width + margin.left + margin.right - 20)
                     .attr("y", height + margin.top - 2) // Adjust this value to position above the bottom margin
                     .attr("text-anchor", "end") // Align text to the end of the text element
                     .style("font-size", "10px") // Adjust font size as needed
                     .style("fill", "grey")
                     .text("mi."); // Text to display
+
+                svg.append("g")
+                    .attr(
+                        "transform",
+                        `translate(${margin.left}, ${margin.top})`
+                    )
+                    .call(yAxis);
 
                 // Create a group for the graph elements and transform it
                 const graphGroup = svg
@@ -142,8 +176,8 @@ const ElevationChart = ({ day, data }) => {
                 xAxisGroup.selectAll(".tick text").style("fill", "grey"); // Style the x-axis labels and ticks
                 xAxisGroup.selectAll(".tick line").style("stroke", "grey");
 
-                // Append and draw y-axis
-                graphGroup.append("g").call(yAxis);
+                // // Append and draw y-axis
+                // graphGroup.append("g").call(yAxis);
 
                 // Draw the line
                 const path = svg
@@ -169,18 +203,9 @@ const ElevationChart = ({ day, data }) => {
                     .attr("stroke-dashoffset", 0);
             }
         }
-    }, [day, data, allElevData]); // Rerun when `day` or `allElevData` changes
+    }, [day, data, allElevData, containerSize]); // Rerun when dependencies change
 
-    return (
-        <Grid item xs={12}>
-            <svg
-                className="d3-component"
-                width={300}
-                height={100}
-                ref={d3Container}
-            />
-        </Grid>
-    );
+    return <svg className="d3-component" ref={d3Container} />;
 };
 
 export default ElevationChart;

@@ -5,12 +5,11 @@ import { Grid, Typography } from "@mui/material";
 import { formatDate } from "../../utils/FormatDate";
 
 import Box from "@mui/material/Box";
+import Divider from "@mui/material/Divider";
 
 import IconButton from "@mui/material/IconButton";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
-
-import StateIndicator from "../StateIndicator";
 
 import { MapContext } from "../../context/MapContext";
 
@@ -60,42 +59,26 @@ const NavBar = ({ day, data, setDay, autoZoom }) => {
     };
     return (
         <>
-            <Grid item xs={2}>
-                {" "}
+            <Grid item xs={1} display="flex" justifyContent="center">
                 <IconButton onClick={backDay}>
                     <ArrowBackIosNewIcon />
                 </IconButton>
             </Grid>
-            <Grid item xs={8} alignContent={"center"}>
-                <Box
-                    display="flex"
-                    alignItems="center"
-                    justifyContent="center"
-                    minHeight={30}
-                    marginTop={0.5}
-                >
-                    <Typography
-                        variant="h5"
-                        align="right"
-                        marginBottom={0}
-                        paddingBottom={0}
-                        marginRight={1}
-                    >
+            <Grid item xs={10}>
+                <Box display="flex" justifyContent="center">
+                    <Typography variant="h6" marginRight={1}>
                         Day {day}
                     </Typography>
-                    <StateIndicator stateString={data[day].state} />
+                    <Divider orientation="vertical" variant="middle" flexItem />
+                    <Typography variant="overline" marginLeft={1}>
+                        {formatDate(data[day].date)}
+                    </Typography>
                 </Box>
             </Grid>
-            <Grid item xs={2}>
+            <Grid item xs={1} display="flex" justifyContent="center">
                 <IconButton onClick={nextDay}>
                     <ArrowForwardIosIcon />
                 </IconButton>
-            </Grid>
-
-            <Grid item xs={12} textAlign={"center"}>
-                <Typography variant="overline" align="center" paddingTop={0}>
-                    {formatDate(data[day].date)}
-                </Typography>
             </Grid>
         </>
     );
