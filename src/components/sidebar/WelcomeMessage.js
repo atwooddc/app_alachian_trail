@@ -5,22 +5,24 @@ const WelcomeMessage = () => {
     return (
         <>
             <Typography
-                variant="h5"
+                variant="h6"
+                fontSize={14}
                 textAlign={"left"}
                 fontWeight={"bold"}
                 fontFamily="Futura"
                 // marginBottom={1}
-                padding={2}
+                padding={1}
             >
                 {" "}
                 On April 8th, 1981,
             </Typography>
             <Typography
                 variant="paragraph"
-                fontSize={12}
+                fontSize={10}
                 textAlign={"left"}
                 fontFamily="Helvetica"
                 padding={1}
+                lineHeight={"1em"}
             >
                 my dad set out from Nimblewill Gap near Georgia's northern
                 border, an external frame pack on his back and a beard on his

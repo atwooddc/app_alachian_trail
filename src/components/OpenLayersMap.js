@@ -13,7 +13,8 @@ import SectionPopUp from "./SectionPopUp";
 import hikingIcon from "../img/hiking.png";
 import mountainIcon from "../img/mountain.png";
 
-const center = fromLonLat([-76.18, 40.49]);
+const mobilecenter = fromLonLat([-76.18, 37]);
+const desktopcenter = fromLonLat([-76.18, 40.49]);
 const start = fromLonLat([-84.21433, 34.60862]);
 const end = fromLonLat([-68.9215, 45.9044]);
 const maxExtentCoords = [
@@ -23,9 +24,29 @@ const maxExtentCoords = [
     6423792.5, // top-right corner
 ];
 
-const OpenLayersMap = ({ day, setDay, data, autoZoom }) => {
+const OpenLayersMap = ({ day, setDay, data, autoZoom, autoZoomLevel }) => {
     const [hoverSection, setHoverSection] = useState(null);
     // const [hoverStop, setHoverStop] = useState(null);
+
+    const getCenter = () => {
+        const width = window.innerWidth;
+        const height = window.innerHeight;
+        const ratio = width / height;
+        if (ratio < 1) return mobilecenter;
+        return desktopcenter;
+    };
+
+    const getZoom = () => {
+        const width = window.innerWidth;
+        const height = window.innerHeight;
+        const ratio = width / height;
+        if (ratio < 2 / 3) return 4; // Smaller devices
+        if (ratio < 4 / 3) return 4.5; // Medium devices
+        return 5.7; // Larger devices (default)
+    };
+
+    const [center, setCenter] = useState(getCenter());
+    const [zoom, setZoom] = useState(getZoom());
 
     const mapRef = useContext(MapContext);
 
@@ -49,10 +70,10 @@ const OpenLayersMap = ({ day, setDay, data, autoZoom }) => {
             width={"100%"}
             height={"100vh"}
             noDefaultControls={true}
-            extent={maxExtentCoords}
+            // extent={maxExtentCoords}
             initial={{
                 center: center,
-                zoom: 5.7,
+                zoom: zoom,
             }}
         >
             <RLayerStadia layer="outdoors" />
@@ -78,7 +99,7 @@ const OpenLayersMap = ({ day, setDay, data, autoZoom }) => {
                             .getView()
                             .fit(e.target.getGeometry().getExtent(), {
                                 duration: 1000,
-                                maxZoom: 11,
+                                maxZoom: autoZoomLevel,
                             });
                     }
                 }}

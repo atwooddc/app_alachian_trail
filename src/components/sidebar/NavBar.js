@@ -13,7 +13,7 @@ import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 
 import { MapContext } from "../../context/MapContext";
 
-const NavBar = ({ day, data, setDay, autoZoom }) => {
+const NavBar = ({ day, data, setDay, autoZoom, autoZoomLevel }) => {
     const mapRef = useContext(MapContext);
 
     const changeMapView = (newDay) => {
@@ -26,7 +26,7 @@ const NavBar = ({ day, data, setDay, autoZoom }) => {
                 const extent = boundingExtent(coords);
                 mapRef.current.ol.getView().fit(extent, {
                     duration: 1000,
-                    maxZoom: 11,
+                    maxZoom: autoZoomLevel,
                 });
             }
         }

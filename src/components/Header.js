@@ -18,6 +18,7 @@ const Header = () => {
                     className="Stack"
                     spacing={1.5}
                     marginTop={1}
+                    maxWidth={"60vw"}
                 >
                     <h1>Putting the</h1>
                     <img

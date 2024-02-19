@@ -13,6 +13,17 @@ const MapPage = () => {
 
     const mapRef = useRef();
 
+    const getZoomLevel = () => {
+        const width = window.innerWidth;
+        const height = window.innerHeight;
+        const ratio = width / height;
+        if (ratio < 2 / 3) return 8.5; // Smaller devices
+        if (ratio < 4 / 3) return 10; // Medium devices
+        return 11; // Larger devices (default)
+    };
+
+    const [autoZoomLevel, setAutoZoomLevel] = useState(getZoomLevel());
+
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -39,6 +50,7 @@ const MapPage = () => {
                 setDay={setDay}
                 data={data}
                 autoZoom={autoZoom}
+                autoZoomLevel={autoZoomLevel}
             />
             <GitHubButton />
             <RecenterButton />
@@ -48,6 +60,7 @@ const MapPage = () => {
                 setDay={setDay}
                 data={data}
                 autoZoom={autoZoom}
+                autoZoomLevel={autoZoomLevel}
             />
         </MapContext.Provider>
     );

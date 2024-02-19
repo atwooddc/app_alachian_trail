@@ -23,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
         zIndex: 100000,
         fontFamily: "Futura",
         color: "#11151C",
-        maxHeight: "400px", // Adjust this value as needed
+        maxHeight: "350px", // Adjust this value as needed
         overflowY: "auto", // Enables vertical scrolling
         borderRadius: 15,
     },
@@ -38,13 +38,13 @@ const useStyles = makeStyles((theme) => ({
         zIndex: 1000,
         fontFamily: "Futura",
         color: "#11151C",
-        maxHeight: "400px",
+        maxHeight: "35vh",
         overflowY: "auto",
         borderRadius: 15,
     },
 }));
 
-const Sidebar = ({ day, setDay, data, autoZoom }) => {
+const Sidebar = ({ day, setDay, data, autoZoom, autoZoomLevel }) => {
     const classes = useStyles();
 
     return (
@@ -98,6 +98,7 @@ const Sidebar = ({ day, setDay, data, autoZoom }) => {
                                 data={data}
                                 setDay={setDay}
                                 autoZoom={autoZoom}
+                                autoZoomLevel={autoZoomLevel}
                             />
 
                             <Grid item xs={12}>
