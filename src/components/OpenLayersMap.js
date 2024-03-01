@@ -83,7 +83,7 @@ const OpenLayersMap = ({ day, setDay, data, autoZoom, autoZoomLevel }) => {
             <RLayerVector
                 zIndex={5}
                 format={new GeoJSON({ featureProjection: "EPSG:3857" })}
-                url="https://raw.githubusercontent.com/atwooddc/at_geojson/main/only_day_simplified.geojson"
+                url="https://raw.githubusercontent.com/atwooddc/at_geojson/main/at_hiking_data_complete.geojson"
                 onPointerEnter={useCallback(
                     (e) => setHoverSection(e.target),
                     []
