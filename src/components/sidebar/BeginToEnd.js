@@ -4,6 +4,9 @@ import { styled } from "@mui/material/styles";
 import StartEndPoint from "./StartEndPoint";
 import EastIcon from "@mui/icons-material/East";
 
+import { useDataContext } from "../../context/DataContext";
+import { useLegContext } from "../../context/LegContext";
+
 const MileageToFrom = styled(Button)({
     marginLeft: 10,
     marginRight: 10,
@@ -23,7 +26,10 @@ const MileageToFrom = styled(Button)({
     pointerEvents: "none",
 });
 
-const BeginToEnd = ({ day, data }) => {
+const BeginToEnd = () => {
+    const data = useDataContext();
+    const leg = useLegContext();
+
     return (
         <>
             <div className="desktop">
@@ -47,7 +53,7 @@ const BeginToEnd = ({ day, data }) => {
                                 color: "#275DAD",
                             }}
                         >
-                            {data[day].mileage} mi.
+                            {data[leg].mileage} mi.
                         </MileageToFrom>
                         from <br />
                         <MileageToFrom
@@ -56,7 +62,7 @@ const BeginToEnd = ({ day, data }) => {
                                 color: "#0B3948",
                             }}
                         >
-                            {data[day].start}
+                            {data[leg].start}
                         </MileageToFrom>
                         to <br />
                         <MileageToFrom
@@ -65,7 +71,7 @@ const BeginToEnd = ({ day, data }) => {
                                 color: "#0B3948",
                             }}
                         >
-                            {data[day].end}
+                            {data[leg].end}
                         </MileageToFrom>
                     </Typography>
                 </Grid>
@@ -94,7 +100,7 @@ const BeginToEnd = ({ day, data }) => {
                             color="grey"
                             paddingBottom={0}
                         >
-                            {data[day].mileage}
+                            {data[leg].mileage}
                         </Typography>
                         <Typography
                             fontFamily={"verdana"}
@@ -107,11 +113,11 @@ const BeginToEnd = ({ day, data }) => {
                             &nbsp;mi.
                         </Typography>
                     </Grid>
-                    <StartEndPoint text={data[day].start} />
+                    <StartEndPoint text={data[leg].start} />
                     <Grid item container xs={1} justifyContent="center">
                         <EastIcon color="disabled" />
                     </Grid>
-                    <StartEndPoint text={data[day].end} />
+                    <StartEndPoint text={data[leg].end} />
                 </Grid>
             </div>
         </>

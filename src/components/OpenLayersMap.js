@@ -6,7 +6,12 @@ import "ol/ol.css";
 
 import { RMap, RLayerVector, RStyle, ROverlay, RFeature } from "rlayers";
 import RLayerStadia from "rlayers/layer/RLayerStadia";
-import { MapContext } from "../context/MapContext";
+import { useMapRefContext } from "../context/MapRefContext";
+import { useDataContext } from "../context/DataContext";
+import { useLegContext } from "../context/LegContext";
+import { useZoomContext } from "../context/ZoomContext";
+
+import { getCenter, getZoom } from "../utils/MapDefaults";
 
 import SectionPopUp from "./SectionPopUp";
 
@@ -24,44 +29,27 @@ const maxExtentCoords = [
     6423792.5, // top-right corner
 ];
 
-const OpenLayersMap = ({ day, setDay, data, autoZoom, autoZoomLevel }) => {
+const OpenLayersMap = () => {
+    const mapRef = useMapRefContext();
+    const data = useDataContext();
+    const [leg, setLeg] = useLegContext();
+    const [isAutoZoom, setAutoZoom, autoZoomLevel] = useZoomContext();
+
     const [hoverSection, setHoverSection] = useState(null);
     // const [hoverStop, setHoverStop] = useState(null);
 
-    const getCenter = () => {
-        const width = window.innerWidth;
-        const height = window.innerHeight;
-        const ratio = width / height;
-        if (ratio < 1) return mobilecenter;
-        return desktopcenter;
-    };
-
-    const getZoom = () => {
-        const width = window.innerWidth;
-        const height = window.innerHeight;
-        const ratio = width / height;
-        if (ratio < 2 / 3) return 4; // Smaller devices
-        if (ratio < 4 / 3) return 4.5; // Medium devices
-        return 5.7; // Larger devices (default)
-    };
-
-    const [center, setCenter] = useState(getCenter());
-    const [zoom, setZoom] = useState(getZoom());
-
-    const mapRef = useContext(MapContext);
-
-    const dayFeatureGeometry = () => {
+    const legFeatureGeometry = () => {
         const map = mapRef.current.ol;
         const layers = map.getLayers().getArray();
         const layer = layers[1];
         const source = layer.getSource();
         const allFeatures = source.getFeatures();
 
-        const featureOnDay = allFeatures.find((feature) => {
-            return feature.get("day") === day;
+        const legFeature = allFeatures.find((feature) => {
+            return feature.get("leg") === leg;
         });
 
-        return featureOnDay ? featureOnDay.getGeometry() : null;
+        return legFeature ? legFeature.getGeometry() : null;
     };
 
     return (
@@ -72,8 +60,8 @@ const OpenLayersMap = ({ day, setDay, data, autoZoom, autoZoomLevel }) => {
             noDefaultControls={true}
             // extent={maxExtentCoords}
             initial={{
-                center: center,
-                zoom: zoom,
+                center: getCenter(), // maybe no parens
+                zoom: getZoom(), // ""
             }}
         >
             <RLayerStadia layer="outdoors" />
@@ -83,7 +71,7 @@ const OpenLayersMap = ({ day, setDay, data, autoZoom, autoZoomLevel }) => {
             <RLayerVector
                 zIndex={5}
                 format={new GeoJSON({ featureProjection: "EPSG:3857" })}
-                url="https://raw.githubusercontent.com/atwooddc/at_geojson/main/at_hiking_data_complete.geojson"
+                url="https://raw.githubusercontent.com/atwooddc/at_geojson/main/at_complete_day_and_leg.geojson"
                 onPointerEnter={useCallback(
                     (e) => setHoverSection(e.target),
                     []
@@ -93,8 +81,8 @@ const OpenLayersMap = ({ day, setDay, data, autoZoom, autoZoomLevel }) => {
                     [hoverSection]
                 )}
                 onClick={(e) => {
-                    setDay(e.target.get("day"));
-                    if (autoZoom) {
+                    setLeg(e.target.get("leg"));
+                    if (isAutoZoom) {
                         e.map
                             .getView()
                             .fit(e.target.getGeometry().getExtent(), {
@@ -115,11 +103,11 @@ const OpenLayersMap = ({ day, setDay, data, autoZoom, autoZoomLevel }) => {
                     <div>
                         <RFeature geometry={hoverSection.getGeometry()}>
                             <ROverlay className="overlay" autoPosition={true}>
-                                {data[hoverSection.get("day")].state ? (
+                                {data[hoverSection.get("leg")].state ? (
                                     <SectionPopUp
                                         day={hoverSection.get("day")}
                                         stateString={
-                                            data[hoverSection.get("day")].state
+                                            data[hoverSection.get("leg")].state
                                         }
                                     />
                                 ) : (
@@ -136,8 +124,8 @@ const OpenLayersMap = ({ day, setDay, data, autoZoom, autoZoomLevel }) => {
 
             {/* Selected section */}
             <RLayerVector zIndex={10}>
-                {day ? (
-                    <RFeature geometry={dayFeatureGeometry()}>
+                {leg ? (
+                    <RFeature geometry={legFeatureGeometry()}>
                         <ROverlay
                             className="overlay"
                             autoPosition={true}

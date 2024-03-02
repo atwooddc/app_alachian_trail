@@ -1,8 +1,11 @@
-import React from "react";
+import { React } from "react";
 
 import { Paper } from "@mui/material";
 import Grid from "@mui/material/Grid";
 import { makeStyles } from "@mui/styles";
+
+import { useDataContext } from "../context/DataContext";
+import { useLegContext } from "../context/LegContext";
 
 import StateIndicator from "./StateIndicator";
 import NavBar from "./sidebar/NavBar";
@@ -44,13 +47,16 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-const Sidebar = ({ day, setDay, data, autoZoom, autoZoomLevel }) => {
+const Sidebar = () => {
     const classes = useStyles();
+
+    const data = useDataContext();
+    const [leg] = useLegContext();
 
     return (
         <>
             <Paper className={`${classes.desktop} desktop`}>
-                {day && data[day].date ? (
+                {leg ? (
                     <>
                         <Grid
                             container
@@ -60,21 +66,16 @@ const Sidebar = ({ day, setDay, data, autoZoom, autoZoomLevel }) => {
                             justifyContent="left"
                         >
                             {/* nav bar */}
-                            <NavBar
-                                day={day}
-                                data={data}
-                                setDay={setDay}
-                                autoZoom={autoZoom}
-                            />
+                            <NavBar />
 
                             {/* start to end */}
-                            <BeginToEnd day={day} data={data} />
+                            <BeginToEnd />
 
                             {/* elevation profile */}
-                            <ElevationChart day={day} data={data} />
+                            <ElevationChart />
 
                             {/* progress bar */}
-                            <ProgressBar day={day} data={data} />
+                            <ProgressBar />
                         </Grid>
                     </>
                 ) : (
@@ -82,7 +83,7 @@ const Sidebar = ({ day, setDay, data, autoZoom, autoZoomLevel }) => {
                 )}
             </Paper>
             <Paper className={`${classes.mobile} mobile`}>
-                {day && data[day].date ? (
+                {leg ? (
                     <>
                         <Grid
                             container
@@ -93,16 +94,10 @@ const Sidebar = ({ day, setDay, data, autoZoom, autoZoomLevel }) => {
                             justifyItems="center"
                         >
                             {/* nav bar */}
-                            <NavBar
-                                day={day}
-                                data={data}
-                                setDay={setDay}
-                                autoZoom={autoZoom}
-                                autoZoomLevel={autoZoomLevel}
-                            />
+                            <NavBar />
 
                             <Grid item xs={12}>
-                                <BeginToEnd day={day} data={data} />
+                                <BeginToEnd />
                             </Grid>
                             <Grid
                                 item
@@ -111,13 +106,13 @@ const Sidebar = ({ day, setDay, data, autoZoom, autoZoomLevel }) => {
                                 justifyContent={"center"}
                                 paddingBottom={2}
                             >
-                                <StateIndicator stateString={data[day].state} />
+                                <StateIndicator stateString={data[leg].state} />
                             </Grid>
                             <Grid item xs={10}>
-                                <ElevationChart day={day} data={data} />
+                                <ElevationChart />
                             </Grid>
                             {/* progress bar */}
-                            <ProgressBar day={day} data={data} />
+                            <ProgressBar />
                         </Grid>
                     </>
                 ) : (

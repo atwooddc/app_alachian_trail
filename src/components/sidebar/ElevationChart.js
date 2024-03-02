@@ -2,12 +2,19 @@ import React, { useRef, useState, useEffect } from "react";
 import * as d3 from "d3";
 import ResizeObserver from "resize-observer-polyfill";
 
-const ElevationChart = ({ day, data }) => {
+import { useDataContext } from "../../context/DataContext";
+import { useLegContext } from "../../context/LegContext";
+
+const ElevationChart = () => {
+    const data = useDataContext();
+    const leg = useLegContext();
+
     const d3Container = useRef(null);
     const [allElevData, setAllElevData] = useState([]);
     const [containerSize, setContainerSize] = useState({ width: 0, height: 0 });
 
     // Fetch and process CSV data
+    // TO DO - UPDATE ELEV DATA
     useEffect(() => {
         const fetchData = async () => {
             const url =
@@ -55,8 +62,8 @@ const ElevationChart = ({ day, data }) => {
             containerSize.width &&
             containerSize.height
         ) {
-            const dayData = allElevData.find((d) => d.day === day);
-            if (dayData) {
+            const legData = allElevData.find((l) => l.leg === leg);
+            if (legData) {
                 // Clear existing content
                 d3.select(d3Container.current).selectAll("*").remove();
 
@@ -71,10 +78,10 @@ const ElevationChart = ({ day, data }) => {
                     margin.top -
                     margin.bottom;
 
-                const endDist = data[day].totalDist;
-                const startDist = endDist - data[day].mileage;
+                const endDist = data[leg].totalDist;
+                const startDist = endDist - data[leg].mileage;
 
-                const elevationValues = dayData.elevations;
+                const elevationValues = legData.elevations;
 
                 // Scales
                 const xScale = d3
@@ -203,7 +210,7 @@ const ElevationChart = ({ day, data }) => {
                     .attr("stroke-dashoffset", 0);
             }
         }
-    }, [day, data, allElevData, containerSize]); // Rerun when dependencies change
+    }, [leg, data, allElevData, containerSize]); // Rerun when dependencies change
 
     return <svg className="d3-component" ref={d3Container} />;
 };

@@ -6,6 +6,9 @@ import hikingIcon from "../../img/hiking.svg";
 import mountainIcon from "../../img/mountain.svg";
 import { makeStyles } from "@mui/styles";
 
+import { useDataContext } from "../../context/DataContext";
+import { useLegContext } from "../../context/LegContext";
+
 const useStyles = makeStyles((theme) => ({
     imageIcon: {
         display: "flex",
@@ -17,8 +20,12 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-const ProgressBar = ({ day, data }) => {
+const ProgressBar = () => {
     const classes = useStyles();
+
+    const data = useDataContext();
+    const [leg] = useLegContext();
+
     return (
         <>
             <Grid item xs={1.5} className="desktop">
@@ -40,7 +47,7 @@ const ProgressBar = ({ day, data }) => {
                 <LinearProgress
                     variant="determinate"
                     color="secondary"
-                    value={(100 * data[day].totalDist) / 2092.2}
+                    value={(100 * data[leg].totalDist) / data[148].totalDist}
                 />
             </Grid>
             <Grid item xs={1.5} className="desktop">
@@ -65,7 +72,7 @@ const ProgressBar = ({ day, data }) => {
                 <LinearProgress
                     variant="determinate"
                     color="secondary"
-                    value={(100 * data[day].totalDist) / 2092.2}
+                    value={(100 * data[leg].totalDist) / data[148].totalDist}
                 />
             </Grid>
         </>

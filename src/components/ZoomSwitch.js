@@ -5,11 +5,14 @@ import { Paper, Typography } from "@mui/material";
 import Stack from "@mui/material/Stack";
 import Switch from "@mui/material/Switch";
 
-const ZoomSwitch = ({ autoZoom, setAutoZoom }) => {
+import { useZoomContext } from "../context/ZoomContext";
+
+const ZoomSwitch = () => {
+    const [isAutoZoom, setIsAutoZoom] = useZoomContext();
     const [checked, setChecked] = useState(true);
 
     const handleChange = () => {
-        setAutoZoom(!autoZoom);
+        setIsAutoZoom(!isAutoZoom);
         setChecked(!checked);
     };
 

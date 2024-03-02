@@ -11,17 +11,23 @@ import IconButton from "@mui/material/IconButton";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 
-import { MapContext } from "../../context/MapContext";
+import { useMapRefContext } from "../../context/MapRefContext";
+import { useDataContext } from "../../context/DataContext";
+import { useLegContext } from "../../context/LegContext";
+import { useZoomContext } from "../../context/ZoomContext";
 
-const NavBar = ({ day, data, setDay, autoZoom, autoZoomLevel }) => {
-    const mapRef = useContext(MapContext);
+const NavBar = () => {
+    const mapRef = useMapRefContext();
+    const data = useDataContext();
+    const [leg, setLeg] = useLegContext();
+    const [isAutoZoom, autoZoomLevel] = useZoomContext();
 
-    const changeMapView = (newDay) => {
-        if (autoZoom) {
-            const dayData = data[newDay];
-            if (dayData && mapRef.current) {
-                const x = dayData.x;
-                const y = dayData.y;
+    const changeMapView = (newLeg) => {
+        if (isAutoZoom) {
+            const legData = data[newLeg];
+            if (legData && mapRef.current) {
+                const x = legData.x;
+                const y = legData.y;
                 const coords = [[x, y]];
                 const extent = boundingExtent(coords);
                 mapRef.current.ol.getView().fit(extent, {
@@ -32,51 +38,46 @@ const NavBar = ({ day, data, setDay, autoZoom, autoZoomLevel }) => {
         }
     };
 
-    const backDay = () => {
-        if (day > 1) {
-            let newDay = day - 1;
-            while (newDay > 1 && !data[newDay]) {
-                --newDay;
-            }
-            if (data[newDay]) {
-                setDay(newDay);
-                changeMapView(newDay);
+    const backLeg = () => {
+        if (leg > 1) {
+            const newLeg = leg - 1;
+            if (data[newLeg]) {
+                setLeg(newLeg);
+                changeMapView(newLeg);
             }
         }
     };
 
-    const nextDay = () => {
-        if (day < 182) {
-            let newDay = day + 1;
-            while (newDay < 182 && !data[newDay]) {
-                ++newDay;
-            }
-            if (data[newDay]) {
-                setDay(newDay);
-                changeMapView(newDay);
+    const nextLeg = () => {
+        if (leg < 148) {
+            const newLeg = leg + 1;
+            if (data[newLeg]) {
+                setLeg(newLeg);
+                changeMapView(newLeg);
             }
         }
     };
+
     return (
         <>
             <Grid item xs={1} display="flex" justifyContent="center">
-                <IconButton onClick={backDay}>
+                <IconButton onClick={backLeg}>
                     <ArrowBackIosNewIcon />
                 </IconButton>
             </Grid>
             <Grid item xs={10}>
                 <Box display="flex" justifyContent="center">
                     <Typography variant="h6" marginRight={1}>
-                        Day {day}
+                        Day {data[leg].day}
                     </Typography>
                     <Divider orientation="vertical" variant="middle" flexItem />
                     <Typography variant="overline" marginLeft={1}>
-                        {formatDate(data[day].date)}
+                        {formatDate(data[leg].date)}
                     </Typography>
                 </Box>
             </Grid>
             <Grid item xs={1} display="flex" justifyContent="center">
-                <IconButton onClick={nextDay}>
+                <IconButton onClick={nextLeg}>
                     <ArrowForwardIosIcon />
                 </IconButton>
             </Grid>
