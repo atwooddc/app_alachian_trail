@@ -1,4 +1,4 @@
-import { React, useState } from "react";
+import React from "react";
 import OpenLayersMap from "../components/OpenLayersMap.js";
 import Sidebar from "../components/Sidebar.js";
 import GitHubButton from "../components/GitHubButton.js";

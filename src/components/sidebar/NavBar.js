@@ -1,4 +1,4 @@
-import { React, useContext } from "react";
+import React from "react";
 
 import { boundingExtent } from "ol/extent";
 import { Grid, Typography } from "@mui/material";

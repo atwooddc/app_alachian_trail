@@ -1,4 +1,4 @@
-import { React, useState, useCallback, useContext } from "react";
+import { React, useState, useCallback } from "react";
 import { fromLonLat } from "ol/proj";
 import { Point } from "ol/geom";
 import GeoJSON from "ol/format/GeoJSON";
@@ -11,32 +11,52 @@ import { useDataContext } from "../context/DataContext";
 import { useLegContext } from "../context/LegContext";
 import { useZoomContext } from "../context/ZoomContext";
 
-import { getCenter, getZoom } from "../utils/MapDefaults";
+// import { getCenter, getZoom } from "../utils/MapDefaults";
 
 import SectionPopUp from "./SectionPopUp";
 
 import hikingIcon from "../img/hiking.png";
 import mountainIcon from "../img/mountain.png";
-
 const mobilecenter = fromLonLat([-76.18, 37]);
 const desktopcenter = fromLonLat([-76.18, 40.49]);
+
 const start = fromLonLat([-84.21433, 34.60862]);
 const end = fromLonLat([-68.9215, 45.9044]);
-const maxExtentCoords = [
-    -11318965.82,
-    3310893.22, // bottom-left corner
-    -5397882.11,
-    6423792.5, // top-right corner
-];
+// const maxExtentCoords = [
+//     -11318965.82,
+//     3310893.22, // bottom-left corner
+//     -5397882.11,
+//     6423792.5, // top-right corner
+// ];
 
 const OpenLayersMap = () => {
     const mapRef = useMapRefContext();
     const data = useDataContext();
     const [leg, setLeg] = useLegContext();
-    const [isAutoZoom, setAutoZoom, autoZoomLevel] = useZoomContext();
+    const [isAutoZoom, autoZoomLevel] = useZoomContext();
 
     const [hoverSection, setHoverSection] = useState(null);
     // const [hoverStop, setHoverStop] = useState(null);
+
+    const getCenter = () => {
+        const width = window.innerWidth;
+        const height = window.innerHeight;
+        const ratio = width / height;
+        if (ratio < 1) return mobilecenter;
+        return desktopcenter;
+    };
+
+    const getZoom = () => {
+        const width = window.innerWidth;
+        const height = window.innerHeight;
+        const ratio = width / height;
+        if (ratio < 2 / 3) return 4; // Smaller devices
+        if (ratio < 4 / 3) return 4.5; // Medium devices
+        return 5.7; // Larger devices (default)
+    };
+
+    const [center] = useState(getCenter());
+    const [zoom] = useState(getZoom());
 
     const legFeatureGeometry = () => {
         const map = mapRef.current.ol;
@@ -60,8 +80,8 @@ const OpenLayersMap = () => {
             noDefaultControls={true}
             // extent={maxExtentCoords}
             initial={{
-                center: getCenter(), // maybe no parens
-                zoom: getZoom(), // ""
+                center: center, // maybe no parens
+                zoom: zoom, // ""
             }}
         >
             <RLayerStadia layer="outdoors" />

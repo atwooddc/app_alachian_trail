@@ -1,3 +1,8 @@
+import { fromLonLat } from "ol/proj";
+
+const mobilecenter = fromLonLat([-76.18, 37]);
+const desktopcenter = fromLonLat([-76.18, 40.49]);
+
 export const getCenter = () => {
     const width = window.innerWidth;
     const height = window.innerHeight;
