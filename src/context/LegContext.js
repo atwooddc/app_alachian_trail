@@ -6,7 +6,7 @@ export const LegProvider = ({ children }) => {
     const [leg, setLeg] = useState(0);
 
     return (
-        <LegContext.Provider value={{ leg, setLeg }}>
+        <LegContext.Provider value={[leg, setLeg]}>
             {children}
         </LegContext.Provider>
     );

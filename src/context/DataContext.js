@@ -25,9 +25,7 @@ export const DataProvider = ({ children }) => {
         fetchData();
     }, []);
 
-    return (
-        <DataContext.Provider value={{ data }}>{children}</DataContext.Provider>
-    );
+    return <DataContext.Provider value={data}>{children}</DataContext.Provider>;
 };
 
 export const useDataContext = () => useContext(DataContext);

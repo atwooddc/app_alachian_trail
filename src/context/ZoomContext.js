@@ -17,7 +17,7 @@ export const ZoomProvider = ({ children }) => {
 
     return (
         <ZoomContext.Provider
-            value={{ isAutoZoom, setIsAutoZoom, autoZoomLevel }}
+            value={[isAutoZoom, setIsAutoZoom, autoZoomLevel]}
         >
             {children}
         </ZoomContext.Provider>

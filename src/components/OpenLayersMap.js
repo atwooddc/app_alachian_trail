@@ -59,12 +59,13 @@ const OpenLayersMap = () => {
     const [zoom] = useState(getZoom());
 
     const legFeatureGeometry = () => {
+        console.log("TEST DATA");
+        console.log(data[1].mileage);
         const map = mapRef.current.ol;
         const layers = map.getLayers().getArray();
         const layer = layers[1];
         const source = layer.getSource();
         const allFeatures = source.getFeatures();
-
         const legFeature = allFeatures.find((feature) => {
             return feature.get("leg") === leg;
         });
@@ -123,7 +124,8 @@ const OpenLayersMap = () => {
                     <div>
                         <RFeature geometry={hoverSection.getGeometry()}>
                             <ROverlay className="overlay" autoPosition={true}>
-                                {data[hoverSection.get("leg")].state ? (
+                                {/* {data[hoverSection.get("leg")].state ? ( */}
+                                {false ? (
                                     <SectionPopUp
                                         day={hoverSection.get("day")}
                                         stateString={

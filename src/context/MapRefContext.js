@@ -6,7 +6,7 @@ export const MapRefProvider = ({ children }) => {
     const mapRef = useRef();
 
     return (
-        <MapRefContext.Provider value={{ mapRef }}>
+        <MapRefContext.Provider value={mapRef}>
             {children}
         </MapRefContext.Provider>
     );

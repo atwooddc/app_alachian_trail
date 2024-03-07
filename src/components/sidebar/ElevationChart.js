@@ -28,7 +28,6 @@ const ElevationChart = () => {
                             .map((key) => +row[key]), // Convert elevation strings to numbers
                     }));
                     setAllElevData(processedData);
-                    console.log("AllElevData set");
                 })
                 .catch((error) =>
                     console.error("Error fetching or processing data: ", error)

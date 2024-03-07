@@ -17,7 +17,7 @@ const theme = createTheme({
 
 function App() {
     return (
-        <ThemeProvider theme={theme} className="app">
+        <ThemeProvider theme={theme}>
             <CssBaseline />
             <Header />
             <MapPage />

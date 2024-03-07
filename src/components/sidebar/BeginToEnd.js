@@ -28,7 +28,7 @@ const MileageToFrom = styled(Button)({
 
 const BeginToEnd = () => {
     const data = useDataContext();
-    const leg = useLegContext();
+    const [leg] = useLegContext();
 
     return (
         <>
