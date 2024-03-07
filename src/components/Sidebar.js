@@ -72,7 +72,7 @@ const Sidebar = () => {
                             <BeginToEnd />
 
                             {/* elevation profile */}
-                            {/* <ElevationChart /> */}
+                            <ElevationChart />
 
                             {/* progress bar */}
                             <ProgressBar />
@@ -109,7 +109,7 @@ const Sidebar = () => {
                                 <StateIndicator stateString={data[leg].state} />
                             </Grid>
                             <Grid item xs={10}>
-                                {/* <ElevationChart /> */}
+                                <ElevationChart />
                             </Grid>
                             {/* progress bar */}
                             <ProgressBar />

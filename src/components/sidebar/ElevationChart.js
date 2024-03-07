@@ -7,14 +7,13 @@ import { useLegContext } from "../../context/LegContext";
 
 const ElevationChart = () => {
     const data = useDataContext();
-    const leg = useLegContext();
+    const [leg] = useLegContext();
 
     const d3Container = useRef(null);
     const [allElevData, setAllElevData] = useState([]);
     const [containerSize, setContainerSize] = useState({ width: 0, height: 0 });
 
     // Fetch and process CSV data
-    // TO DO - UPDATE ELEV DATA
     useEffect(() => {
         const fetchData = async () => {
             const url =
@@ -22,7 +21,7 @@ const ElevationChart = () => {
             d3.csv(url)
                 .then((data) => {
                     const processedData = data.map((row) => ({
-                        day: +row.day,
+                        leg: +row.leg,
                         elevations: Object.keys(row)
                             .filter((key) => key.startsWith("e"))
                             .map((key) => +row[key]), // Convert elevation strings to numbers
