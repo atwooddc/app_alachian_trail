@@ -6,8 +6,8 @@ import "ol/ol.css";
 
 import { RMap, RLayerVector, RStyle, ROverlay, RFeature } from "rlayers";
 import RLayerStadia from "rlayers/layer/RLayerStadia";
-// import { useMapRefContext } from "../context/MapRefContext";
-import { MapRefContext } from "../context/MapRefContext";
+import { useMapRefContext } from "../context/MapRefContext";
+// import { MapRefContext } from "../context/MapRefContext";
 import { useDataContext } from "../context/DataContext";
 import { useLegContext } from "../context/LegContext";
 import { useZoomContext } from "../context/ZoomContext";
@@ -31,11 +31,11 @@ const end = fromLonLat([-68.9215, 45.9044]);
 // ];
 
 const OpenLayersMap = () => {
-    // const mapRef = useMapRefContext();
-    const mapRef = useContext(MapRefContext);
+    const mapRef = useMapRefContext();
+    // const mapRef = useContext(MapRefContext);
     const data = useDataContext();
     const [leg, setLeg] = useLegContext();
-    const [isAutoZoom, setIsAutoZoom, autoZoomLevel] = useZoomContext();
+    const [isAutoZoom, , autoZoomLevel] = useZoomContext();
 
     const [hoverSection, setHoverSection] = useState(null);
     // const [hoverStop, setHoverStop] = useState(null);

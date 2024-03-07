@@ -1,17 +1,15 @@
-import React, { useContext } from "react";
+import React from "react";
 import "./RecenterButton.css";
 
 import { Paper } from "@mui/material";
 import IconButton from "@mui/material/IconButton";
 import { MyLocation } from "@mui/icons-material";
-// import useMapRefContext from "../context/MapRefContext";
-import { MapRefContext } from "../context/MapRefContext";
+import { useMapRefContext } from "../context/MapRefContext";
 import { boundingExtent } from "ol/extent";
 import { fromLonLat } from "ol/proj";
 
 const RecenterButton = () => {
-    // const mapRef = useMapRefContext();
-    const mapRef = useContext(MapRefContext);
+    const mapRef = useMapRefContext();
 
     const recenterMap = () => {
         if (mapRef.current) {
