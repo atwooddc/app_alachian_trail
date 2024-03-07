@@ -15,7 +15,6 @@ export const DataProvider = ({ children }) => {
                     throw new Error(`HTTP error! status: ${response.status}`);
                 }
                 const json = await response.json();
-                console.log(json);
                 setData(json);
             } catch (error) {
                 console.error("Error fetching data: ", error);

@@ -59,8 +59,6 @@ const OpenLayersMap = () => {
     const [zoom] = useState(getZoom());
 
     const legFeatureGeometry = () => {
-        console.log("TEST DATA");
-        console.log(data[1].mileage);
         const map = mapRef.current.ol;
         const layers = map.getLayers().getArray();
         const layer = layers[1];
