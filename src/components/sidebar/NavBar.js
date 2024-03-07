@@ -1,4 +1,4 @@
-import React from "react";
+import { React, useContext } from "react";
 
 import { boundingExtent } from "ol/extent";
 import { Grid, Typography } from "@mui/material";
@@ -11,13 +11,16 @@ import IconButton from "@mui/material/IconButton";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 
-import { useMapRefContext } from "../../context/MapRefContext";
+// import { useMapRefContext } from "../../context/MapRefContext";
+import { MapRefContext } from "../../context/MapRefContext";
+
 import { useDataContext } from "../../context/DataContext";
 import { useLegContext } from "../../context/LegContext";
 import { useZoomContext } from "../../context/ZoomContext";
 
 const NavBar = () => {
-    const mapRef = useMapRefContext();
+    // const mapRef = useMapRefContext();
+    const mapRef = useContext(MapRefContext);
     const data = useDataContext();
     const [leg, setLeg] = useLegContext();
     const [isAutoZoom, autoZoomLevel] = useZoomContext();

@@ -1,4 +1,4 @@
-import { React, useState, useCallback } from "react";
+import { React, useState, useCallback, useContext } from "react";
 import { fromLonLat } from "ol/proj";
 import { Point } from "ol/geom";
 import GeoJSON from "ol/format/GeoJSON";
@@ -6,7 +6,8 @@ import "ol/ol.css";
 
 import { RMap, RLayerVector, RStyle, ROverlay, RFeature } from "rlayers";
 import RLayerStadia from "rlayers/layer/RLayerStadia";
-import { useMapRefContext } from "../context/MapRefContext";
+// import { useMapRefContext } from "../context/MapRefContext";
+import { MapRefContext } from "../context/MapRefContext";
 import { useDataContext } from "../context/DataContext";
 import { useLegContext } from "../context/LegContext";
 import { useZoomContext } from "../context/ZoomContext";
@@ -30,10 +31,11 @@ const end = fromLonLat([-68.9215, 45.9044]);
 // ];
 
 const OpenLayersMap = () => {
-    const mapRef = useMapRefContext();
+    // const mapRef = useMapRefContext();
+    const mapRef = useContext(MapRefContext);
     const data = useDataContext();
     const [leg, setLeg] = useLegContext();
-    const [isAutoZoom, autoZoomLevel] = useZoomContext();
+    const [isAutoZoom, setIsAutoZoom, autoZoomLevel] = useZoomContext();
 
     const [hoverSection, setHoverSection] = useState(null);
     // const [hoverStop, setHoverStop] = useState(null);
@@ -122,8 +124,7 @@ const OpenLayersMap = () => {
                     <div>
                         <RFeature geometry={hoverSection.getGeometry()}>
                             <ROverlay className="overlay" autoPosition={true}>
-                                {/* {data[hoverSection.get("leg")].state ? ( */}
-                                {false ? (
+                                {data[hoverSection.get("leg")].state ? (
                                     <SectionPopUp
                                         day={hoverSection.get("day")}
                                         stateString={
