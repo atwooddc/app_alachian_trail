@@ -1,5 +1,4 @@
 import { React, useState } from "react";
-import "./ZoomSwitch.css";
 
 import { Paper, Typography } from "@mui/material";
 import Stack from "@mui/material/Stack";
@@ -17,7 +16,20 @@ const ZoomSwitch = () => {
     };
 
     return (
-        <Paper className="zoom-switch desktop">
+        <Paper
+            className="zoom-switch desktop"
+            sx={{
+                height: "40px",
+                width: "136.43px",
+                position: "absolute",
+                bottom: "20px",
+                left: "20px",
+                padding: 0,
+                zIndex: 1000,
+                cursor: "pointer",
+                boxShadow: "0 2px 5px rgba(0, 0, 0, 0.2)",
+            }}
+        >
             <Stack direction="row" alignItems="center">
                 <Switch
                     checked={checked}

@@ -1,5 +1,4 @@
 import React from "react";
-import "./RecenterButton.css";
 
 import { Paper } from "@mui/material";
 import IconButton from "@mui/material/IconButton";
@@ -21,7 +20,20 @@ const RecenterButton = () => {
         }
     };
     return (
-        <Paper className="recenter-button desktop">
+        <Paper
+            className="recenter-button desktop"
+            sx={{
+                height: "40px",
+                width: "40px",
+                position: "absolute",
+                bottom: "65px",
+                left: "20px",
+                padding: 0,
+                zIndex: 1000,
+                cursor: "pointer",
+                boxShadow: "0 2px 5px rgba(0, 0, 0, 0.2)",
+            }}
+        >
             <IconButton onClick={recenterMap}>
                 <MyLocation />
             </IconButton>
