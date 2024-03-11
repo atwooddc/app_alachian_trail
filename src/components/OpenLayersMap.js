@@ -1,4 +1,4 @@
-import { React, useState, useCallback, useContext } from "react";
+import { React, useState, useCallback } from "react";
 import { fromLonLat } from "ol/proj";
 import { Point } from "ol/geom";
 import GeoJSON from "ol/format/GeoJSON";
@@ -7,7 +7,6 @@ import "ol/ol.css";
 import { RMap, RLayerVector, RStyle, ROverlay, RFeature } from "rlayers";
 import RLayerStadia from "rlayers/layer/RLayerStadia";
 import { useMapRefContext } from "../context/MapRefContext";
-// import { MapRefContext } from "../context/MapRefContext";
 import { useDataContext } from "../context/DataContext";
 import { useLegContext } from "../context/LegContext";
 import { useZoomContext } from "../context/ZoomContext";
@@ -32,7 +31,6 @@ const end = fromLonLat([-68.9215, 45.9044]);
 
 const OpenLayersMap = () => {
     const mapRef = useMapRefContext();
-    // const mapRef = useContext(MapRefContext);
     const data = useDataContext();
     const [leg, setLeg] = useLegContext();
     const [isAutoZoom, , autoZoomLevel] = useZoomContext();
