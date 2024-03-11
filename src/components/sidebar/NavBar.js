@@ -21,7 +21,7 @@ const NavBar = () => {
     const mapRef = useMapRefContext();
     const data = useDataContext();
     const [leg, setLeg] = useLegContext();
-    const [isAutoZoom, autoZoomLevel] = useZoomContext();
+    const [isAutoZoom, , autoZoomLevel] = useZoomContext();
 
     const changeMapView = (newLeg) => {
         if (isAutoZoom) {
