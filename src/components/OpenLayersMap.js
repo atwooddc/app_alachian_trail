@@ -1,24 +1,34 @@
-import { React, useState, useCallback } from "react";
+import { React, useState, useCallback, useEffect } from "react";
 import { fromLonLat } from "ol/proj";
 import { Point } from "ol/geom";
+import { applyStyle } from "ol-mapbox-style";
+import TileLayer from "ol/layer/Tile";
+import XYZ from "ol/source/XYZ";
 import GeoJSON from "ol/format/GeoJSON";
 import "ol/ol.css";
 
-import { RMap, RLayerVector, RStyle, ROverlay, RFeature } from "rlayers";
+import {
+    RMap,
+    RLayerVector,
+    RLayerVectorTile,
+    RLayerTile,
+    RStyle,
+    ROverlay,
+    RFeature,
+} from "rlayers";
+import RLayerRasterMBTiles from "rlayers/layer/RLayerRasterMBTiles";
 import RLayerStadia from "rlayers/layer/RLayerStadia";
 import { useMapRefContext } from "../context/MapRefContext";
 import { useDataContext } from "../context/DataContext";
 import { useLegContext } from "../context/LegContext";
 import { useZoomContext } from "../context/ZoomContext";
 
-// import { getCenter, getZoom } from "../utils/MapDefaults";
+import { getCenter, getZoom } from "../utils/MapDefaults";
 
 import SectionPopUp from "./SectionPopUp";
 
 import hikingIcon from "../img/hiking.png";
 import mountainIcon from "../img/mountain.png";
-const mobilecenter = fromLonLat([-76.18, 37]);
-const desktopcenter = fromLonLat([-76.18, 40.49]);
 
 const start = fromLonLat([-84.21433, 34.60862]);
 const end = fromLonLat([-68.9215, 45.9044]);
@@ -38,30 +48,33 @@ const OpenLayersMap = () => {
     const [hoverSection, setHoverSection] = useState(null);
     // const [hoverStop, setHoverStop] = useState(null);
 
-    const getCenter = () => {
-        const width = window.innerWidth;
-        const height = window.innerHeight;
-        const ratio = width / height;
-        if (ratio < 1) return mobilecenter;
-        return desktopcenter;
-    };
-
-    const getZoom = () => {
-        const width = window.innerWidth;
-        const height = window.innerHeight;
-        const ratio = width / height;
-        if (ratio < 2 / 3) return 4; // Smaller devices
-        if (ratio < 4 / 3) return 4.5; // Medium devices
-        return 5.7; // Larger devices (default)
-    };
-
     const [center] = useState(getCenter());
     const [zoom] = useState(getZoom());
+
+    // useEffect(() => {
+    //     if (mapRef.current) {
+    //         const map = mapRef.current.ol;
+    //         const layers = map.getLayers().getArray();
+    //         const layer = layers[0];
+    //         console.log(layer);
+
+    //         const styleUrl =
+    //             "https://api.maptiler.com/maps/25c47bd0-60c9-42e5-bae0-401ec4ad316b/style.json?key=Jkc3jiUV3uJ2WHYoDX4S";
+
+    //         applyStyle(layer, styleUrl)
+    //             .then(() => {
+    //                 console.log("MapTiler style applied successfully");
+    //             })
+    //             .catch((error) => {
+    //                 console.error("Error applying MapTiler style:", error);
+    //             });
+    //     }
+    // }, []);
 
     const legFeatureGeometry = () => {
         const map = mapRef.current.ol;
         const layers = map.getLayers().getArray();
-        const layer = layers[1];
+        const layer = layers[2];
         const source = layer.getSource();
         const allFeatures = source.getFeatures();
         const legFeature = allFeatures.find((feature) => {
@@ -79,11 +92,14 @@ const OpenLayersMap = () => {
             noDefaultControls={true}
             // extent={maxExtentCoords}
             initial={{
-                center: center, // maybe no parens
-                zoom: zoom, // ""
+                center: center,
+                zoom: zoom,
             }}
         >
+            {/* basemap */}
             <RLayerStadia layer="outdoors" />
+            {/* <RLayerVectorTile /> */}
+            {/* <RLayerStadia layer="outdoors" /> */}
             {/* <RLayerStadia layer="stamen_terrain" /> */}
 
             {/* Map */}

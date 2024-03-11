@@ -16,6 +16,8 @@
     "d3": "^7.8.5",
     "esri-loader": "^3.7.0",
     "ol": "^8.1.0",
+    "ol-mapbox-style": "^12.2.1",
+    "ol-mbtiles": "^2.2.0",
     "papaparse": "^5.4.1",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",

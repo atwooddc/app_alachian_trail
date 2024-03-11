@@ -40,7 +40,7 @@ const ProgressBar = () => {
             <Grid
                 item
                 alignItems="center"
-                justifyContent="center"
+                justifyContent="left"
                 xs={9}
                 className="desktop"
             >
