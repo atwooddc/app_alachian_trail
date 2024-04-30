@@ -6,12 +6,13 @@ const WelcomeMessage = () => {
         <>
             <Typography
                 variant="h6"
-                fontSize={14}
+                fontSize={24}
                 textAlign={"left"}
                 fontWeight={"bold"}
                 fontFamily="Futura"
                 // marginBottom={1}
-                padding={1}
+                paddingTop={1}
+                paddingBottom={1}
                 lineHeight={"18px"}
             >
                 {" "}
@@ -19,33 +20,33 @@ const WelcomeMessage = () => {
             </Typography>
             <Typography
                 variant="paragraph"
-                fontSize={10}
+                fontSize={12}
                 textAlign={"left"}
                 fontFamily="Helvetica"
-                padding={1}
                 lineHeight={"6px"}
             >
-                my dad set out from Nimblewill Gap near Georgia's northern
-                border, an external frame pack on his back and a beard on his
-                face that wouldn't quit growing. He was 19, and hoped to hike
-                2000+ miles to Mount Katahdin in Maine by October.
+                my grandparents waved goodbye to their son as he set out from
+                Nimblewill Gap near Georgia's northern border. By October, he
+                had hiked more than 2000 miles to Mount Katahdin, the northern
+                terminus of the Appalachian Trail.
                 <br />
-                &emsp; This website is a tool to explore that journey with data
-                from his itinerary and journals that are (somehow) still intact.
-                So click around, explore, and marvel at this 19-year-old's
-                singlemindedness!
+                This site is a tool to explore that journey. The route is
+                segmented to reflect his stops on the trail, meticulously
+                recorded in his (somehow still intact) journals. Click anywhere
+                along the route to see what Glenn was up to that day...Happy
+                Trails!
                 <br />
-                &emsp; And one note about the line: the line that appears on
-                this website is the current centerline. There are shelters that
-                have been torn down, and trail sections that have been rerouted,
-                but a majority of the trail remains the same. Where the trail
-                and Glenn's stops (marked by green circles) diverge, tracing the
-                stops will give a more accurate sense of the trail as it existed
-                in 1981.
                 <br />
-                &emsp; And as for the missing days - even the greatest athletes
-                have to rest. In the future I hope to add info on Glenn's rest
-                days as well as his scanned journal entries.
+            </Typography>
+            <Typography
+                variant="paragraph"
+                fontSize={10}
+                fontFamily="Helvetica"
+                // padding={1}
+                lineHeight={"6px"}
+            >
+                for more info on the Appalachian Trail, visit{" "}
+                <a href="https://appalachiantrail.org/">appalachiantrail.org</a>
             </Typography>
         </>
     );
