@@ -14,6 +14,7 @@ import { useZoomContext } from "../context/ZoomContext";
 import { getCenter, getZoom } from "../utils/MapDefaults";
 
 import SectionPopUp from "./SectionPopUp";
+import StopPopUp from "./StopPopUp";
 
 import hikingIcon from "../img/hiking.png";
 import mountainIcon from "../img/mountain.png";
@@ -34,7 +35,7 @@ const OpenLayersMap = () => {
     const [isAutoZoom, , autoZoomLevel] = useZoomContext();
 
     const [hoverSection, setHoverSection] = useState(null);
-    // const [hoverStop, setHoverStop] = useState(null);
+    const [hoverStop, setHoverStop] = useState(null);
 
     const [center] = useState(getCenter());
     const [zoom] = useState(getZoom());
@@ -73,8 +74,14 @@ const OpenLayersMap = () => {
                 format={new GeoJSON({ featureProjection: "EPSG:3857" })}
                 url="https://raw.githubusercontent.com/atwooddc/at_geojson/main/at_complete_day_and_leg.geojson"
                 onPointerEnter={useCallback(
-                    (e) => setHoverSection(e.target),
-                    []
+                    (e) => {
+                        if (hoverStop == null) {
+                            setHoverSection(e.target);
+                        } else {
+                            setHoverSection(null);
+                        }
+                    },
+                    [hoverStop]
                 )}
                 onPointerLeave={useCallback(
                     (e) => hoverSection === e.target && setHoverSection(null),
@@ -103,16 +110,12 @@ const OpenLayersMap = () => {
                     <div>
                         <RFeature geometry={hoverSection.getGeometry()}>
                             <ROverlay className="overlay" autoPosition={true}>
-                                {data[hoverSection.get("leg")].state ? (
-                                    <SectionPopUp
-                                        day={hoverSection.get("day")}
-                                        stateString={
-                                            data[hoverSection.get("leg")].state
-                                        }
-                                    />
-                                ) : (
-                                    <></>
-                                )}
+                                <SectionPopUp
+                                    day={hoverSection.get("day")}
+                                    stateString={
+                                        data[hoverSection.get("leg")].state
+                                    }
+                                />
                             </ROverlay>
                         </RFeature>
                     </div>
@@ -137,7 +140,7 @@ const OpenLayersMap = () => {
                 </RStyle.RStyle>
             </RLayerVector>
 
-            {/* <RLayerVector
+            <RLayerVector
                 zIndex={10}
                 maxResolution={650}
                 format={new GeoJSON({ featureProjection: "EPSG:3857" })}
@@ -154,21 +157,22 @@ const OpenLayersMap = () => {
                         <RStyle.RFill color={"#4a6741"} />
                     </RStyle.RCircle>
                 </RStyle.RStyle>
-            </RLayerVector> */}
+            </RLayerVector>
 
             {/* shelter pop ups
             note: need to revise names of shelters in geojson */}
-            {/* <RLayerVector zIndex={10}>
-                {currentStop && (
+            <RLayerVector zIndex={10}>
+                {hoverStop && (
                     <div>
-                        <RFeature geometry={currentStop.getGeometry()}>
+                        <RFeature geometry={hoverStop.getGeometry()}>
                             <ROverlay className="overlay" autoPosition={true}>
-                                <strong>{currentStop.get("Name")}</strong>
+                                {/* <strong>{hoverStop.get("Name")}</strong> */}
+                                <StopPopUp stop={hoverStop.get("Name")} />
                             </ROverlay>
                         </RFeature>
                     </div>
                 )}
-            </RLayerVector> */}
+            </RLayerVector>
 
             <RLayerVector zIndex={1000}>
                 <RStyle.RStyle>
