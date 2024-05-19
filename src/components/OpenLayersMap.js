@@ -4,7 +4,8 @@ import { Point } from "ol/geom";
 import GeoJSON from "ol/format/GeoJSON";
 import "ol/ol.css";
 import { RMap, RLayerVector, RStyle, ROverlay, RFeature } from "rlayers";
-import RLayerStadia from "rlayers/layer/RLayerStadia";
+import { RLayerTile } from "rlayers";
+import VectorSource from "ol/source/Vector";
 import { useMapRefContext } from "../context/MapRefContext";
 import { useDataContext } from "../context/DataContext";
 import { useLegContext } from "../context/LegContext";
@@ -45,17 +46,27 @@ const OpenLayersMap = () => {
     const [center] = useState(getCenter());
     const [zoom] = useState(getZoom());
 
+    const mapboxAccessToken = process.env.REACT_APP_MAPBOX_ACCESS_TOKEN;
+    const mapboxStyleUrl = `https://api.mapbox.com/styles/v1/dcatwood10/clwe4lhr1002101qodeypfq6p/tiles/256/{z}/{x}/{y}@2x?access_token=${mapboxAccessToken}`;
+
     const legFeatureGeometry = () => {
         const map = mapRef.current.ol;
         const layers = map.getLayers().getArray();
-        const layer = layers[1];
-        const source = layer.getSource();
-        const allFeatures = source.getFeatures();
-        const legFeature = allFeatures.find((feature) => {
-            return feature.get("leg") === leg;
-        });
+        const vectorLayer = layers.find(
+            (layer) => layer.getSource() instanceof VectorSource
+        );
 
-        return legFeature ? legFeature.getGeometry() : null;
+        if (vectorLayer) {
+            const source = vectorLayer.getSource();
+            const allFeatures = source.getFeatures();
+            const legFeature = allFeatures.find((feature) => {
+                return feature.get("leg") === leg;
+            });
+
+            return legFeature ? legFeature.getGeometry() : null;
+        }
+
+        return null;
     };
 
     return (
@@ -69,7 +80,8 @@ const OpenLayersMap = () => {
                 zoom: zoom,
             }}
         >
-            <RLayerStadia layer="outdoors" />
+            {/* custom basemap */}
+            <RLayerTile url={mapboxStyleUrl} />
 
             {/* Map */}
             <RLayerVector
