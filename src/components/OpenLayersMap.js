@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useRef } from "react";
+import React, { useState, useCallback } from "react";
 import { fromLonLat } from "ol/proj";
 import { Point } from "ol/geom";
 import GeoJSON from "ol/format/GeoJSON";
