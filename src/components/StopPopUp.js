@@ -1,9 +1,11 @@
 import React from "react";
 
-import { Paper, Typography, Box, alpha } from "@mui/material";
+import { Paper, Typography, Box } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 
-import StateIndicator from "./StateIndicator";
+import { useDataContext } from "../context/DataContext";
+
+import LodgingIndicator from "./LodgingIndicator";
 
 const useStyles = makeStyles((theme) => ({
     popUp: {
@@ -19,11 +21,14 @@ const useStyles = makeStyles((theme) => ({
         zIndex: 1000,
         fontFamily: "Futura",
         color: "#11151C",
+        opacity: 0.9,
     },
 }));
 
-const SectionPopUp = ({ stop }) => {
+const StopPopUp = ({ leg }) => {
     const classes = useStyles();
+
+    const data = useDataContext();
 
     return (
         <Paper className={classes.popUp}>
@@ -42,12 +47,12 @@ const SectionPopUp = ({ stop }) => {
                     marginRight={1}
                     whiteSpace="nowrap"
                 >
-                    {stop}
+                    {data[leg].end}
                 </Typography>
-                {/* <StateIndicator stateString={stateString} /> */}
+                <LodgingIndicator lodging={data[leg].lodging} />
             </Box>
         </Paper>
     );
 };
 
-export default SectionPopUp;
+export default StopPopUp;

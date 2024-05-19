@@ -1,42 +1,47 @@
-import { React, useState, useCallback } from "react";
+import React, { useState, useCallback, useRef } from "react";
 import { fromLonLat } from "ol/proj";
 import { Point } from "ol/geom";
 import GeoJSON from "ol/format/GeoJSON";
 import "ol/ol.css";
-
 import { RMap, RLayerVector, RStyle, ROverlay, RFeature } from "rlayers";
 import RLayerStadia from "rlayers/layer/RLayerStadia";
 import { useMapRefContext } from "../context/MapRefContext";
 import { useDataContext } from "../context/DataContext";
 import { useLegContext } from "../context/LegContext";
 import { useZoomContext } from "../context/ZoomContext";
-
 import { getCenter, getZoom } from "../utils/MapDefaults";
-
 import SectionPopUp from "./SectionPopUp";
 import StopPopUp from "./StopPopUp";
-
 import hikingIcon from "../img/hiking.png";
 import mountainIcon from "../img/mountain.png";
+import { Style, Circle as CircleStyle, Stroke, Fill } from "ol/style";
 
 const start = fromLonLat([-84.21433, 34.60862]);
 const end = fromLonLat([-68.9215, 45.9044]);
-// const maxExtentCoords = [
-//     -11318965.82,
-//     3310893.22, // bottom-left corner
-//     -5397882.11,
-//     6423792.5, // top-right corner
-// ];
+
+const defaultStyle = new Style({
+    image: new CircleStyle({
+        radius: 8,
+        fill: new Fill({ color: "#4a6741" }),
+        stroke: new Stroke({ color: "#92a38d", width: 4 }),
+    }),
+});
+
+const hoverStyle = new Style({
+    image: new CircleStyle({
+        radius: 8,
+        fill: new Fill({ color: "#4a6741" }),
+        stroke: new Stroke({ color: "#92a38d", width: 6 }),
+    }),
+});
 
 const OpenLayersMap = () => {
     const mapRef = useMapRefContext();
     const data = useDataContext();
     const [leg, setLeg] = useLegContext();
     const [isAutoZoom, , autoZoomLevel] = useZoomContext();
-
     const [hoverSection, setHoverSection] = useState(null);
     const [hoverStop, setHoverStop] = useState(null);
-
     const [center] = useState(getCenter());
     const [zoom] = useState(getZoom());
 
@@ -59,20 +64,18 @@ const OpenLayersMap = () => {
             width={"100%"}
             height={"100vh"}
             noDefaultControls={true}
-            // extent={maxExtentCoords}
             initial={{
-                center: center, // maybe no parens
-                zoom: zoom, // ""
+                center: center,
+                zoom: zoom,
             }}
         >
             <RLayerStadia layer="outdoors" />
-            {/* <RLayerStadia layer="stamen_terrain" /> */}
 
             {/* Map */}
             <RLayerVector
                 zIndex={5}
                 format={new GeoJSON({ featureProjection: "EPSG:3857" })}
-                url="https://raw.githubusercontent.com/atwooddc/at_geojson/main/at_complete_day_and_leg.geojson"
+                url="https://raw.githubusercontent.com/atwooddc/at_gis/main/at_complete_day_and_leg.geojson"
                 onPointerEnter={useCallback(
                     (e) => {
                         if (hoverStop == null) {
@@ -140,16 +143,24 @@ const OpenLayersMap = () => {
                 </RStyle.RStyle>
             </RLayerVector>
 
+            {/* Hovered stop */}
             <RLayerVector
                 zIndex={10}
                 maxResolution={650}
-                format={new GeoJSON({ featureProjection: "EPSG:3857" })}
-                url="https://raw.githubusercontent.com/atwooddc/at_geojson/main/glenn_at_shelters_12_24.geojson"
-                onPointerEnter={useCallback((e) => setHoverStop(e.target), [])}
-                onPointerLeave={useCallback(
-                    (e) => hoverStop === e.target && setHoverStop(null),
-                    [hoverStop]
-                )}
+                format={new GeoJSON({ featureProjection: "EPSG:4326" })}
+                url="https://raw.githubusercontent.com/atwooddc/at_gis/main/at_stops.geojson"
+                onPointerEnter={useCallback((e) => {
+                    const feature = e.target;
+                    feature.setStyle(null); // Clear any existing styles
+                    feature.setStyle(hoverStyle); // Apply the hover style
+                    setHoverStop(feature);
+                }, [])}
+                onPointerLeave={useCallback((e) => {
+                    const feature = e.target;
+                    feature.setStyle(null); // Clear any existing styles
+                    feature.setStyle(defaultStyle); // Apply the default style
+                    setHoverStop(null);
+                }, [])}
             >
                 <RStyle.RStyle>
                     <RStyle.RCircle radius={10}>
@@ -159,15 +170,13 @@ const OpenLayersMap = () => {
                 </RStyle.RStyle>
             </RLayerVector>
 
-            {/* shelter pop ups
-            note: need to revise names of shelters in geojson */}
+            {/* Shelter pop ups */}
             <RLayerVector zIndex={10}>
                 {hoverStop && (
                     <div>
                         <RFeature geometry={hoverStop.getGeometry()}>
                             <ROverlay className="overlay" autoPosition={true}>
-                                {/* <strong>{hoverStop.get("Name")}</strong> */}
-                                <StopPopUp stop={hoverStop.get("Name")} />
+                                <StopPopUp leg={hoverStop.get("leg")} />
                             </ROverlay>
                         </RFeature>
                     </div>

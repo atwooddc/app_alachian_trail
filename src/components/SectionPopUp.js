@@ -19,6 +19,7 @@ const useStyles = makeStyles((theme) => ({
         zIndex: 1000,
         fontFamily: "Futura",
         color: "#11151C",
+        opacity: 0.9,
     },
 }));
 
@@ -37,6 +38,7 @@ const SectionPopUp = ({ day, stateString }) => {
             >
                 <Typography
                     variant="p"
+                    fontWeight="medium"
                     align="center"
                     marginLeft={0.5}
                     marginRight={1}
