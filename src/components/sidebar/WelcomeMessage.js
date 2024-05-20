@@ -31,10 +31,10 @@ const WelcomeMessage = () => {
                 terminus of the Appalachian Trail.
                 <br />
                 This site is a tool to explore that journey. The route is
-                segmented to reflect his stops on the trail, meticulously
-                recorded in his (somehow still intact) journals. Click anywhere
-                along the route to see what Glenn was up to that day...Happy
-                Trails!
+                segmented to reflect his stops on the trail, which he
+                meticulously recorded in his (somehow still intact) journals.
+                Click anywhere along the route to see what Glenn was up to that
+                day...Happy Trails!
                 <br />
                 <br />
             </Typography>
