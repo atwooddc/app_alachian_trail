@@ -17,7 +17,7 @@ const ElevationChart = () => {
     useEffect(() => {
         const fetchData = async () => {
             const url =
-                "https://raw.githubusercontent.com/atwooddc/at_geojson/main/elevation_per_feature.csv";
+                "https://raw.githubusercontent.com/atwooddc/at_geojson/main/elevation_data.csv";
             d3.csv(url)
                 .then((data) => {
                     const processedData = data.map((row) => ({

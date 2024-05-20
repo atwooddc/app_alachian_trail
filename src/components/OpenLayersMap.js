@@ -87,7 +87,7 @@ const OpenLayersMap = () => {
             <RLayerVector
                 zIndex={5}
                 format={new GeoJSON({ featureProjection: "EPSG:3857" })}
-                url="https://raw.githubusercontent.com/atwooddc/at_gis/main/at_complete_day_and_leg.geojson"
+                url="https://raw.githubusercontent.com/atwooddc/at_gis/main/hiking_data.geojson"
                 onPointerEnter={useCallback(
                     (e) => {
                         if (hoverStop == null) {
@@ -160,7 +160,7 @@ const OpenLayersMap = () => {
                 zIndex={10}
                 maxResolution={650}
                 format={new GeoJSON({ featureProjection: "EPSG:4326" })}
-                url="https://raw.githubusercontent.com/atwooddc/at_gis/main/at_stops.geojson"
+                url="https://raw.githubusercontent.com/atwooddc/at_gis/main/stop_data.geojson"
                 onPointerEnter={useCallback((e) => {
                     const feature = e.target;
                     feature.setStyle(null); // Clear any existing styles
