@@ -175,8 +175,8 @@ const OpenLayersMap = () => {
                 }, [])}
             >
                 <RStyle.RStyle>
-                    <RStyle.RCircle radius={10}>
-                        <RStyle.RStroke color={"#92a38d"} width={5} />
+                    <RStyle.RCircle radius={8}>
+                        <RStyle.RStroke color={"#92a38d"} width={4} />
                         <RStyle.RFill color={"#4a6741"} />
                     </RStyle.RCircle>
                 </RStyle.RStyle>
