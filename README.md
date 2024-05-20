@@ -1,4 +1,4 @@
-# APPalachian Trail
+# Putting the A.T. in Atwood
 
 Visualization exploring Glenn Atwood's 1981 Appalachian Trail journey from GA to ME. Includes day-by-day mileage, start and end points, lodging data and elevation profiles. Uses React, OpenLayers, D3.js, and AWS. Mobile and desktop compatibility. 
 
