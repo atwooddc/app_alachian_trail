@@ -7,7 +7,7 @@ export const ZoomProvider = ({ children }) => {
         const width = window.innerWidth;
         const height = window.innerHeight;
         const ratio = width / height;
-        if (ratio < 2 / 3) return 8.5; // mobile displays
+        if (ratio < 2 / 3) return 9; // mobile displays
         if (ratio < 4 / 3) return 10; // approx square displays
         return 11; // desktop
     };
