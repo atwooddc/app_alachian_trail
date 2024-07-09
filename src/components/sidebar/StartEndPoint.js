@@ -29,7 +29,7 @@ const StartEndPoint = ({ text }) => {
             <BorderedBox>
                 <Typography
                     fontFamily="Futura"
-                    fontSize={10}
+                    fontSize={12}
                     color={"grey"}
                     style={{ textAlign: "center" }}
                 >
