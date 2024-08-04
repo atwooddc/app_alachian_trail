@@ -8,6 +8,7 @@ import { LegProvider } from "../context/LegContext.js";
 import { ZoomProvider } from "../context/ZoomContext.js";
 import RecenterButton from "../components/RecenterButton.js";
 import ZoomSwitch from "../components/ZoomSwitch.js";
+import OnThisDayButton from "../components/OnThisDayButton.js";
 
 const MapPage = () => {
     return (
@@ -19,6 +20,7 @@ const MapPage = () => {
                         <GitHubButton />
                         <RecenterButton />
                         <ZoomSwitch />
+                        <OnThisDayButton />
                         <Sidebar />
                     </LegProvider>
                 </DataProvider>

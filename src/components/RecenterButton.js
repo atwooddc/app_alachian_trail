@@ -26,7 +26,7 @@ const RecenterButton = () => {
                 height: "40px",
                 width: "40px",
                 position: "absolute",
-                bottom: "65px",
+                bottom: "120px",
                 left: "20px",
                 padding: 0,
                 zIndex: 1000,

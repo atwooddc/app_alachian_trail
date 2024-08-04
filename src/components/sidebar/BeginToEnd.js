@@ -13,7 +13,7 @@ const MileageToFrom = styled(Button)({
     marginBottom: 4,
     verticalAlign: "middle",
     fontFamily: "Futura",
-    fontSize: 16,
+    fontSize: 15,
     padding: "2px 8px",
     textTransform: "none",
     backgroundColor: "white",

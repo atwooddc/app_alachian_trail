@@ -22,7 +22,7 @@ const ZoomSwitch = () => {
                 height: "40px",
                 width: "136.43px",
                 position: "absolute",
-                bottom: "20px",
+                bottom: "70px",
                 left: "20px",
                 padding: 0,
                 zIndex: 1000,
