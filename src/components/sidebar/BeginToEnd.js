@@ -53,7 +53,7 @@ const BeginToEnd = () => {
                                 color: "#275DAD",
                             }}
                         >
-                            {data[leg].mileage} mi.
+                            {data[leg-1].mileage} mi.
                         </MileageToFrom>
                         from <br />
                         <MileageToFrom
@@ -62,7 +62,7 @@ const BeginToEnd = () => {
                                 color: "#0B3948",
                             }}
                         >
-                            {data[leg].start}
+                            {data[leg-1].start}
                         </MileageToFrom>
                         to <br />
                         <MileageToFrom
@@ -71,7 +71,7 @@ const BeginToEnd = () => {
                                 color: "#0B3948",
                             }}
                         >
-                            {data[leg].end}
+                            {data[leg-1].end}
                         </MileageToFrom>
                     </Typography>
                 </Grid>
@@ -100,7 +100,7 @@ const BeginToEnd = () => {
                             color="grey"
                             paddingBottom={0}
                         >
-                            {data[leg].mileage}
+                            {data[leg-1].mileage}
                         </Typography>
                         <Typography
                             fontFamily={"verdana"}
@@ -113,11 +113,11 @@ const BeginToEnd = () => {
                             &nbsp;mi.
                         </Typography>
                     </Grid>
-                    <StartEndPoint text={data[leg].start} />
+                    <StartEndPoint text={data[leg-1].start} />
                     <Grid item container xs={1} justifyContent="center">
                         <EastIcon color="disabled" />
                     </Grid>
-                    <StartEndPoint text={data[leg].end} />
+                    <StartEndPoint text={data[leg-1].end} />
                 </Grid>
             </div>
         </>

@@ -47,9 +47,9 @@ const StopPopUp = ({ leg }) => {
                     marginRight={1}
                     whiteSpace="nowrap"
                 >
-                    {data[leg].end}
+                    {data[leg-1].end}
                 </Typography>
-                <LodgingIndicator lodging={data[leg].lodging} />
+                <LodgingIndicator lodging={data[leg-1].lodging} />
             </Box>
         </Paper>
     );

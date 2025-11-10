@@ -128,7 +128,7 @@ const OpenLayersMap = () => {
                                 <SectionPopUp
                                     day={hoverSection.get("day")}
                                     stateString={
-                                        data[hoverSection.get("leg")].state
+                                        data[hoverSection.get("leg")-1].state
                                     }
                                 />
                             </ROverlay>

@@ -76,8 +76,10 @@ const ElevationChart = () => {
                     margin.top -
                     margin.bottom;
 
-                const endDist = data[leg].totalDist;
-                const startDist = endDist - data[leg].mileage;
+                console.log(data[leg-1].totalDist);
+                const endDist = data[leg-1].totalDist;
+                console.log(endDist - data[leg-1].mileage);
+                const startDist = endDist - data[leg-1].mileage;
 
                 const elevationValues = legData.elevations;
 

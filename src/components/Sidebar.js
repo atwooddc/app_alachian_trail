@@ -106,7 +106,7 @@ const Sidebar = () => {
                                 justifyContent={"center"}
                                 paddingBottom={2}
                             >
-                                <StateIndicator stateString={data[leg].state} />
+                                <StateIndicator stateString={data[leg-1].state} />
                             </Grid>
                             <Grid item xs={10}>
                                 <ElevationChart />

@@ -44,17 +44,17 @@ const NavBar = () => {
             const newLeg = leg - 1;
             if (data[newLeg]) {
                 setLeg(newLeg);
-                changeMapView(newLeg);
+                changeMapView(newLeg-1);
             }
         }
     };
 
     const nextLeg = () => {
-        if (leg < 148) {
+        if (leg < data.length) {
             const newLeg = leg + 1;
             if (data[newLeg]) {
                 setLeg(newLeg);
-                changeMapView(newLeg);
+                changeMapView(newLeg-1);
             }
         }
     };
@@ -69,11 +69,11 @@ const NavBar = () => {
             <Grid item xs={10}>
                 <Box display="flex" justifyContent="center">
                     <Typography variant="h6" marginRight={1}>
-                        Day {data[leg].day}
+                        Day {data[leg-1].day}
                     </Typography>
                     <Divider orientation="vertical" variant="middle" flexItem />
                     <Typography variant="overline" marginLeft={1}>
-                        {formatDate(data[leg].date)}
+                        {formatDate(data[leg-1].date)}
                     </Typography>
                 </Box>
             </Grid>

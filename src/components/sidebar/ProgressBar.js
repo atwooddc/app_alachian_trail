@@ -47,7 +47,7 @@ const ProgressBar = () => {
                 <LinearProgress
                     variant="determinate"
                     color="secondary"
-                    value={(100 * data[leg].totalDist) / data[148].totalDist}
+                    value={(100 * data[leg-1].totalDist) / data[data.length - 1].totalDist}
                 />
             </Grid>
             <Grid item xs={1.5} className="desktop">
@@ -72,7 +72,7 @@ const ProgressBar = () => {
                 <LinearProgress
                     variant="determinate"
                     color="secondary"
-                    value={(100 * data[leg].totalDist) / data[148].totalDist}
+                    value={(100 * data[leg-1].totalDist) / data[data.length - 1].totalDist}
                 />
             </Grid>
         </>

@@ -9,12 +9,13 @@ export const DataProvider = ({ children }) => {
         const fetchData = async () => {
             try {
                 const response = await fetch(
-                    "https://gic2p2iycjqo7z7rqebkho2wpe0verbz.lambda-url.us-east-2.on.aws/"
+                    "https://glenn-at.s3.us-east-2.amazonaws.com/at_data.json"
                 );
                 if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);
                 }
                 const json = await response.json();
+                console.log("Fetched data:", json);
                 setData(json);
             } catch (error) {
                 console.error("Error fetching data: ", error);
